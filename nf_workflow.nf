@@ -1,8 +1,8 @@
 #!/usr/bin/env nextflow
 nextflow.enable.dsl=2
 
-params.input_mzmls = "/Users/shipei/Documents/projects/reverse_metabolomics/reverse_metabolomics/generate_library/input/*.mzML"
-params.input_csvs = "/Users/shipei/Documents/projects/reverse_metabolomics/reverse_metabolomics/generate_library/input/*.csv"
+params.input_mzmls = "/Users/shipei/Documents/projects/reverse_metabolomics/reverse_metabolomics/generate_library/input"
+params.input_csvs = "/Users/shipei/Documents/projects/reverse_metabolomics/reverse_metabolomics/generate_library/input"
 params.data_collector = "Minions"
 params.ms2_explanation_cutoff = 0.60
 
@@ -14,28 +14,29 @@ process createLibrary {
     conda "$TOOL_FOLDER/conda_env.yml"
 
     input:
-    file input_mzmls
-    file input_csvs
+    path mzmls
+    path csvs
 
     output:
-    file 'all_library.tsv'
-    file '*.tsv' optional true
-    file '*.pdf' optional true
-    file '*.svg' optional true
+    path 'all_library.tsv'
+    path '*.tsv', optional: true
+    path '*.pdf', optional: true
+    path '*.png', optional: true
 
+    script:
     """
-    echo "${input_mzmls.join('\n')}" > temp_mzml_list.txt
-    echo "${input_csvs.join('\n')}" > temp_csv_list.txt
-    python $TOOL_FOLDER/main_batch.py --mzml_list temp_mzml_list.txt --csv_list temp_csv_list.txt \
+    python $TOOL_FOLDER/main_batch.py \
+    --mzml_files ${mzmls} \
+    --csv_files ${csvs} \
     --data_collector ${params.data_collector} \
-    --ms2_explanation_cutoff ${params.ms2_explanation_cutoff} \
+    --ms2_explanation_cutoff ${params.ms2_explanation_cutoff} --plot
     """
 }
 
 
 workflow {
-    mzmls_ch = Channel.fromPath(params.input_mzmls)
-    csvs_ch = Channel.fromPath(params.input_csvs)
+    mzmls_ch = Channel.fromPath(params.input_mzmls + "/*.mzML")
+    csvs_ch = Channel.fromPath(params.input_csvs + "/*.csv")
 
-    createLibrary(mzmls_ch, csvs_ch)
+    createLibrary(mzmls_ch.collect(), csvs_ch.collect())
 }

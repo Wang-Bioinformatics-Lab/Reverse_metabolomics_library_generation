@@ -277,8 +277,8 @@ def plot_mz_rt(feature_df, df, mzml_name, out_dir=None):
     # Save the plot
     if out_dir is None:
         out_dir = '.'
-    output_path = f"{out_dir}/{mzml_name}_mz_rt_plot.svg"
-    plt.savefig(output_path, transparent=True, bbox_inches='tight')
+    output_path = f"{out_dir}/{mzml_name}_mz_rt_plot.png"
+    plt.savefig(output_path, bbox_inches='tight')
     plt.close()
 
     print(f"m/z vs RT plot saved to {output_path}")

@@ -1,7 +1,7 @@
 workflowname: reverse_metabolomics_create_library_workflow
 workflowdescription: This is to create MS/MS libraries using reverse metabolomics.
 workflowlongdescription: This is the workflow to create a tsv library from a set of mzML files and compound csv files. The tsv file is ready to be uploaded to GNPS library.
-workflowversion: "2024.08.27"
+workflowversion: "2024.08.27.7"
 workflowfile: nf_workflow.nf
 workflowautohide: false
 adminonly: false
@@ -11,7 +11,7 @@ parameterlist:
     - displayname: File Selection
       paramtype: section
 
-    - displayname: mzML Files
+    - displayname: mzML Folder
       paramtype: fileselector
       nf_paramname: input_mzmls
       formplaceholder: Enter the path to mzml files
@@ -21,7 +21,7 @@ parameterlist:
       selectsinglefile: false
       folderunroll: true
 
-    - displayname: Compound CSV Files
+    - displayname: Compound CSV Folder
       paramtype: fileselector
       nf_paramname: input_csvs
       formplaceholder: Enter the path to compound csv files

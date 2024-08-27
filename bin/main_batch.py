@@ -75,22 +75,14 @@ def main_batch(mzml_files, csv_files,
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Process a batch of mzML files and csv files.')
-    parser.add_argument('--mzml_list', type=str, help='Path to the mzML list file.')
-    parser.add_argument('--csv_list', type=str, help='Path to the csv list file.')
+    parser.add_argument('--mzml_files', nargs='+', help='List of mzML files')
+    parser.add_argument('--csv_files', nargs='+', help='List of CSV files')
     parser.add_argument('--data_collector', type=str, default='Minions', help='Data collector.')
     parser.add_argument('--ms2_explanation_cutoff', type=float, default=0.60, help='MS2 explanation cutoff.')
     parser.add_argument('--plot', action='store_true', help='Plot the results.')
     args = parser.parse_args()
 
-    with open(args.mzml_list, 'r') as f:
-        mzml_files_ls = [line.strip() for line in f.readlines()]
-    with open(args.csv_list, 'r') as f:
-        csv_files_ls = [line.strip() for line in f.readlines()]
-
-    print(f'{len(mzml_files_ls)} mzML files:', mzml_files_ls)
-    print(f'{len(csv_files_ls)} csv files:', csv_files_ls)
-
-    main_batch(mzml_files_ls, csv_files_ls,
+    main_batch(args.mzml_files, args.csv_files,
                data_collector=args.data_collector,
                ms2_explanation_cutoff=args.ms2_explanation_cutoff,
                plot=args.plot)
