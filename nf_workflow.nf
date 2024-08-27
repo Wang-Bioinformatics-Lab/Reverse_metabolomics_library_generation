@@ -4,6 +4,7 @@ nextflow.enable.dsl=2
 params.input_mzmls = "/Users/shipei/Documents/projects/reverse_metabolomics/reverse_metabolomics/generate_library/input/*.mzML"
 params.input_csvs = "/Users/shipei/Documents/projects/reverse_metabolomics/reverse_metabolomics/generate_library/input/*.csv"
 params.data_collector = "Minions"
+params.ms2_explanation_cutoff = 0.60
 
 TOOL_FOLDER = "$baseDir/bin"
 
@@ -26,7 +27,8 @@ process createLibrary {
     echo "${input_mzmls.join('\n')}" > temp_mzml_list.txt
     echo "${input_csvs.join('\n')}" > temp_csv_list.txt
     python $TOOL_FOLDER/main_batch.py --mzml_list temp_mzml_list.txt --csv_list temp_csv_list.txt \
-    --data_collector ${params.data_collector}
+    --data_collector ${params.data_collector} \
+    --ms2_explanation_cutoff ${params.ms2_explanation_cutoff} \
     """
 }
 

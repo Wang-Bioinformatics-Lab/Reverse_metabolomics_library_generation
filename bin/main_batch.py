@@ -9,6 +9,7 @@ from create_library import create_library
 
 def main_batch(mzml_files, csv_files,
                data_collector='Minions',
+               ms2_explanation_cutoff=0.60,
                plot=False,
                write_individual_mgf=False):
     """
@@ -46,7 +47,9 @@ def main_batch(mzml_files, csv_files,
         # Filter library
         print('Creating MS/MS library...')
         df, library_df = create_library(cmpd_df, feature_df, ion_mode, intensity_threshold,
-                                        data_collector, mzml_name, metadata_dir=None,
+                                        data_collector, mzml_name,
+                                        filter_library=True, ms2_explanation_cutoff=ms2_explanation_cutoff,
+                                        metadata_dir=None,
                                         write_individual_mgf=write_individual_mgf)
 
         all_library_df = pd.concat([all_library_df, library_df])
@@ -71,11 +74,11 @@ def main_batch(mzml_files, csv_files,
 
 
 if __name__ == '__main__':
-
     parser = argparse.ArgumentParser(description='Process a batch of mzML files and csv files.')
     parser.add_argument('--mzml_list', type=str, help='Path to the mzML list file.')
     parser.add_argument('--csv_list', type=str, help='Path to the csv list file.')
     parser.add_argument('--data_collector', type=str, default='Minions', help='Data collector.')
+    parser.add_argument('--ms2_explanation_cutoff', type=float, default=0.60, help='MS2 explanation cutoff.')
     parser.add_argument('--plot', action='store_true', help='Plot the results.')
     args = parser.parse_args()
 
@@ -84,4 +87,7 @@ if __name__ == '__main__':
     with open(args.csv_list, 'r') as f:
         csv_files_ls = [line.strip() for line in f.readlines()]
 
-    main_batch(mzml_files_ls, csv_files_ls, data_collector=args.data_collector, plot=args.plot)
+    main_batch(mzml_files_ls, csv_files_ls,
+               data_collector=args.data_collector,
+               ms2_explanation_cutoff=args.ms2_explanation_cutoff,
+               plot=args.plot)
