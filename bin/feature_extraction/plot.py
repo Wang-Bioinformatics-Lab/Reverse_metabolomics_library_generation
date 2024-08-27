@@ -1,12 +1,14 @@
 import pandas as pd
 import numpy as np
+
+from .config import find_ms_info
 from .raw_data_utils import MSData
 from .main import init_config
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 
 
-def plot_all_eic(df, file_path, out_dir, plots_per_page=5):
+def plot_all_eic(df, file_path, out_dir=None, plots_per_page=5):
     """
     Plot EICs for adducts in the dataframe and additional related adducts on a PDF with an M x 1 layout per page and legend inside the plot
 
@@ -16,7 +18,8 @@ def plot_all_eic(df, file_path, out_dir, plots_per_page=5):
         out_dir (str): Output directory for the PDF
         plots_per_page (int): Number of plots per page (default: 5)
     """
-    config = init_config(mass_detect_int_tol=0)
+    ms_type, ion_mode, centroided = find_ms_info(file_path)
+    config = init_config(ms_type, ion_mode=ion_mode)
     d = MSData()
     d.read_raw_data(file_path, config)
 
@@ -56,6 +59,8 @@ def plot_all_eic(df, file_path, out_dir, plots_per_page=5):
 
         return list(adducts_to_plot)
 
+    if out_dir is None:
+        out_dir = '.'
     pdf_path = f"{out_dir}/{file_name}_eic_plots.pdf"
     with PdfPages(pdf_path) as pdf:
         fig, axs = plt.subplots(plots_per_page, 1, figsize=(8.27, 11.69))  # A4 size
@@ -134,16 +139,20 @@ def plot_all_eic(df, file_path, out_dir, plots_per_page=5):
     print(f"EIC plots saved to {pdf_path}")
 
 
-def plot_all_ms2(df, file_path, out_dir):
+def plot_all_ms2(df, file_path, out_dir=None):
     """
     Plot all MS2 spectra on a PDF with a 5x2 layout per page, including unselected spectra
     """
-    config = init_config(mass_detect_int_tol=0)
+    ms_type, ion_mode, centroided = find_ms_info(file_path)
+
+    config = init_config(ms_type, ion_mode=ion_mode)
     d = MSData()
     d.read_raw_data(file_path, config)
 
     file_name = file_path.split('/')[-1].split('.')[0]
 
+    if out_dir is None:
+        out_dir = '.'
     pdf_path = f"{out_dir}/{file_name}_ms2_spectra.pdf"
     with PdfPages(pdf_path) as pdf:
         fig, axs = plt.subplots(5, 2, figsize=(11, 17))  # A4 size in inches
@@ -209,7 +218,7 @@ def plot_single_ms2(ax, mz_arr, int_arr, name, adduct, precursor_mz, rt, scan_id
     ax.set_xlim(right=precursor_mz * 1.025)
 
 
-def plot_mz_rt(feature_df, df, mzml_name, out_dir):
+def plot_mz_rt(feature_df, df, mzml_name, out_dir=None):
     """
     Plot m/z vs RT for all compounds in the dataframe, handling multiple labels per spectrum
     """
@@ -266,6 +275,8 @@ def plot_mz_rt(feature_df, df, mzml_name, out_dir):
     plt.legend(title='Status', bbox_to_anchor=(1.05, 1), loc='upper left')
 
     # Save the plot
+    if out_dir is None:
+        out_dir = '.'
     output_path = f"{out_dir}/{mzml_name}_mz_rt_plot.svg"
     plt.savefig(output_path, transparent=True, bbox_inches='tight')
     plt.close()

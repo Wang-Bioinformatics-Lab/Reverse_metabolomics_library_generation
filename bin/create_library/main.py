@@ -1,12 +1,13 @@
 from .merge_df import merge_compound_feature_tables
-from .filter_df import filter_df, filter_feature_df
+from .filter_df import filter_feature_df
+# from .filter_df import filter_df
 from .write_library import write_library
 from .write_mgf import write_mgf
 from .summarize_df import summarize_df
 
 
 def create_library(compound_df, feature_df, ion_mode, intensity_threshold,
-                   data_collector, file_name, metadata_dir,
+                   data_collector, file_name, metadata_dir=None,
                    write_individual_mgf=False):
     """
     Filter the library based on the compound and feature DataFrames.
@@ -18,8 +19,8 @@ def create_library(compound_df, feature_df, ion_mode, intensity_threshold,
     # Merge the compound and feature tables
     df = merge_compound_feature_tables(compound_df, feature_df)
 
-    # Filter the merged dataframe
-    df = filter_df(df, ion_mode)
+    # # Filter the merged dataframe
+    # df = filter_df(df, ion_mode)
 
     if write_individual_mgf:
         # Write individual MGF files

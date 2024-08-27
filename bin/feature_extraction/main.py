@@ -1,5 +1,4 @@
 import os
-
 from .config import Params, find_ms_info
 from .raw_data_utils import MSData
 
@@ -9,7 +8,7 @@ def feature_extraction_single(file_path, mass_detect_int_tol=None,
                               ms1_tol=0.005, ms2_tol=0.015,
                               save=True, out_dir=None):
     """
-    feature detection from a single .mzML file
+    feature detection from a single file
     """
 
     ms_type, ion_mode, centroided = find_ms_info(file_path)
