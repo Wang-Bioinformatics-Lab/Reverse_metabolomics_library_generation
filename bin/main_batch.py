@@ -87,6 +87,9 @@ if __name__ == '__main__':
     with open(args.csv_list, 'r') as f:
         csv_files_ls = [line.strip() for line in f.readlines()]
 
+    print(f'{len(mzml_files_ls)} mzML files:', mzml_files_ls)
+    print(f'{len(csv_files_ls)} csv files:', csv_files_ls)
+
     main_batch(mzml_files_ls, csv_files_ls,
                data_collector=args.data_collector,
                ms2_explanation_cutoff=args.ms2_explanation_cutoff,
