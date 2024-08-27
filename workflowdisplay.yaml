@@ -1,5 +1,5 @@
-name: template_nextflow_workflow
-displayname: STUFF
+name: reverse_metabolomics_create_library_workflow
+displayname: reverse_metabolomics_create_library_workflow
 Views:
 -   name: Summary List
     displayname: Summary List
