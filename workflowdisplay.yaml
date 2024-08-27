@@ -6,14 +6,29 @@ Views:
     viewname: summarylist
     displaytype: datatable
     parameters:
-        filename: output/summary.tsv
+        filename: nf_output/all_library.tsv
+        error_missingfile: "No File"
         columns:
             -   title: "View LCMS"
-                data: filename
-            -   title: "filename"
-                data: filename
+                data: FILENAME
+            -   title: "File name"
+                data: FILENAME
+            -   title: "Name"
+                data: COMPOUND_NAME
+            -   title: "Precursor m/z"
+                data: MOLECULEMASS
+            -   title: "Scan number"
+                data: EXTRACTSCAN
+            -   title: "SMILES"
+                data: SMILES
+            -   title: "Structure"
+                data: SMILES
         columnDefs: '[ {"targets": 0,"data": null,"render": function ( data, type, row, meta ) {
             return `
-            <a target="_blank" href="/dashboards/lcms?usi=mzspec:GNPS2-${task}:${encodeURIComponent(row["filename"])}">View LCMS - mzspec:GNPS2-${task}:${row["filename"]}</a>
+            <a target="_blank" href="/dashboards/lcms?usi=mzspec:GNPS2-${task}:${encodeURIComponent(row["FILENAME"])}">View LCMS - mzspec:GNPS2-${task}:${row["FILENAME"]}</a>
+            `;}}, 
+            {"targets": 6,"data": null,"render": function ( data, type, row, meta ) {
+            return `
+                <img src="https://structure.gnps2.org/structureimg?smiles=${row["SMILES"]}"/>
             `;}}]'
             
