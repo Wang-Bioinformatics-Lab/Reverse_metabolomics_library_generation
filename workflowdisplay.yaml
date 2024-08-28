@@ -9,8 +9,6 @@ Views:
         filename: nf_output/all_library.tsv
         error_missingfile: "No File"
         columns:
-            -   title: "View LCMS"
-                data: FILENAME
             -   title: "File name"
                 data: FILENAME
             -   title: "Name"
@@ -21,13 +19,11 @@ Views:
                 data: EXTRACTSCAN
             -   title: "SMILES"
                 data: SMILES
+            -   title: "Adduct"
+                data: ADDUCT
             -   title: "Structure"
                 data: SMILES
-        columnDefs: '[ {"targets": 0,"data": null,"render": function ( data, type, row, meta ) {
-            return `
-            <a target="_blank" href="/dashboards/lcms?usi=mzspec:GNPS2-${task}:${encodeURIComponent(row["FILENAME"])}">View LCMS - mzspec:GNPS2-${task}:${row["FILENAME"]}</a>
-            `;}}, 
-            {"targets": 6,"data": null,"render": function ( data, type, row, meta ) {
+        columnDefs: '[ {"targets": 6,"data": null,"render": function ( data, type, row, meta ) {
             return `
                 <img src="https://structure.gnps2.org/structureimg?smiles=${row["SMILES"]}"/>
             `;}}]'

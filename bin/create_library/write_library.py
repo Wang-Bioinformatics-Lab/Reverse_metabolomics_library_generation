@@ -17,7 +17,7 @@ def write_library(df, data_collector, file_name, ion_mode):
             'FILENAME': file_name + '.mzML',
             'SEQ': '*..*',
             'COMPOUND_NAME': row['name'],
-            'MOLECULEMASS': row['t_mz'],
+            'MOLECULEMASS': row['MS2_precursor_mz'],
             'INSTRUMENT': 'Orbitrap',
             'IONSOURCE': 'LC-ESI',
             'EXTRACTSCAN': round(row['best_MS2_scan_idx']),

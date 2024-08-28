@@ -3,7 +3,7 @@ nextflow.enable.dsl=2
 
 params.input_mzmls = "/Users/shipei/Documents/projects/reverse_metabolomics/reverse_metabolomics/generate_library/input"
 params.input_csvs = "/Users/shipei/Documents/projects/reverse_metabolomics/reverse_metabolomics/generate_library/input"
-params.data_collector = "Minions"
+params.data_collector = "Minions Hello"
 params.ms2_explanation_cutoff = 0.60
 
 TOOL_FOLDER = "$baseDir/bin"
@@ -24,15 +24,15 @@ process createLibrary {
     path '*.png', optional: true
 
     script:
+    def escapedDataCollector = params.data_collector.replaceAll(/"/, '\\\\"')
     """
     python $TOOL_FOLDER/main_batch.py \
     --mzml_files ${mzmls} \
     --csv_files ${csvs} \
-    --data_collector ${params.data_collector} \
+    --data_collector "${escapedDataCollector}" \
     --ms2_explanation_cutoff ${params.ms2_explanation_cutoff} --plot
     """
 }
-
 
 workflow {
     mzmls_ch = Channel.fromPath(params.input_mzmls + "/*.mzML")
