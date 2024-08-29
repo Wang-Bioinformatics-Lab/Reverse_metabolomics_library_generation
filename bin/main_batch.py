@@ -48,7 +48,8 @@ def main_batch(mzml_files, csv_files,
         print('Creating MS/MS library...')
         df, library_df = create_library(cmpd_df, feature_df, ion_mode, intensity_threshold,
                                         data_collector, mzml_name,
-                                        filter_library=True, ms2_explanation_cutoff=ms2_explanation_cutoff,
+                                        filter_library=True,
+                                        ms2_explanation_cutoff=ms2_explanation_cutoff,
                                         metadata_dir=None,
                                         write_individual_mgf=write_individual_mgf)
 
