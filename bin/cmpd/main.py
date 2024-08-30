@@ -1,5 +1,5 @@
 import pandas as pd
-from .utils import neutralize_formula, calc_exact_mass, smiles_to_inchi
+from .utils import neutralize_formula, calc_exact_mass, smiles_to_formula_and_inchi
 
 
 adduct_pos = [
@@ -32,14 +32,14 @@ def prepare_cmpd_df(cmpd_df_path):
     # load the compound list with USI and taxon filter
     cmpd_df = pd.read_csv(cmpd_df_path, low_memory=False)
 
+    # Add formula and InChI information
+    cmpd_df[['formula', 'inchi']] = cmpd_df['SMILES'].apply(smiles_to_formula_and_inchi).tolist()
+
     # neutralize the formula, deal with the charge (e.g., C5H5N+)
     cmpd_df['neutralized_formula'] = cmpd_df['formula'].apply(neutralize_formula)
 
     # calculate the exact mass
     cmpd_df['exact_mass'] = cmpd_df['neutralized_formula'].apply(calc_exact_mass)
-
-    # add inchi information
-    cmpd_df['inchi'] = cmpd_df['SMILES'].apply(smiles_to_inchi)
 
     # create a list to store the new rows
     new_rows = []

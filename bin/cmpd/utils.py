@@ -1,15 +1,25 @@
 from molmass import Formula
 import re
 from rdkit import Chem
+from rdkit.Chem import rdMolDescriptors
 
 
-def smiles_to_inchi(smiles):
-    # Convert SMILES to a molecule object
+def smiles_to_formula_and_inchi(smiles):
     try:
+        # Convert SMILES to a molecule object
         mol = Chem.MolFromSmiles(smiles)
-        return Chem.MolToInchi(mol)
+
+        # Get the molecular formula
+        formula = None
+        inchi = None
+
+        if mol:
+            formula = rdMolDescriptors.CalcMolFormula(mol)
+            inchi = Chem.MolToInchi(mol)
+
+        return formula, inchi
     except:
-        return None
+        return None, None
 
 
 def neutralize_formula(formula):
@@ -17,6 +27,9 @@ def neutralize_formula(formula):
     deal with the charge in the formula
     such as C5H5N+ -> C5H4N
     """
+    if not formula:
+        return formula
+
     # Split the formula into the chemical part and the charge part
     match = re.match(r'([A-Za-z0-9]+)([-+]?\d*)', formula)
     if not match:
@@ -72,5 +85,5 @@ def calc_exact_mass(formula):
         f = Formula(formula)
         return f.monoisotopic_mass
     except:
-        return None
+        return -1
 
