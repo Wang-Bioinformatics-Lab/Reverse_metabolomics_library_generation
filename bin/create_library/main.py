@@ -19,6 +19,10 @@ def create_library(compound_df, feature_df,
     # Filter the feature table
     feature_df = filter_feature_df(feature_df, feature_intensity_threshold)
 
+    # Check if the feature table is empty
+    if feature_df.empty:
+        return None, None
+
     # Merge the compound and feature tables
     df = merge_compound_feature_tables(compound_df, feature_df)
 

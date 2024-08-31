@@ -53,7 +53,8 @@ def main_batch(mzml_files, csv_files,
                                         metadata_dir=None,
                                         write_individual_mgf=write_individual_mgf)
 
-        all_library_df = pd.concat([all_library_df, library_df])
+        if library_df is not None:
+            all_library_df = pd.concat([all_library_df, library_df])
 
         # Save the filtered library
         df.to_csv(f'{mzml_name}_metadata.tsv', sep='\t', index=False)
