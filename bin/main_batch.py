@@ -62,7 +62,7 @@ def main_batch(mzml_files, csv_files,
 
         if plot:
             # Plot all MS2 spectra
-            print('Plotting all MS2 spectra...')
+            print('Plotting all spectra...')
             plot_all_ms2(df, mzml)
 
             # Plot all EICs
