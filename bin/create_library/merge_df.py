@@ -29,6 +29,9 @@ def merge_compound_feature_tables(compound_df, feature_df, mz_Da=0.002, mz_ppm=1
                 match['ms2_explained_intensity'] = 0.0
                 matches.append(match)
 
+    if len(matches) == 0:
+        return None
+
     # Create DataFrame from matches
     merged_df = pd.DataFrame(matches)
 
