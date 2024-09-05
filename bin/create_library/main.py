@@ -26,7 +26,7 @@ def create_library(compound_df, feature_df,
     # Merge the compound and feature tables
     df = merge_compound_feature_tables(compound_df, feature_df)
 
-    if not df:
+    if df is None or df.empty:
         return None, None
 
     if filter_library:
