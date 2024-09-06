@@ -60,18 +60,21 @@ def main_batch(mzml_files, csv_files,
         if df is not None:
             df.to_csv(f'{mzml_name}_metadata.tsv', sep='\t', index=False)
 
-        if plot:
-            # Plot all MS2 spectra
-            print('Plotting all spectra...')
-            plot_all_ms2(df, mzml)
+        if plot and df is not None and feature_df is not None:
+            try:
+                # Plot all MS2 spectra
+                print('Plotting all spectra...')
+                plot_all_ms2(df, mzml)
 
-            # Plot all EICs
-            print('Plotting all EICs...')
-            plot_all_eic(df, mzml)
+                # Plot all EICs
+                print('Plotting all EICs...')
+                plot_all_eic(df, mzml)
 
-            # Plot mz-rt scatter plot
-            print('Plotting mz-rt scatter plot...')
-            plot_mz_rt(feature_df, df, mzml_name)
+                # Plot mz-rt scatter plot
+                print('Plotting mz-rt scatter plot...')
+                plot_mz_rt(feature_df, df, mzml_name)
+            except Exception as e:
+                print(e)
 
     all_library_df.to_csv('all_library.tsv', sep='\t', index=False, na_rep='N/A')
 
