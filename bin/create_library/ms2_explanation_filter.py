@@ -6,6 +6,11 @@ def filter_by_ms2_explanation(row, explanation_cutoff=0.60):
     Calculate the MS2 explanation
     """
     if row['selected'] and row['MS2'] is not None:
+
+        if len(row['MS2']) == 0 or row['MS2'].shape[0] == 0:
+            row['ms2_explained_intensity'] = 0.0
+            return row
+
         explained_intensity = 0.0
         subformla_list = assign_subformula(row['MS2'][:, 0],
                                            precursor_formula=row['neutralized_formula'],
