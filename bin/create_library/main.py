@@ -29,7 +29,7 @@ def create_library(compound_df, feature_df,
     if df is None or df.empty:
         return None, None
 
-    if filter_library:
+    if filter_library and ms2_explanation_cutoff > 0:
         # Filter the merged dataframe
         df = filter_df(df, ion_mode, ms2_explanation_cutoff=ms2_explanation_cutoff)
 
