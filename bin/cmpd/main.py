@@ -2,7 +2,13 @@ import pandas as pd
 from .utils import neutralize_formula, calc_exact_mass, smiles_to_formula_and_inchi
 
 
-adduct_pos = [
+adduct_pos_simple = [
+    {'name': '[M+H]+', 'm': 1, 'charge': 1, 'mass': 1.00727645223},
+    {'name': '[M+Na]+', 'm': 1, 'charge': 1, 'mass': 22.989220702},
+    {'name': '[M+NH4]+', 'm': 1, 'charge': 1, 'mass': 18.03382555335}
+]
+
+adduct_pos_full = [
     {'name': '[M+H]+', 'm': 1, 'charge': 1, 'mass': 1.00727645223},
     {'name': '[M+Na]+', 'm': 1, 'charge': 1, 'mass': 22.989220702},
     {'name': '[M+K]+', 'm': 1, 'charge': 1, 'mass': 38.9631579064},
@@ -13,7 +19,11 @@ adduct_pos = [
     {'name': '[M+H-3H2O]+', 'm': 1, 'charge': 1, 'mass': -53.02441759986}
 ]
 
-adduct_neg = [
+adduct_neg_simple = [
+    {'name': '[M-H]-', 'm': 1, 'charge': 1, 'mass': -1.00727645223}
+]
+
+adduct_neg_full = [
     {'name': '[M-H]-', 'm': 1, 'charge': 1, 'mass': -1.00727645223},
     {'name': '[M+Cl]-', 'm': 1, 'charge': 1, 'mass': 34.968304102},
     {'name': '[M+Br]-', 'm': 1, 'charge': 1, 'mass': 78.91778902},
@@ -23,11 +33,18 @@ adduct_neg = [
 ]
 
 
-def prepare_cmpd_df(cmpd_df_path):
+def prepare_cmpd_df(cmpd_df_path, adduct_type_mode):
 
     """
     Calculate the exact mass for each compound in the compound list
     """
+
+    if adduct_type_mode == 'simple':
+        adduct_pos = adduct_pos_simple
+        adduct_neg = adduct_neg_simple
+    else:
+        adduct_pos = adduct_pos_full
+        adduct_neg = adduct_neg_full
 
     # load the compound list with USI and taxon filter
     cmpd_df = pd.read_csv(cmpd_df_path, low_memory=False)

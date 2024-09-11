@@ -1,7 +1,7 @@
 workflowname: reverse_metabolomics_create_library_workflow
 workflowdescription: This is to create MS/MS libraries for reverse metabolomics.
 workflowlongdescription: This is the workflow to create a tsv library from a set of mzML files and compound csv files. The tsv file is ready to be uploaded to GNPS library.
-workflowversion: "2024.09.11"
+workflowversion: "2024.09.11.02"
 workflowfile: nf_workflow.nf
 workflowautohide: false
 adminonly: false
@@ -37,9 +37,19 @@ parameterlist:
       formplaceholder: Enter the data collector name
       formvalue: "Minions"
 
-    - displayname: MS2 Explanation Cutoff (0-1)
+    - displayname: MS2 Explanation Cutoff (0-1, set to 0 to disable)
       paramtype: text
       nf_paramname: ms2_explanation_cutoff
       formplaceholder: Enter the MS2 Explanation Cutoff
       formvalue: "0.60"
       tooltip: "This is the minimum total explained intensity for an MS2 spectrum to be included in the library"
+
+    - displayname: Allowed adduct types
+      paramtype: select
+      nf_paramname: adduct_type_mode
+      formvalue: "full"
+      options:
+        - value: "simple"
+          display: "Positive: M+H, M+Na, M+NH4 | Negative: M-H"
+        - value: "full"
+          display: "Positive: M+H, M+Na, M+NH4, M+K, M+H-H2O, M+H-2H2O, M+H-3H2O | Negative: M-H, M+FA, M+Ac, M+Cl, M+Br, M-H-H2O"

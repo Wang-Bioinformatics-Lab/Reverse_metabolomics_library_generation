@@ -5,6 +5,7 @@ params.input_mzmls = "/Users/shipei/Documents/projects/reverse_metabolomics/reve
 params.input_csvs = "/Users/shipei/Documents/projects/reverse_metabolomics/reverse_metabolomics/generate_library/input"
 params.data_collector = "Minions Hello"
 params.ms2_explanation_cutoff = 0.60
+params.adduct_type_mode = "simple"
 
 TOOL_FOLDER = "$baseDir/bin"
 
@@ -30,7 +31,9 @@ process createLibrary {
     --mzml_files ${mzmls} \
     --csv_files ${csvs} \
     --data_collector "${escapedDataCollector}" \
-    --ms2_explanation_cutoff ${params.ms2_explanation_cutoff} --plot
+    --ms2_explanation_cutoff ${params.ms2_explanation_cutoff} \
+    --adduct_type_mode ${params.adduct_type_mode} \
+    --plot
     """
 }
 

@@ -10,6 +10,7 @@ from create_library import create_library
 def main_batch(mzml_files, csv_files,
                data_collector='Minions',
                ms2_explanation_cutoff=0.60,
+               adduct_type_mode='full',
                plot=False,
                write_individual_mgf=False):
     """
@@ -21,7 +22,7 @@ def main_batch(mzml_files, csv_files,
     all_cmpd_df = pd.DataFrame()
     for csv in csv_files:
         print('Loading', csv)
-        cmpd_df = prepare_cmpd_df(csv)
+        cmpd_df = prepare_cmpd_df(csv, adduct_type_mode)
         all_cmpd_df = pd.concat([all_cmpd_df, cmpd_df])
 
     # Get unique mzmls
@@ -85,10 +86,12 @@ if __name__ == '__main__':
     parser.add_argument('--csv_files', nargs='+', help='List of CSV files')
     parser.add_argument('--data_collector', type=str, default='Minions', help='Data collector.')
     parser.add_argument('--ms2_explanation_cutoff', type=float, default=0.60, help='MS2 explanation cutoff.')
+    parser.add_argument('--adduct_type_mode', type=str, default='full', help='Adduct type mode.')
     parser.add_argument('--plot', action='store_true', help='Plot the results.')
     args = parser.parse_args()
 
     main_batch(args.mzml_files, args.csv_files,
                data_collector=args.data_collector,
                ms2_explanation_cutoff=args.ms2_explanation_cutoff,
+               adduct_type_mode=args.adduct_type_mode,
                plot=args.plot)
