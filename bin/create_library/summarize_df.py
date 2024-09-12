@@ -8,8 +8,8 @@ def summarize_df(df):
     """
 
     df = df[df['selected']].reset_index(drop=True)
-    df['SMILES_adduct'] = df.apply(lambda x: x['SMILES'] + ' ' + x['t_adduct'], axis=1)
-    df['inchi_adduct'] = df.apply(lambda x: x['inchi'] + ' ' + x['t_adduct'], axis=1)
+    df['SMILES_adduct'] = df.apply(lambda x: str(x['SMILES']) + ' ' + str(x['t_adduct']), axis=1)
+    df['inchi_adduct'] = df.apply(lambda x: str(x['inchi']) + ' ' + str(x['t_adduct']), axis=1)
 
     df['name'] = df['compound_name']
     # Count the number of isomers (how many unique SMILES_adduct are using the same MS2)

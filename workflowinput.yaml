@@ -1,7 +1,7 @@
 workflowname: reverse_metabolomics_create_library_workflow
 workflowdescription: This is to create MS/MS libraries for reverse metabolomics.
 workflowlongdescription: This is the workflow to create a tsv library from a set of mzML files and compound csv files. The tsv file is ready to be uploaded to GNPS library.
-workflowversion: "2024.09.12"
+workflowversion: "2024.09.12.2"
 workflowfile: nf_workflow.nf
 workflowautohide: false
 adminonly: false
@@ -44,7 +44,7 @@ parameterlist:
       formvalue: "0.60"
       tooltip: "This is the minimum total explained intensity for an MS2 spectrum to be included in the library"
 
-    - displayname: Allowed adduct types
+    - displayname: Allowed Adduct Types
       paramtype: select
       nf_paramname: adduct_type_mode
       formvalue: "full"
