@@ -9,7 +9,7 @@ def filter_feature_df(feature_df, intensity_threshold):
     """
 
     # filter by ROI length
-    feature_df = feature_df[feature_df['length'] >= 5].reset_index(drop=True)
+    feature_df = feature_df[feature_df['length'] >= 4].reset_index(drop=True)
 
     # filter by intensity
     feature_df = feature_df[feature_df['peak_height'] >= intensity_threshold * 3].reset_index(drop=True)

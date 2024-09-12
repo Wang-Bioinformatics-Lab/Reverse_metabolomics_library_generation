@@ -7,7 +7,7 @@ def filter_by_ms2_explanation(row, explanation_cutoff=0.60):
     """
     if row['selected'] and row['MS2'] is not None:
 
-        if len(row['MS2']) == 0 or row['MS2'].shape[0] == 0:
+        if len(row['MS2']) == 0 or row['MS2'].shape[0] == 0 or row['MS2'][:, 1].sum() < 1e-2:
             row['ms2_explained_intensity'] = 0.0
             return row
 
