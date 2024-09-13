@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def merge_compound_feature_tables(compound_df, feature_df, mz_Da=0.002, mz_ppm=10):
+def merge_compound_feature_tables(compound_df, feature_df, mz_da=0.002, mz_ppm=10):
     """
     Merge compound DataFrame with feature table based on m/z values.
     """
@@ -36,7 +36,7 @@ def merge_compound_feature_tables(compound_df, feature_df, mz_Da=0.002, mz_ppm=1
     merged_df = pd.DataFrame(matches)
 
     # mz_diff
-    merged_df = merged_df[(merged_df['mz_diff_ppm'] <= mz_ppm) | (merged_df['mz_diff_Da'] <= mz_Da)]
+    merged_df = merged_df[(merged_df['mz_diff_ppm'] <= mz_ppm) | (merged_df['mz_diff_Da'] <= mz_da)]
     merged_df = merged_df.reset_index(drop=True)
 
     return merged_df

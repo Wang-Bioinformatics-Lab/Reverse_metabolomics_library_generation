@@ -9,6 +9,7 @@ from .summarize_df import summarize_df
 def create_library(compound_df, feature_df,
                    ion_mode, feature_intensity_threshold,
                    data_collector, pi_name, file_name,
+                   mz_tol_ppm=10,
                    filter_library=True,
                    ms2_explanation_cutoff=0.60,
                    core_adduct_filter=True,
@@ -26,7 +27,7 @@ def create_library(compound_df, feature_df,
         return None, None
 
     # Merge the compound and feature tables
-    df = merge_compound_feature_tables(compound_df, feature_df)
+    df = merge_compound_feature_tables(compound_df, feature_df, mz_ppm=mz_tol_ppm)
 
     if df is None or df.empty:
         return None, None

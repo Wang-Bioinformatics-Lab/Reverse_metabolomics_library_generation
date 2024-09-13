@@ -44,10 +44,16 @@ parameterlist:
       formplaceholder: Enter the PI name
       formvalue: "Pieter Dorrestein"
 
+    - displayname: Mass Tolerance (ppm)
+      paramtype: text
+      nf_paramname: mz_tol_ppm
+      formplaceholder: Enter the mass tolerance in ppm for MS1 searching
+      formvalue: "10"
+
     - displayname: MS2 Explanation Cutoff (0-1; set to 0 to disable)
       paramtype: text
       nf_paramname: ms2_explanation_cutoff
-      formplaceholder: Enter the MS2 Explanation Cutoff
+      formplaceholder: Enter the MS2 explanation cutoff
       formvalue: "0.60"
       tooltip: "This is the minimum total explained intensity for an MS2 spectrum to be included in the library"
 
@@ -70,5 +76,5 @@ parameterlist:
           display: "True"
         - value: "0"
           display: "False"
-      tooltip: "If true, only peaks containing the core adducts will be included in the library. Core adducts: M+H, M+NH4, M+H-H2O, M+H-2H2O; M-H"
+      tooltip: "One chemical can have multiple candidate peaks in the LC-MS run. If true, candidate peaks without core adducts will be excluded. Core adducts: M+H, M+NH4, M+H-H2O, M+H-2H2O; M-H"
 
