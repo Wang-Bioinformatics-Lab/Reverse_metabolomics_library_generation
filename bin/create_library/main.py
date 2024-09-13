@@ -8,8 +8,10 @@ from .summarize_df import summarize_df
 
 def create_library(compound_df, feature_df,
                    ion_mode, feature_intensity_threshold,
-                   data_collector, file_name,
-                   filter_library=True, ms2_explanation_cutoff=0.60,
+                   data_collector, pi_name, file_name,
+                   filter_library=True,
+                   ms2_explanation_cutoff=0.60,
+                   core_adduct_filter=True,
                    metadata_dir=None,
                    write_individual_mgf=False):
     """
@@ -29,9 +31,11 @@ def create_library(compound_df, feature_df,
     if df is None or df.empty:
         return None, None
 
-    if filter_library and ms2_explanation_cutoff > 0:
+    if filter_library:
         # Filter the merged dataframe
-        df = filter_df(df, ion_mode, ms2_explanation_cutoff=ms2_explanation_cutoff)
+        df = filter_df(df, ion_mode,
+                       ms2_explanation_cutoff=ms2_explanation_cutoff,
+                       core_adduct_filter=core_adduct_filter)
 
     if write_individual_mgf:
         # Write individual MGF files
@@ -41,6 +45,6 @@ def create_library(compound_df, feature_df,
     df = summarize_df(df)
 
     # Write the filtered library (dataframe to be uploaded to GNPS)
-    library_df = write_library(df, data_collector, file_name, ion_mode)
+    library_df = write_library(df, data_collector, pi_name, file_name, ion_mode)
 
     return df, library_df

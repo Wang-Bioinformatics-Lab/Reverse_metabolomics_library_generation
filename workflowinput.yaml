@@ -1,7 +1,8 @@
 workflowname: reverse_metabolomics_create_library_workflow
 workflowdescription: This is to create MS/MS libraries for reverse metabolomics.
-workflowlongdescription: This is the workflow to create a tsv library from a set of mzML files and compound csv files. The tsv file is ready to be uploaded to GNPS library.
-workflowversion: "2024.09.12.2"
+workflowlongdescription: This is the workflow to create a tsv library from a set of mzML files and compound csv files. The tsv file is ready to be uploaded to GNPS library. 
+  A template for the compound csv file can be found [here](https://docs.google.com/spreadsheets/d/14VoG20s6C8GaoWk1fodWFzg2Ao8p9UuRcvuW7rgiEnA/edit?usp=sharing).
+workflowversion: "2024.09.13"
 workflowfile: nf_workflow.nf
 workflowautohide: false
 adminonly: false
@@ -37,7 +38,13 @@ parameterlist:
       formplaceholder: Enter the data collector name
       formvalue: "Minions"
 
-    - displayname: MS2 Explanation Cutoff (0-1, set to 0 to disable)
+    - displayname: PI Name
+      paramtype: text
+      nf_paramname: pi_name
+      formplaceholder: Enter the PI name
+      formvalue: "Pieter Dorrestein"
+
+    - displayname: MS2 Explanation Cutoff (0-1; set to 0 to disable)
       paramtype: text
       nf_paramname: ms2_explanation_cutoff
       formplaceholder: Enter the MS2 Explanation Cutoff
@@ -53,3 +60,15 @@ parameterlist:
           display: "Positive: M+H, M+Na, M+NH4 | Negative: M-H"
         - value: "full"
           display: "Positive: M+H, M+Na, M+NH4, M+K, M+H-H2O, M+H-2H2O, M+H-3H2O | Negative: M-H, M+FA, M+Ac, M+Cl, M+Br, M-H-H2O"
+
+    - displayname: Core Adduct Filter
+      paramtype: select
+      nf_paramname: core_adduct_filter
+      formvalue: "0"
+      options:
+        - value: "1"
+          display: "True"
+        - value: "0"
+          display: "False"
+      tooltip: "If true, only peaks containing the core adducts will be included in the library. Core adducts: M+H, M+NH4, M+H-H2O, M+H-2H2O; M-H"
+

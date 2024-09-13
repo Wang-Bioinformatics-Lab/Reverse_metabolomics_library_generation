@@ -12,12 +12,15 @@ def summarize_df(df):
     df['inchi_adduct'] = df.apply(lambda x: str(x['inchi']) + ' ' + str(x['t_adduct']), axis=1)
 
     df['name'] = df['compound_name']
+
     # Count the number of isomers (how many unique SMILES_adduct are using the same MS2)
     df['isomer_count'] = 0
     df['isomer_inchis'] = None
     # Count the number of isobaric peaks in the run (how many features are associating the same SMILES_adduct)
     df['isobaric_peak_count'] = 0
+
     for i, row in df.iterrows():
+        # the mask for the same MS2 scan
         mask = df['best_MS2_scan_idx'] == row['best_MS2_scan_idx']
         row['isomer_count'] = df.loc[mask, 'SMILES_adduct'].nunique()
         isomer_inchi_ls = df.loc[mask, 'inchi_adduct'].unique().tolist()

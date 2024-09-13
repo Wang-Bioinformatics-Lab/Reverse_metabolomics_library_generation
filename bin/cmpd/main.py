@@ -46,7 +46,7 @@ def prepare_cmpd_df(cmpd_df_path, adduct_type_mode):
         adduct_pos = adduct_pos_full
         adduct_neg = adduct_neg_full
 
-    # load the compound list with USI and taxon filter
+    # load the compound list
     cmpd_df = pd.read_csv(cmpd_df_path, low_memory=False)
 
     # Add formula and InChI information

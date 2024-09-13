@@ -4,8 +4,10 @@ nextflow.enable.dsl=2
 params.input_mzmls = "/Users/shipei/Documents/projects/reverse_metabolomics/reverse_metabolomics/generate_library/input"
 params.input_csvs = "/Users/shipei/Documents/projects/reverse_metabolomics/reverse_metabolomics/generate_library/input"
 params.data_collector = "Minions Hello"
+params.pi_name = "Pieter Dorrestein"
 params.ms2_explanation_cutoff = 0.60
 params.adduct_type_mode = "simple"
+params.core_adduct_filter = "0"
 
 TOOL_FOLDER = "$baseDir/bin"
 
@@ -26,12 +28,15 @@ process createLibrary {
 
     script:
     def escapedDataCollector = params.data_collector.replaceAll(/"/, '\\\\"')
+    def escapedPiName = params.pi_name.replaceAll(/"/, '\\\\"')
     """
     python $TOOL_FOLDER/main_batch.py \
     --mzml_files ${mzmls} \
     --csv_files ${csvs} \
     --data_collector "${escapedDataCollector}" \
+    --pi_name "${escapedPiName}" \
     --ms2_explanation_cutoff ${params.ms2_explanation_cutoff} \
+    --core_adduct_filter ${params.core_adduct_filter} \
     --adduct_type_mode ${params.adduct_type_mode} \
     --plot
     """

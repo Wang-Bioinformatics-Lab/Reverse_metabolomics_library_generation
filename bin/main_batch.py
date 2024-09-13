@@ -9,7 +9,9 @@ from create_library import create_library
 
 def main_batch(mzml_files, csv_files,
                data_collector='Minions',
+               pi_name='Pieter Dorrestein',
                ms2_explanation_cutoff=0.60,
+               core_adduct_filter=True,
                adduct_type_mode='full',
                plot=False,
                write_individual_mgf=False):
@@ -48,9 +50,10 @@ def main_batch(mzml_files, csv_files,
         # Filter library
         print('Creating MS/MS library...')
         df, library_df = create_library(cmpd_df, feature_df, ion_mode, intensity_threshold,
-                                        data_collector, mzml_name,
+                                        data_collector, pi_name, mzml_name,
                                         filter_library=True,
                                         ms2_explanation_cutoff=ms2_explanation_cutoff,
+                                        core_adduct_filter=core_adduct_filter,
                                         metadata_dir=None,
                                         write_individual_mgf=write_individual_mgf)
 
@@ -85,13 +88,17 @@ if __name__ == '__main__':
     parser.add_argument('--mzml_files', nargs='+', help='List of mzML files')
     parser.add_argument('--csv_files', nargs='+', help='List of CSV files')
     parser.add_argument('--data_collector', type=str, default='Minions', help='Data collector.')
+    parser.add_argument('--pi_name', type=str, default='Pieter Dorrestein', help='PI name.')
     parser.add_argument('--ms2_explanation_cutoff', type=float, default=0.60, help='MS2 explanation cutoff.')
+    parser.add_argument('--core_adduct_filter', type=str, default='0', help='Core adduct filter.')
     parser.add_argument('--adduct_type_mode', type=str, default='full', help='Adduct type mode.')
     parser.add_argument('--plot', action='store_true', help='Plot the results.')
     args = parser.parse_args()
 
     main_batch(args.mzml_files, args.csv_files,
                data_collector=args.data_collector,
+               pi_name=args.pi_name,
                ms2_explanation_cutoff=args.ms2_explanation_cutoff,
+               core_adduct_filter=True if args.core_adduct_filter == '1' else False,
                adduct_type_mode=args.adduct_type_mode,
                plot=args.plot)

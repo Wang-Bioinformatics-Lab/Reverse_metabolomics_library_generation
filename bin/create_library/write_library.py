@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def write_library(df, data_collector, file_name, ion_mode):
+def write_library(df, data_collector, pi_name, file_name, ion_mode):
     """
     Write the filtered library to a file.
     """
@@ -31,8 +31,8 @@ def write_library(df, data_collector, file_name, ion_mode):
             'EXACTMASS': row['exact_mass'],
             'DATACOLLECTOR': data_collector,
             'ADDUCT': row['t_adduct'],
-            'CASNUMBER': None,
-            'PI': 'Pieter Dorrestein',
+            'CASNUMBER': str(row['CAS']) if 'CAS' in df.columns else None,
+            'PI': pi_name,
             'LIBQUALITY': 1,
             'GENUS': None,
             'SPECIES': None,
