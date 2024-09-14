@@ -22,14 +22,18 @@ def summarize_df(df):
     for i, row in df.iterrows():
         # the mask for the same MS2 scan
         mask = df['best_MS2_scan_idx'] == row['best_MS2_scan_idx']
-        row['isomer_count'] = df.loc[mask, 'SMILES_adduct'].nunique()
+        row['isomer_count'] = df.loc[mask, 'SMILES_adduct'].nunique() - 1
+
+        # for INCHI_AUX
         isomer_inchi_ls = df.loc[mask, 'inchi_adduct'].unique().tolist()
+        # remove the current inchi_adduct
+        isomer_inchi_ls.remove(row['inchi_adduct'])
         row['isomer_inchis'] = ';'.join(isomer_inchi_ls)
 
         mask2 = df['SMILES_adduct'] == row['SMILES_adduct']
-        row['isobaric_peak_count'] = len(df.loc[mask2])
+        row['isobaric_peak_count'] = len(df.loc[mask2]) - 1
 
-        row['name'] = f"{row['compound_name']} (known structural isomers: {row['isomer_count'] - 1}; isobaric peaks in run: {row['isobaric_peak_count'] - 1})"
+        row['name'] = f"{row['compound_name']} (known structural isomers: {row['isomer_count']}; isobaric peaks in run: {row['isobaric_peak_count']})"
         df.loc[i] = row
 
     return df
