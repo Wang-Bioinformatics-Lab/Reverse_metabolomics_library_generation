@@ -27,7 +27,8 @@ def summarize_df(df):
         # for INCHI_AUX
         isomer_inchi_ls = df.loc[mask, 'inchi_adduct'].unique().tolist()
         # remove the current inchi_adduct
-        isomer_inchi_ls.remove(row['inchi_adduct'])
+        if row['inchi_adduct'] in isomer_inchi_ls:
+            isomer_inchi_ls.remove(row['inchi_adduct'])
         row['isomer_inchis'] = ';'.join(isomer_inchi_ls)
 
         mask2 = df['SMILES_adduct'] == row['SMILES_adduct']

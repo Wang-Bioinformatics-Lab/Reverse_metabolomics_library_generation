@@ -1,10 +1,12 @@
 import pandas as pd
 
 
-def merge_compound_feature_tables(compound_df, feature_df, mz_da=0.002, mz_ppm=10):
+def merge_compound_feature_tables(compound_df, feature_df, mz_ppm=10):
     """
     Merge compound DataFrame with feature table based on m/z values.
     """
+
+    mz_da = 200 * mz_ppm / 1e6
 
     # Create empty list to store matches
     matches = []

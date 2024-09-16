@@ -2,7 +2,7 @@ workflowname: reverse_metabolomics_create_library_workflow
 workflowdescription: This is to create MS/MS libraries for reverse metabolomics.
 workflowlongdescription: This is the workflow to create a tsv library from a set of mzML files and compound csv files. The tsv file is ready to be uploaded to GNPS library. 
   A template for the compound csv file can be found [here](https://docs.google.com/spreadsheets/d/14VoG20s6C8GaoWk1fodWFzg2Ao8p9UuRcvuW7rgiEnA/edit?usp=sharing).
-workflowversion: "2024.09.16"
+workflowversion: "2024.09.16.2"
 workflowfile: nf_workflow.nf
 workflowautohide: false
 adminonly: false
@@ -63,9 +63,9 @@ parameterlist:
       formvalue: "full"
       options:
         - value: "simple"
-          display: "Positive: M+H, M+Na, M+NH4 | Negative: M-H"
+          display: "Positive: M+H, M+Na, M+NH4 || Negative: M-H"
         - value: "full"
-          display: "Positive: M+H, M+Na, M+NH4, M+K, M+H-H2O, M+H-2H2O, M+H-3H2O | Negative: M-H, M+FA, M+Ac, M+Cl, M+Br, M-H-H2O"
+          display: "Positive: M+H, M+Na, M+NH4, M+K, M+H-H2O, M+H-2H2O, M+H-3H2O || Negative: M-H, M+FA, M+Ac, M+Cl, M+Br, M-H-H2O"
 
     - displayname: Core Adduct Filter
       paramtype: select
@@ -76,5 +76,5 @@ parameterlist:
           display: "True"
         - value: "0"
           display: "False"
-      tooltip: "One chemical can have multiple candidate peaks in the LC-MS run. If true, candidate peaks without core adducts will be excluded. Core adducts: M+H, M+NH4, M+H-H2O, M+H-2H2O; M-H"
+      tooltip: "One chemical can have multiple candidate peaks in the LC-MS run. If true, candidate peaks without core adducts will be excluded. Core adducts: M+H, M+NH4, M+H-H2O, M+H-2H2O || M-H"
 
