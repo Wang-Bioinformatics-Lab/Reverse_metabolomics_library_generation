@@ -46,7 +46,7 @@ def main_batch(mzml_files, csv_files,
 
         # Load the compound list for the mzml file
         cmpd_df = all_cmpd_df[(all_cmpd_df['unique_sample_id'] == mzml_name + '.mzML') &
-                              (all_cmpd_df['ion_mode'] == ion_mode)].reset_index(drop=True).copy()
+                              (all_cmpd_df['ion_mode'] == ion_mode)].copy().reset_index(drop=True)
 
         # Filter library
         print('Creating MS/MS library...')

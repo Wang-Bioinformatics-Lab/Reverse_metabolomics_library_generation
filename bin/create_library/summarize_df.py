@@ -14,15 +14,15 @@ def summarize_df(df):
     df['name'] = df['compound_name']
 
     # Count the number of isomers (how many unique SMILES_adduct are using the same MS2)
-    df['isomer_count'] = 0
+    df['isomer_count'] = 1
     df['isomer_inchis'] = None
     # Count the number of isobaric peaks in the run (how many features are associating the same SMILES_adduct)
-    df['isobaric_peak_count'] = 0
+    df['isobaric_peak_count'] = 1
 
     for i, row in df.iterrows():
         # the mask for the same MS2 scan
         mask = df['best_MS2_scan_idx'] == row['best_MS2_scan_idx']
-        row['isomer_count'] = df.loc[mask, 'SMILES_adduct'].nunique() - 1
+        row['isomer_count'] = df.loc[mask, 'SMILES_adduct'].nunique()
 
         # for INCHI_AUX
         isomer_inchi_ls = df.loc[mask, 'inchi_adduct'].unique().tolist()
@@ -32,9 +32,9 @@ def summarize_df(df):
         row['isomer_inchis'] = ';'.join(isomer_inchi_ls)
 
         mask2 = df['SMILES_adduct'] == row['SMILES_adduct']
-        row['isobaric_peak_count'] = len(df.loc[mask2]) - 1
+        row['isobaric_peak_count'] = len(df.loc[mask2])
 
-        row['name'] = f"{row['compound_name']} (known structural isomers: {row['isomer_count']}; isobaric peaks in run: {row['isobaric_peak_count']})"
+        row['name'] = f"{row['compound_name']} (known structural isomers: {row['isomer_count'] - 1}; isobaric peaks in run: {row['isobaric_peak_count'] - 1})"
         df.loc[i] = row
 
     return df

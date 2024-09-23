@@ -31,7 +31,7 @@ def write_library(df, data_collector, pi_name, file_name, ion_mode):
             'EXACTMASS': row['exact_mass'],
             'DATACOLLECTOR': data_collector,
             'ADDUCT': row['t_adduct'],
-            'CASNUMBER': str(row['CAS']) if 'CAS' in df.columns else None,
+            'CASNUMBER': str(row['CASNUMBER']) if 'CASNUMBER' in df.columns else None,
             'PI': pi_name,
             'LIBQUALITY': 1,
             'GENUS': None,
