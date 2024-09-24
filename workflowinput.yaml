@@ -63,7 +63,7 @@ parameterlist:
       formvalue: "full"
       options:
         - value: "simple"
-          display: "Positive: M+H, M+Na, M+NH4 || Negative: M-H"
+          display: "Positive: M+H, M+Na, M+NH4, M+K || Negative: M-H"
         - value: "full"
           display: "Positive: M+H, M+Na, M+NH4, M+K, M+H-H2O, M+H-2H2O, M+H-3H2O || Negative: M-H, M+FA, M+Ac, M+Cl, M+Br, M-H-H2O"
 

@@ -5,7 +5,8 @@ from .utils import neutralize_formula, calc_exact_mass, smiles_to_formula_and_in
 adduct_pos_simple = [
     {'name': '[M+H]+', 'm': 1, 'charge': 1, 'mass': 1.00727645223},
     {'name': '[M+Na]+', 'm': 1, 'charge': 1, 'mass': 22.989220702},
-    {'name': '[M+NH4]+', 'm': 1, 'charge': 1, 'mass': 18.03382555335}
+    {'name': '[M+NH4]+', 'm': 1, 'charge': 1, 'mass': 18.03382555335},
+    {'name': '[M+K]+', 'm': 1, 'charge': 1, 'mass': 38.9631579064}
 ]
 
 adduct_pos_full = [
