@@ -106,3 +106,6 @@ if __name__ == '__main__':
                core_adduct_filter=True if args.core_adduct_filter == '1' else False,
                adduct_type_mode=args.adduct_type_mode,
                plot=args.plot)
+
+    ##############################################################################################################
+    # main_batch(['../test/VD_52.mzML'], ['../test/3_OH_VD_KV_saturated.csv'])

@@ -46,17 +46,13 @@ class MSData:
             # get extension from file name
             ext = os.path.splitext(file_name)[1]
 
-            if ext.lower() != ".mzml" and ext.lower() != ".mzxml":
+            if ext.lower() != ".mzml":
                 raise ValueError("Unsupported raw data format. Raw data must be in mzML or mzXML.")
 
             self.file_name = os.path.splitext(os.path.basename(file_name))[0]
 
-            if ext.lower() == ".mzml":
-                with mzml.MzML(file_name) as reader:
-                    self.extract_scan_mzml(reader, int_tol=params.int_tol, read_ms2=read_ms2, centroid=centroid)
-            elif ext.lower() == ".mzxml":
-                with mzxml.MzXML(file_name) as reader:
-                    self.extract_scan_mzxml(reader, int_tol=params.int_tol, read_ms2=read_ms2, centroid=centroid)
+            with mzml.MzML(file_name) as reader:
+                self.extract_scan_mzml(reader, int_tol=params.int_tol, read_ms2=read_ms2, centroid=centroid)
         else:
             print("File does not exist.")
 
@@ -70,7 +66,7 @@ class MSData:
             An iteratable object that contains all MS1 and MS2 scans.
         """
 
-        idx = 0  # Scan number
+        idx = 0  # Scan index (renumbered)
         self.ms1_idx = []  # MS1 scan index
         self.ms2_idx = []  # MS2 scan index
 
@@ -90,7 +86,7 @@ class MSData:
             # Check if the retention time is within the range
             if self.params.rt_range[0] < rt < self.params.rt_range[1]:
                 if spec['ms level'] == 1:
-                    temp_scan = Scan(level=1, scan=idx, rt=rt)
+                    temp_scan = Scan(level=1, scan=idx, scan_no=spec['index'] + 1, rt=rt)
                     mz_array = np.array(spec['m/z array'], dtype=np.float64)
                     int_array = np.array(spec['intensity array'], dtype=np.int64)
                     mz_array = mz_array[int_array > int_tol]
@@ -110,66 +106,9 @@ class MSData:
                     self.ms1_rt_seq.append(rt)
 
                 elif spec['ms level'] == 2 and read_ms2:
-                    temp_scan = Scan(level=2, scan=idx, rt=rt)
+                    temp_scan = Scan(level=2, scan=idx, scan_no=spec['index'] + 1, rt=rt)
                     precursor_mz = spec['precursorList']['precursor'][0]['selectedIonList']['selectedIon'][0][
                         'selected ion m/z']
-                    peaks = np.array([spec['m/z array'], spec['intensity array']], dtype=np.float64).T
-                    temp_scan.add_info_by_level(precursor_mz=precursor_mz, peaks=peaks)
-
-                    self.ms2_idx.append(idx)
-
-                self.scans.append(temp_scan)
-                idx += 1
-
-        self.ms1_rt_seq = np.array(self.ms1_rt_seq)
-
-    def extract_scan_mzxml(self, spectra, int_tol, read_ms2=True, centroid=True):
-        """
-        Function to extract all scans and convert them to Scan objects.
-
-        Parameters
-        ----------------------------------------------------------
-        spectra: pyteomics object
-            An iteratable object that contains all MS1 and MS2 scans.
-        """
-
-        idx = 0  # Scan number
-        self.ms1_idx = []  # MS1 scan index
-        self.ms2_idx = []  # MS2 scan index
-
-        rt_unit = spectra[0]["retentionTime"].unit_info
-
-        # Iterate over all scans
-        for spec in spectra:
-            # Get the retention time and convert to minute
-            rt = spec["retentionTime"]  # retention time of mzXML is in minute
-
-            if rt_unit == 'second':
-                rt = rt / 60
-
-            # Check if the retention time is within the range
-            if self.params.rt_range[0] < rt < self.params.rt_range[1]:
-                if spec['msLevel'] == 1:
-                    temp_scan = Scan(level=1, scan=idx, rt=rt)
-                    mz_array = np.array(spec['m/z array'], dtype=np.float64)
-                    int_array = np.array(spec['intensity array'], dtype=np.int64)
-
-                    mz_array = mz_array[int_array > int_tol]
-                    int_array = int_array[int_array > int_tol]
-
-                    if centroid:
-                        mz_array, int_array = _centroid(mz_array, int_array)
-
-                    temp_scan.add_info_by_level(mz_seq=mz_array, int_seq=int_array)
-                    self.ms1_idx.append(idx)
-
-                    # update base peak chromatogram
-                    self.bpc_int.append(np.max(int_array))
-                    self.ms1_rt_seq.append(rt)
-
-                elif spec['msLevel'] == 2 and read_ms2:
-                    temp_scan = Scan(level=2, scan=idx, rt=rt)
-                    precursor_mz = spec['precursorMz'][0]['precursorMz']
                     peaks = np.array([spec['m/z array'], spec['intensity array']], dtype=np.float64).T
                     temp_scan.add_info_by_level(precursor_mz=precursor_mz, peaks=peaks)
 
@@ -307,7 +246,7 @@ class MSData:
                     # roi.is_isotope, roi.isotope_id_seq, iso_peaks,
                     # roi.adduct_type,
                     # int(roi.adduct_group_no) if roi.adduct_group_no is not None else None,
-                    roi.best_ms2.scan + 1 if roi.best_ms2 is not None else None,
+                    roi.best_ms2.scan_no if roi.best_ms2 is not None else None,
                     roi.best_ms2.precursor_mz if roi.best_ms2 is not None else None,
                     roi.best_ms2.peaks if roi.best_ms2 is not None else None,
                     [ms2.scan + 1 for ms2 in roi.ms2_seq] if roi.ms2_seq else None]
@@ -507,20 +446,21 @@ class Scan:
         precursor m/z, product m/z and intensities.
     """
 
-    def __init__(self, level=None, scan=None, rt=None):
+    def __init__(self, level=None, scan=None, scan_no=None, rt=None):
         """
         Parameters
         ----------------------------------------------------------
         level: int
             Level of MS scan.
         scan: int
-            Scan number.
+            Scan index.
         rt: float
             Retention time.
         """
 
         self.level = level
-        self.scan = scan
+        self.scan = scan  # scan index (renumbered)
+        self.scan_no = scan_no  # scan number
         self.rt = rt
 
         # for MS1 scans:
@@ -554,7 +494,8 @@ class Scan:
             A MS1Scan or MS2Scan object.
         """
 
-        print("Scan number: " + str(self.scan))
+        print("Scan index: " + str(self.scan))
+        print("Scan number: " + str(self.scan_no))
         print("Retention time: " + str(self.rt))
 
         if self.level == 1:
