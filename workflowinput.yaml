@@ -2,7 +2,7 @@ workflowname: reverse_metabolomics_create_library_workflow
 workflowdescription: This is to create MS/MS libraries for reverse metabolomics.
 workflowlongdescription: This is the workflow to create a tsv library from a set of mzML files and compound csv files. The tsv file is ready to be uploaded to GNPS library. 
   A template for the compound csv file can be found here (https://docs.google.com/spreadsheets/d/14VoG20s6C8GaoWk1fodWFzg2Ao8p9UuRcvuW7rgiEnA/edit?usp=sharing).
-workflowversion: "2024.09.30.1"
+workflowversion: "2024.10.04"
 workflowfile: nf_workflow.nf
 workflowautohide: false
 adminonly: false
