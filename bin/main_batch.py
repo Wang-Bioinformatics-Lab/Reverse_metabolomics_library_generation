@@ -90,26 +90,26 @@ def main_batch(mzml_files, csv_files,
 
 
 if __name__ == '__main__':
-    # parser = argparse.ArgumentParser(description='Process a batch of mzML files and csv files.')
-    # parser.add_argument('--mzml_files', nargs='+', help='List of mzML files')
-    # parser.add_argument('--csv_files', nargs='+', help='List of CSV files')
-    # parser.add_argument('--data_collector', type=str, default='Minions', help='Data collector.')
-    # parser.add_argument('--pi_name', type=str, default='Pieter Dorrestein', help='PI name.')
-    # parser.add_argument('--mz_tol_ppm', type=float, default=10, help='m/z tolerance in ppm.')
-    # parser.add_argument('--ms2_explanation_cutoff', type=float, default=0.60, help='MS2 explanation cutoff.')
-    # parser.add_argument('--core_adduct_filter', type=str, default='0', help='Core adduct filter.')
-    # parser.add_argument('--adduct_type_mode', type=str, default='full', help='Adduct type mode.')
-    # parser.add_argument('--plot', action='store_true', help='Plot the results.')
-    # args = parser.parse_args()
-    #
-    # main_batch(args.mzml_files, args.csv_files,
-    #            data_collector=args.data_collector,
-    #            pi_name=args.pi_name,
-    #            mz_tol_ppm=args.mz_tol_ppm,
-    #            ms2_explanation_cutoff=args.ms2_explanation_cutoff,
-    #            core_adduct_filter=True if args.core_adduct_filter == '1' else False,
-    #            adduct_type_mode=args.adduct_type_mode,
-    #            plot=args.plot)
+    parser = argparse.ArgumentParser(description='Process a batch of mzML files and csv files.')
+    parser.add_argument('--mzml_files', nargs='+', help='List of mzML files')
+    parser.add_argument('--csv_files', nargs='+', help='List of CSV files')
+    parser.add_argument('--data_collector', type=str, default='Minions', help='Data collector.')
+    parser.add_argument('--pi_name', type=str, default='Pieter Dorrestein', help='PI name.')
+    parser.add_argument('--mz_tol_ppm', type=float, default=10, help='m/z tolerance in ppm.')
+    parser.add_argument('--ms2_explanation_cutoff', type=float, default=0.60, help='MS2 explanation cutoff.')
+    parser.add_argument('--core_adduct_filter', type=str, default='0', help='Core adduct filter.')
+    parser.add_argument('--adduct_type_mode', type=str, default='full', help='Adduct type mode.')
+    parser.add_argument('--plot', action='store_true', help='Plot the results.')
+    args = parser.parse_args()
+
+    main_batch(args.mzml_files, args.csv_files,
+               data_collector=args.data_collector,
+               pi_name=args.pi_name,
+               mz_tol_ppm=args.mz_tol_ppm,
+               ms2_explanation_cutoff=args.ms2_explanation_cutoff,
+               core_adduct_filter=True if args.core_adduct_filter == '1' else False,
+               adduct_type_mode=args.adduct_type_mode,
+               plot=args.plot)
 
     ##############################################################################################################
-    main_batch(['../test/P1_A1_510.mzML'], ['../test/PCP.csv'])
+    # main_batch(['../test/P1_A1_510.mzML'], ['../test/PCP.csv'])
