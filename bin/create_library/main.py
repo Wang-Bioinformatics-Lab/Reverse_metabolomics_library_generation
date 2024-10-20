@@ -7,7 +7,7 @@ from .summarize_df import summarize_df
 
 
 def create_library(compound_df, feature_df,
-                   ion_mode, feature_intensity_threshold,
+                   ion_mode, min_feature_height,
                    data_collector, pi_name, file_name,
                    mz_tol_ppm=10,
                    filter_library=True,
@@ -20,7 +20,7 @@ def create_library(compound_df, feature_df,
     """
 
     # Filter the feature table
-    feature_df = filter_feature_df(feature_df, feature_intensity_threshold)
+    feature_df = filter_feature_df(feature_df, min_feature_height)
 
     # Check if the feature table is empty
     if feature_df.empty:

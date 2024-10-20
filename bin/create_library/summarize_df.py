@@ -7,7 +7,6 @@ def summarize_df(df):
     include isomers' inchis in a separate column
     """
 
-    df = df[df['selected']].reset_index(drop=True)
     df['SMILES_adduct'] = df.apply(lambda x: str(x['SMILES']) + ' ' + str(x['t_adduct']), axis=1)
     df['inchi_adduct'] = df.apply(lambda x: str(x['inchi']) + ' ' + str(x['t_adduct']), axis=1)
 
@@ -20,8 +19,15 @@ def summarize_df(df):
     df['isobaric_peak_count'] = 1
 
     for i, row in df.iterrows():
+
+        if not row['selected']:
+            continue
+
+        if pd.isnull(row['best_MS2_scan_idx']):
+            continue
+
         # the mask for the same MS2 scan
-        mask = df['best_MS2_scan_idx'] == row['best_MS2_scan_idx']
+        mask = (pd.notnull(df['best_MS2_scan_idx'])) & (df['best_MS2_scan_idx'] == row['best_MS2_scan_idx']) & (df['selected'])
         row['isomer_count'] = df.loc[mask, 'SMILES_adduct'].nunique()
 
         # for INCHI_AUX

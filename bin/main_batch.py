@@ -10,6 +10,8 @@ from create_library import create_library
 def main_batch(mzml_files, csv_files,
                data_collector='Minions',
                pi_name='Pieter Dorrestein',
+               mass_detect_int_tol=5e4,
+               min_feature_height=1.5e5,
                mz_tol_ppm=10,
                ms2_explanation_cutoff=0.60,
                core_adduct_filter=True,
@@ -43,7 +45,9 @@ def main_batch(mzml_files, csv_files,
 
         # Extract features from mzML file
         try:
-            feature_df, ion_mode, intensity_threshold = feature_extraction_single(file_path=mzml, save=False)
+            feature_df, ion_mode = feature_extraction_single(file_path=mzml,
+                                                             mass_detect_int_tol=mass_detect_int_tol,
+                                                             save=False)
         except:
             print(f'Error extracting features from {mzml}. Skipping...')
             continue
@@ -54,7 +58,7 @@ def main_batch(mzml_files, csv_files,
 
         # Filter library
         print('Creating MS/MS library...')
-        df, library_df = create_library(cmpd_df, feature_df, ion_mode, intensity_threshold,
+        df, library_df = create_library(cmpd_df, feature_df, ion_mode, min_feature_height,
                                         data_collector, pi_name, mzml_name,
                                         mz_tol_ppm=mz_tol_ppm,
                                         filter_library=True,
@@ -90,26 +94,36 @@ def main_batch(mzml_files, csv_files,
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Process a batch of mzML files and csv files.')
-    parser.add_argument('--mzml_files', nargs='+', help='List of mzML files')
-    parser.add_argument('--csv_files', nargs='+', help='List of CSV files')
-    parser.add_argument('--data_collector', type=str, default='Minions', help='Data collector.')
-    parser.add_argument('--pi_name', type=str, default='Pieter Dorrestein', help='PI name.')
-    parser.add_argument('--mz_tol_ppm', type=float, default=10, help='m/z tolerance in ppm.')
-    parser.add_argument('--ms2_explanation_cutoff', type=float, default=0.60, help='MS2 explanation cutoff.')
-    parser.add_argument('--core_adduct_filter', type=str, default='0', help='Core adduct filter.')
-    parser.add_argument('--adduct_type_mode', type=str, default='full', help='Adduct type mode.')
-    parser.add_argument('--plot', action='store_true', help='Plot the results.')
-    args = parser.parse_args()
-
-    main_batch(args.mzml_files, args.csv_files,
-               data_collector=args.data_collector,
-               pi_name=args.pi_name,
-               mz_tol_ppm=args.mz_tol_ppm,
-               ms2_explanation_cutoff=args.ms2_explanation_cutoff,
-               core_adduct_filter=True if args.core_adduct_filter == '1' else False,
-               adduct_type_mode=args.adduct_type_mode,
-               plot=args.plot)
+    # parser = argparse.ArgumentParser(description='Process a batch of mzML files and csv files.')
+    # parser.add_argument('--mzml_files', nargs='+', help='List of mzML files')
+    # parser.add_argument('--csv_files', nargs='+', help='List of CSV files')
+    # parser.add_argument('--data_collector', type=str, default='Minions', help='Data collector.')
+    # parser.add_argument('--pi_name', type=str, default='Pieter Dorrestein', help='PI name.')
+    # parser.add_argument('--mass_detect_int_tol', type=float, default=5e4, help='Mass detection intensity tolerance.')
+    # parser.add_argument('--min_feature_height', type=float, default=1.5e5, help='Minimum feature height.')
+    # parser.add_argument('--mz_tol_ppm', type=float, default=10, help='m/z tolerance in ppm.')
+    # parser.add_argument('--ms2_explanation_cutoff', type=float, default=0.60, help='MS2 explanation cutoff.')
+    # parser.add_argument('--core_adduct_filter', type=str, default='0', help='Core adduct filter.')
+    # parser.add_argument('--adduct_type_mode', type=str, default='full', help='Adduct type mode.')
+    # parser.add_argument('--plot', action='store_true', help='Plot the results.')
+    # args = parser.parse_args()
+    #
+    # main_batch(args.mzml_files, args.csv_files,
+    #            data_collector=args.data_collector,
+    #            pi_name=args.pi_name,
+    #            mz_tol_ppm=args.mz_tol_ppm,
+    #            mass_detect_int_tol=args.mass_detect_int_tol,
+    #            min_feature_height=args.min_feature_height,
+    #            ms2_explanation_cutoff=args.ms2_explanation_cutoff,
+    #            core_adduct_filter=True if args.core_adduct_filter == '1' else False,
+    #            adduct_type_mode=args.adduct_type_mode,
+    #            plot=args.plot)
 
     ##############################################################################################################
     # main_batch(['../test/P1_A1_510.mzML'], ['../test/PCP.csv'])
+    main_batch(['../test/reframe_drugs_pos_P1_A10_id.mzML'],
+               ['../test/20241017_reframe_metadata_pos_gnps2_workflow.csv'],
+               mass_detect_int_tol=5e4,
+               min_feature_height=1.5e5,
+               ms2_explanation_cutoff=0.60,
+               adduct_type_mode='simple')

@@ -41,7 +41,7 @@ def feature_extraction_single(file_path, mass_detect_int_tol=None,
 
     df = d.output_single_file(save, out_dir)
 
-    return df, ion_mode, config.int_tol
+    return df, ion_mode
 
 
 def init_config(ms_type, ion_mode="positive",

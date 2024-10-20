@@ -5,6 +5,8 @@ params.input_mzmls = "/Users/shipei/Documents/projects/reverse_metabolomics/reve
 params.input_csvs = "/Users/shipei/Documents/projects/reverse_metabolomics/reverse_metabolomics/generate_library/input"
 params.data_collector = "Minions Hello"
 params.pi_name = "Pieter Dorrestein"
+params.mass_detect_intensity_tolerance = 5e4
+params.min_feature_height = 1.5e5
 params.mz_tol_ppm = 10
 params.ms2_explanation_cutoff = 0.60
 params.adduct_type_mode = "simple"
@@ -36,6 +38,8 @@ process createLibrary {
     --csv_files ${csvs} \
     --data_collector "${escapedDataCollector}" \
     --pi_name "${escapedPiName}" \
+    --mass_detect_int_tol ${params.mass_detect_intensity_tolerance} \
+    --min_feature_height ${params.min_feature_height} \
     --mz_tol_ppm ${params.mz_tol_ppm} \
     --ms2_explanation_cutoff ${params.ms2_explanation_cutoff} \
     --core_adduct_filter ${params.core_adduct_filter} \

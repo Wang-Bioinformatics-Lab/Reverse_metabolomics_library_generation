@@ -44,18 +44,36 @@ parameterlist:
       formplaceholder: Enter the PI name
       formvalue: "Pieter Dorrestein"
 
-    - displayname: Mass Tolerance (ppm)
+    - displayname: Feature extraction
+      paramtype: section
+    - displayname: Mass Detection Intensity Cutoff
+      paramtype: text
+      nf_paramname: mass_detect_intensity_tolerance
+      formplaceholder: Enter the intensity tolerance for mass detection
+      formvalue: "5e4"
+      tooltip: "This is the minimum intensity for a peak to be considered for mass detection"
+
+    - displayname: Minimum Feature Height
+      paramtype: text
+      nf_paramname: min_feature_height
+      formplaceholder: Enter the minimum peak height for a feature to be considered
+      formvalue: "1.5e5"
+      tooltip: "This is the minimum peak height for a feature to be considered"
+
+    - displayname: Compound Matching & Filtering
+      paramtype: section
+    - displayname: MS1 Tolerance (ppm, for compound m/z matching)
       paramtype: text
       nf_paramname: mz_tol_ppm
       formplaceholder: Enter the mass tolerance in ppm for MS1 searching
       formvalue: "10"
 
-    - displayname: MS2 Explanation Cutoff (0-1; set to 0 to disable)
+    - displayname: MS2 Explanation Cutoff (range 0-1; set to 0 to disable)
       paramtype: text
       nf_paramname: ms2_explanation_cutoff
       formplaceholder: Enter the MS2 explanation cutoff
       formvalue: "0.60"
-      tooltip: "This is the minimum total explained intensity for an MS2 spectrum to be included in the library"
+      tooltip: "This is the minimum total explained intensity for an MS2 spectrum to be included in the library."
 
     - displayname: Allowed Adduct Types
       paramtype: select
