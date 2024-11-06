@@ -40,7 +40,7 @@ def filter_by_ms2_explanation(row, explanation_cutoff=0.60):
         if total_intensity < 1e-6:
             row['ms2_explained_intensity'] = 0.0
         else:
-            row['ms2_explained_intensity'] = explained_intensity / total_intensity
+            row['ms2_explained_intensity'] = min(explained_intensity / total_intensity, 1.0)
 
         if row['ms2_explained_intensity'] < explanation_cutoff:
             row['selected'] = False

@@ -4,7 +4,7 @@ import pandas as pd
 
 from feature_extraction import feature_extraction_single, plot_all_ms2, plot_all_eic, plot_mz_rt
 from cmpd import prepare_cmpd_df
-from create_library import create_library
+from create_library import create_library, append_file_summary
 
 
 def main_batch(mzml_files, csv_files,
@@ -33,15 +33,21 @@ def main_batch(mzml_files, csv_files,
     # Get unique mzmls
     unique_mzmls = all_cmpd_df['unique_sample_id'].unique()
 
-    # Load the mzml file
+    # Initialize the library dataframe, for uploading to GNPS
     all_library_df = pd.DataFrame()
+
+    # file summary rows
+    all_file_summary_rows = []
+
+    # Load the mzml file
     for mzml in mzml_files:
 
         print('Processing', mzml)
-        mzml_name = os.path.basename(mzml).split('.mz')[0]
+        mzml_name = os.path.basename(mzml)
+        mzml_basename = mzml_name.split('.mz')[0]
 
-        if mzml_name + '.mzML' not in unique_mzmls:
-            print(f'{mzml_name}.mzML not in the csv file. Skipping...')
+        if mzml_name not in unique_mzmls:
+            print(f'{mzml_name} not in the csv file. Skipping...')
 
         # Extract features from mzML file
         try:
@@ -53,13 +59,13 @@ def main_batch(mzml_files, csv_files,
             continue
 
         # Load the compound list for the mzml file
-        cmpd_df = all_cmpd_df[(all_cmpd_df['unique_sample_id'] == mzml_name + '.mzML') &
+        cmpd_df = all_cmpd_df[(all_cmpd_df['unique_sample_id'] == mzml_name) &
                               (all_cmpd_df['ion_mode'] == ion_mode)].copy().reset_index(drop=True)
 
         # Filter library
         print('Creating MS/MS library...')
         df, library_df = create_library(cmpd_df, feature_df, ion_mode, min_feature_height,
-                                        data_collector, pi_name, mzml_name,
+                                        data_collector, pi_name, mzml_basename,
                                         mz_tol_ppm=mz_tol_ppm,
                                         filter_library=True,
                                         ms2_explanation_cutoff=ms2_explanation_cutoff,
@@ -67,12 +73,15 @@ def main_batch(mzml_files, csv_files,
                                         metadata_dir=None,
                                         write_individual_mgf=write_individual_mgf)
 
+        # Append file summary rows
+        all_file_summary_rows = append_file_summary(all_file_summary_rows, mzml_name, cmpd_df, feature_df, df)
+
         if library_df is not None:
             all_library_df = pd.concat([all_library_df, library_df])
 
         # Save
         if df is not None:
-            df.to_csv(f'{mzml_name}_metadata.tsv', sep='\t', index=False)
+            df.to_csv(f'{mzml_basename}_metadata.tsv', sep='\t', index=False)
 
         if plot and df is not None and feature_df is not None:
             try:
@@ -86,11 +95,16 @@ def main_batch(mzml_files, csv_files,
 
                 # Plot mz-rt scatter plot
                 print('Plotting mz-rt scatter plot...')
-                plot_mz_rt(feature_df, df, mzml_name)
+                plot_mz_rt(feature_df, df, mzml_basename)
             except Exception as e:
                 print(e)
 
+    # Save the library dataframe
     all_library_df.to_csv('all_library.tsv', sep='\t', index=False, na_rep='N/A')
+
+    # Save the file summary
+    file_summary_df = pd.DataFrame(all_file_summary_rows)
+    file_summary_df.to_csv('file_summary.tsv', sep='\t', index=False)
 
 
 if __name__ == '__main__':
@@ -123,7 +137,5 @@ if __name__ == '__main__':
     # main_batch(['../test/P1_A1_510.mzML'], ['../test/PCP.csv'])
     # main_batch(['../test/reframe_drugs_pos_P1_A10_id.mzML'],
     #            ['../test/20241017_reframe_metadata_pos_gnps2_workflow.csv'],
-    #            mass_detect_int_tol=5e4,
-    #            min_feature_height=1.5e5,
     #            ms2_explanation_cutoff=0.60,
     #            adduct_type_mode='simple')
