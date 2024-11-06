@@ -31,7 +31,16 @@ def filter_by_ms2_explanation(row, explanation_cutoff=0.60):
 
         for subformula in subformla_list:
             explained_intensity += row['MS2'][:, 1][subformula.idx] if subformula.subform_list else 0.0
-        row['ms2_explained_intensity'] = explained_intensity / row['MS2'][:, 1].sum()
+
+        total_intensity = 0.0
+        for i in range(row['MS2'].shape[0]):
+            if row['MS2'][i, 0] < row['t_mz'] - 1.5:
+                total_intensity += row['MS2'][i, 1]
+
+        if total_intensity < 1e-6:
+            row['ms2_explained_intensity'] = 0.0
+        else:
+            row['ms2_explained_intensity'] = explained_intensity / total_intensity
 
         if row['ms2_explained_intensity'] < explanation_cutoff:
             row['selected'] = False
