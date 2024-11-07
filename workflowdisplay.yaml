@@ -52,8 +52,8 @@ Views:
                 data: unique_cmpds_with_ms1_ms2
             -   title: "Unique target compounds with MS1 and MS2 (M+H or M-H)"
                 data: unique_cmpds_with_ms1_ms2_M_H
-            -   title: "Unique target compounds with MS1 and MS2, selected"
+            -   title: "Unique target compounds with MS1 and MS2 (selected)"
                 data: unique_cmpds_with_ms1_ms2_selected
-            -   title: "Unique target compounds with MS1 and MS2, selected (M+H or M-H)"
+            -   title: "Unique target compounds with MS1 and MS2 (selected, M+H or M-H)"
                 data: unique_cmpds_with_ms1_ms2_selected_M_H
 
