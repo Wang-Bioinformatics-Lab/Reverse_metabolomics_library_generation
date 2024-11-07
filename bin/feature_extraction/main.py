@@ -4,6 +4,7 @@ from .raw_data_utils import MSData
 
 
 def feature_extraction_single(file_path, mass_detect_int_tol=None,
+                              min_feature_height=1.5e5,
                               peak_cor_rt_tol=0.025, min_ppc=0.8,
                               ms1_tol=0.005, ms2_tol=0.015,
                               save=True, out_dir=None):
@@ -40,6 +41,12 @@ def feature_extraction_single(file_path, mass_detect_int_tol=None,
         out_dir = os.path.dirname(file_path)
 
     df = d.output_single_file(save, out_dir)
+
+    # filter by ROI length
+    df = df[df['length'] >= 4].reset_index(drop=True)
+
+    # filter by intensity
+    df = df[df['peak_height'] >= min_feature_height].reset_index(drop=True)
 
     return df, ion_mode
 

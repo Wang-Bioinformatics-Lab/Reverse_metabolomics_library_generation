@@ -27,4 +27,33 @@ Views:
             return `
                 <img src="https://structure.gnps2.org/structureimg?smiles=${row["SMILES"]}"/>
             `;}}]'
-            
+
+-   name: File Summary
+    displayname: File Summary
+    viewname: filesummary
+    displaytype: datatable
+    parameters:
+        filename: nf_output/file_summary.tsv
+        error_missingfile: "No File"
+        columns:
+            -   title: "File name"
+                data: mzml_name
+            -   title: "Total features"
+                data: total_features
+            -   title: "Total features with MS2"
+                data: total_features_with_ms2
+            -   title: "Unique target compounds"
+                data: unique_target_cmpds
+            -   title: "Unique target compounds with MS1"
+                data: unique_cmpds_with_ms1
+            -   title: "Unique target compounds with MS1 (M+H or M-H)"
+                data: unique_cmpds_with_ms1_M_H
+            -   title: "Unique target compounds with MS1 and MS2"
+                data: unique_cmpds_with_ms1_ms2
+            -   title: "Unique target compounds with MS1 and MS2 (M+H or M-H)"
+                data: unique_cmpds_with_ms1_ms2_M_H
+            -   title: "Unique target compounds with MS1 and MS2, selected"
+                data: unique_cmpds_with_ms1_ms2_selected
+            -   title: "Unique target compounds with MS1 and MS2, selected (M+H or M-H)"
+                data: unique_cmpds_with_ms1_ms2_selected_M_H
+

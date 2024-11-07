@@ -3,20 +3,6 @@ from .ms2_explanation_filter import filter_by_ms2_explanation
 from .core_adduct_filter import filter_by_core_adduct
 
 
-def filter_feature_df(feature_df, intensity_threshold):
-    """
-    Filter the feature DataFrame based on intensity threshold
-    """
-
-    # filter by ROI length
-    feature_df = feature_df[feature_df['length'] >= 4].reset_index(drop=True)
-
-    # filter by intensity
-    feature_df = feature_df[feature_df['peak_height'] >= intensity_threshold].reset_index(drop=True)
-
-    return feature_df
-
-
 def filter_df(df,
               ion_mode,
               ms2_explanation_cutoff=0.60,

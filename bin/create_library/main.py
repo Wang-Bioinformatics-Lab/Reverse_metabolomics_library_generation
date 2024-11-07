@@ -1,13 +1,11 @@
 from .merge_df import merge_compound_feature_tables
-from .filter_df import filter_feature_df
 from .filter_df import filter_df
 from .write_library import write_library
 from .write_mgf import write_mgf
 from .summarize_df import summarize_df
 
 
-def create_library(compound_df, feature_df,
-                   ion_mode, min_feature_height,
+def create_library(compound_df, feature_df, ion_mode,
                    data_collector, pi_name, file_name,
                    mz_tol_ppm=10,
                    filter_library=True,
@@ -18,9 +16,6 @@ def create_library(compound_df, feature_df,
     """
     Filter the library based on the compound and feature DataFrames.
     """
-
-    # Filter the feature table
-    feature_df = filter_feature_df(feature_df, min_feature_height)
 
     # Check if the feature table is empty
     if feature_df.empty:
