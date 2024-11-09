@@ -10,7 +10,7 @@ params.min_feature_height = 1.5e5
 params.mz_tol_ppm = 10
 params.ms2_explanation_cutoff = 0.60
 params.adduct_type_mode = "simple"
-params.core_adduct_filter = "0"
+params.core_adduct_filter = "simple"
 
 TOOL_FOLDER = "$baseDir/bin"
 
@@ -42,7 +42,7 @@ process createLibrary {
     --min_feature_height ${params.min_feature_height} \
     --mz_tol_ppm ${params.mz_tol_ppm} \
     --ms2_explanation_cutoff ${params.ms2_explanation_cutoff} \
-    --core_adduct_filter ${params.core_adduct_filter} \
+    --core_adduct_filter "${params.core_adduct_filter}" \
     --adduct_type_mode ${params.adduct_type_mode} \
     --plot
     """

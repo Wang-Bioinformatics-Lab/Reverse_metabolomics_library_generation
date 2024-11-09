@@ -2,7 +2,7 @@ workflowname: reverse_metabolomics_create_library_workflow
 workflowdescription: This is to create MS/MS libraries for reverse metabolomics.
 workflowlongdescription: This is the workflow to create a tsv library from a set of mzML files and compound csv files. The tsv file is ready to be uploaded to GNPS library. 
   A template for the compound csv file can be found here (https://docs.google.com/spreadsheets/d/14VoG20s6C8GaoWk1fodWFzg2Ao8p9UuRcvuW7rgiEnA/edit?usp=sharing).
-workflowversion: "2024.11.06.3"
+workflowversion: "2024.11.08"
 workflowfile: nf_workflow.nf
 workflowautohide: false
 adminonly: false
@@ -51,14 +51,14 @@ parameterlist:
       nf_paramname: mass_detect_intensity_tolerance
       formplaceholder: Enter the intensity tolerance for mass detection
       formvalue: "5e4"
-      tooltip: "This is the minimum intensity for a peak to be considered for mass detection"
+      tooltip: "This is the minimum intensity for a single signal to be considered for mass detection"
 
     - displayname: Minimum Feature Height
       paramtype: text
       nf_paramname: min_feature_height
       formplaceholder: Enter the minimum peak height for a feature to be considered
       formvalue: "1.5e5"
-      tooltip: "This is the minimum peak height for a feature to be considered"
+      tooltip: "This is the minimum peak height for a metabolite feature to be considered for MS2 annotation"
 
     - displayname: Compound Matching & Filtering
       paramtype: section
@@ -73,7 +73,7 @@ parameterlist:
       nf_paramname: ms2_explanation_cutoff
       formplaceholder: Enter the MS2 explanation cutoff
       formvalue: "0.60"
-      tooltip: "This is the minimum total explained intensity for an MS2 spectrum to be included in the library."
+      tooltip: "This is the minimum value of the total explained intensity for an MS2 spectrum to be annotated."
 
     - displayname: Allowed Adduct Types
       paramtype: select
@@ -81,18 +81,20 @@ parameterlist:
       formvalue: "full"
       options:
         - value: "simple"
-          display: "Positive: M+H, M+Na, M+NH4, M+K || Negative: M-H"
+          display: "Positive: M+H, M+Na, M+NH4, M+K || Negative: M-H (recommended for general usage)"
         - value: "full"
-          display: "Positive: M+H, M+Na, M+NH4, M+K, M+H-H2O, M+H-2H2O, M+H-3H2O || Negative: M-H, M+FA, M+Ac, M+Cl, M+Br, M-H-H2O"
+          display: "Positive: M+H, M+Na, M+NH4, M+K, M+H-H2O, M+H-2H2O, M+H-3H2O || Negative: M-H, M+FA, M+Ac, M+Cl, M+Br, M-H-H2O (recommended for compounds such as bile acids)"
 
     - displayname: Core Adduct Filter
       paramtype: select
       nf_paramname: core_adduct_filter
-      formvalue: "0"
+      formvalue: "full"
       options:
-        - value: "1"
-          display: "True"
-        - value: "0"
-          display: "False"
-      tooltip: "One chemical can have multiple candidate peaks in the LC-MS run. If true, candidate peaks without core adducts will be excluded. Core adducts: M+H, M+NH4, M+H-H2O, M+H-2H2O || M-H"
+        - value: "none"
+        - display: "Core adduct filter is not applied"
+        - value: "simple"
+          display: "Core adducts: M+H, M+NH4 || M-H (recommended for general usage)"
+        - value: "full"
+          display: "Core adducts: M+H, M+NH4, M+H-H2O, M+H-2H2O || M-H, M+FA, M+Ac (recommended for compounds such as bile acids)"
+      tooltip: "One compound can have multiple candidate peaks (RTs) in the LC-MS run. This filter removes each of the candidate peak which does not have any of the core adducts at the same RT."
 

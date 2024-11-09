@@ -6,9 +6,11 @@ from .core_adduct_filter import filter_by_core_adduct
 def filter_df(df,
               ion_mode,
               ms2_explanation_cutoff=0.60,
-              core_adduct_filter=True):
+              core_adduct_filter='full'):
     """
     Filter the merged DataFrame
+
+    core_adduct_filter: str ['full', 'simple', 'none']
     """
 
     # # if matched to a doubly charged ion, remove the match
@@ -26,9 +28,9 @@ def filter_df(df,
     # df = remove_smiles_with_empty_valid_ms2(df)
 
     # filter by core adducts
-    if core_adduct_filter:
+    if core_adduct_filter != 'none':
         print('Filtering by core adducts...')
-        df = filter_by_core_adduct(df, ion_mode, core_adduct_ls=None, rt_tol=0.05)
+        df = filter_by_core_adduct(df, ion_mode, core_adduct_filter_mode=core_adduct_filter, rt_tol=0.05)
 
     return df
 

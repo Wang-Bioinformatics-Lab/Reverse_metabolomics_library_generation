@@ -10,7 +10,7 @@ def create_library(compound_df, feature_df, ion_mode,
                    mz_tol_ppm=10,
                    filter_library=True,
                    ms2_explanation_cutoff=0.60,
-                   core_adduct_filter=True,
+                   core_adduct_filter='full',
                    metadata_dir=None,
                    write_individual_mgf=False):
     """

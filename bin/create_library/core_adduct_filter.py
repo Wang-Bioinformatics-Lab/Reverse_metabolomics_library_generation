@@ -1,16 +1,22 @@
 import numpy as np
 
 
-def filter_by_core_adduct(df, ion_mode, core_adduct_ls=None, rt_tol=0.05):
+def filter_by_core_adduct(df, ion_mode, core_adduct_filter_mode='full', rt_tol=0.05):
     """
     For each SMILES and grouped RT, check if core adducts are present
+
+    core_adduct_filter_mode: full, simple
     """
-    if core_adduct_ls is None:
+    if core_adduct_filter_mode == 'full':
         if ion_mode == 'positive':
             core_adduct_ls = ['[M+H]+', '[M+NH4]+', '[M+H-H2O]+', '[M+H-2H2O]+']
-        elif ion_mode == 'negative':
+        else:
+            core_adduct_ls = ['[M-H]-', '[M+FA]-' '[M+Ac]-']
+    else:
+        if ion_mode == 'positive':
+            core_adduct_ls = ['[M+H]+', '[M+NH4]+']
+        else:
             core_adduct_ls = ['[M-H]-']
-            # core_adduct_ls = ['[M-H]-', '[M+FA]-' '[M+Ac]-']
 
     # Find all unique SMILES
     unique_smiles = df['SMILES'].unique()

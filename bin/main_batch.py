@@ -4,7 +4,7 @@ import pandas as pd
 
 from feature_extraction import feature_extraction_single, plot_all_ms2, plot_all_eic, plot_mz_rt
 from cmpd import prepare_cmpd_df
-from create_library import create_library, append_file_summary
+from create_library import create_library, append_file_summary, plot_ms2_annotation_distribution
 
 
 def main_batch(mzml_files, csv_files,
@@ -14,7 +14,7 @@ def main_batch(mzml_files, csv_files,
                min_feature_height=1.5e5,
                mz_tol_ppm=10,
                ms2_explanation_cutoff=0.60,
-               core_adduct_filter=True,
+               core_adduct_filter='full',
                adduct_type_mode='full',
                plot=False,
                write_individual_mgf=False):
@@ -107,6 +107,9 @@ def main_batch(mzml_files, csv_files,
     file_summary_df = pd.DataFrame(all_file_summary_rows)
     file_summary_df.to_csv('file_summary.tsv', sep='\t', index=False)
 
+    # Plot MS2 annotation distribution
+    plot_ms2_annotation_distribution(file_summary_df)
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Process a batch of mzML files and csv files.')
@@ -118,7 +121,7 @@ if __name__ == '__main__':
     parser.add_argument('--min_feature_height', type=float, default=1.5e5, help='Minimum feature height.')
     parser.add_argument('--mz_tol_ppm', type=float, default=10, help='m/z tolerance in ppm.')
     parser.add_argument('--ms2_explanation_cutoff', type=float, default=0.60, help='MS2 explanation cutoff.')
-    parser.add_argument('--core_adduct_filter', type=str, default='0', help='Core adduct filter.')
+    parser.add_argument('--core_adduct_filter', type=str, default='full', help='Core adduct filter. Available options: none, full, simple.')
     parser.add_argument('--adduct_type_mode', type=str, default='full', help='Adduct type mode.')
     parser.add_argument('--plot', action='store_true', help='Plot the results.')
     args = parser.parse_args()
@@ -130,13 +133,21 @@ if __name__ == '__main__':
                mass_detect_int_tol=args.mass_detect_int_tol,
                min_feature_height=args.min_feature_height,
                ms2_explanation_cutoff=args.ms2_explanation_cutoff,
-               core_adduct_filter=True if args.core_adduct_filter == '1' else False,
+               core_adduct_filter=args.core_adduct_filter,
                adduct_type_mode=args.adduct_type_mode,
                plot=args.plot)
 
     ##############################################################################################################
-    # main_batch(['../test/P1_A1_510.mzML'], ['../test/PCP.csv'])
+    # main_batch(['../test/VD_52.mzML'], ['../test/3_OH_VD_KV_saturated.csv'],
+    #            ms2_explanation_cutoff=0.0,
+    #            adduct_type_mode='full',
+    #            core_adduct_filter='none')
+    # main_batch(['../test/P1_A1_510.mzML'], ['../test/PCP.csv'],
+    #            ms2_explanation_cutoff=0.0,
+    #            adduct_type_mode='full',
+    #            core_adduct_filter='none')
     # main_batch(['../test/reframe_drugs_pos_P1_A10_id.mzML'],
     #            ['../test/20241017_reframe_metadata_pos_gnps2_workflow.csv'],
-    #            ms2_explanation_cutoff=0.60,
-    #            adduct_type_mode='simple')
+    #            ms2_explanation_cutoff=0.0,
+    #            adduct_type_mode='full',
+    #            core_adduct_filter='none')
