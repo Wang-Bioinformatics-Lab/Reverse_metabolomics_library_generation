@@ -32,17 +32,17 @@ def append_file_summary(all_file_summary_rows, mzml_name, cmpd_df, feature_df, m
     if metadata_df is not None and not metadata_df.empty:
 
         try:
-            unique_cmpds_with_ms1 = int(metadata_df['inchi'].nunique())
-            unique_cmpds_with_ms1_M_H = int(metadata_df[metadata_df['t_adduct'].isin(['[M+H]+', '[M-H]-'])]['inchi'].nunique())
+            unique_cmpds_with_ms1 = metadata_df['inchi'].nunique()
+            unique_cmpds_with_ms1_M_H = metadata_df[metadata_df['t_adduct'].isin(['[M+H]+', '[M-H]-'])]['inchi'].nunique()
 
             df = metadata_df[metadata_df['best_MS2_scan_idx'].notnull()].reset_index(drop=True)
-            unique_cmpds_with_ms1_ms2 = int(df['inchi'].nunique())
-            unique_cmpds_with_ms1_ms2_M_H = int(df[df['t_adduct'].isin(['[M+H]+', '[M-H]-'])]['inchi'].nunique())
+            unique_cmpds_with_ms1_ms2 = df['inchi'].nunique()
+            unique_cmpds_with_ms1_ms2_M_H = df[df['t_adduct'].isin(['[M+H]+', '[M-H]-'])]['inchi'].nunique()
 
             # only keep selected
             df = df[df['selected']].reset_index(drop=True)
-            unique_cmpds_with_ms1_ms2_selected = int(df['inchi'].nunique())
-            unique_cmpds_with_ms1_ms2_selected_M_H = int(df[df['t_adduct'].isin(['[M+H]+', '[M-H]-'])]['inchi'].nunique())
+            unique_cmpds_with_ms1_ms2_selected = df['inchi'].nunique()
+            unique_cmpds_with_ms1_ms2_selected_M_H = df[df['t_adduct'].isin(['[M+H]+', '[M-H]-'])]['inchi'].nunique()
 
             # count # of annotations for each MS2 (ie, how many MS2 are annotated with one compound, how many are annotated with two compounds, etc.)
             annotation_counts = df.groupby('best_MS2_scan_idx').size().value_counts().sort_index()
