@@ -1,8 +1,8 @@
 name: reverse_metabolomics_create_library_workflow
 displayname: reverse_metabolomics_create_library_workflow
 Views:
--   name: Summary List
-    displayname: Summary List
+-   name: Compound Summary List
+    displayname: Compound Summary List
     viewname: summarylist
     displaytype: datatable
     parameters:
