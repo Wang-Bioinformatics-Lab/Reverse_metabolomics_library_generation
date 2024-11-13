@@ -6,7 +6,7 @@ from .core_adduct_filter import filter_by_core_adduct
 def filter_df(df,
               ion_mode,
               ms2_explanation_cutoff=0.60,
-              core_adduct_filter='full'):
+              core_adduct_filter='simple'):
     """
     Filter the merged DataFrame
 

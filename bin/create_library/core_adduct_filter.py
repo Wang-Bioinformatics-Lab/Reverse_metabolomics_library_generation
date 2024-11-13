@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def filter_by_core_adduct(df, ion_mode, core_adduct_filter_mode='full', rt_tol=0.05):
+def filter_by_core_adduct(df, ion_mode, core_adduct_filter_mode='simple', rt_tol=0.05):
     """
     For each SMILES and grouped RT, check if core adducts are present
 

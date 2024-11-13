@@ -14,7 +14,7 @@ def main_batch(mzml_files, csv_files,
                min_feature_height=1.5e5,
                mz_tol_ppm=10,
                ms2_explanation_cutoff=0.60,
-               core_adduct_filter='full',
+               core_adduct_filter='simple',
                adduct_type_mode='full',
                plot=False,
                write_individual_mgf=False):
@@ -121,7 +121,7 @@ if __name__ == '__main__':
     parser.add_argument('--min_feature_height', type=float, default=1.5e5, help='Minimum feature height.')
     parser.add_argument('--mz_tol_ppm', type=float, default=10, help='m/z tolerance in ppm.')
     parser.add_argument('--ms2_explanation_cutoff', type=float, default=0.60, help='MS2 explanation cutoff.')
-    parser.add_argument('--core_adduct_filter', type=str, default='full', help='Core adduct filter. Available options: none, full, simple.')
+    parser.add_argument('--core_adduct_filter', type=str, default='simple', help='Core adduct filter. Available options: none, full, simple.')
     parser.add_argument('--adduct_type_mode', type=str, default='full', help='Adduct type mode.')
     parser.add_argument('--plot', action='store_true', help='Plot the results.')
     args = parser.parse_args()
