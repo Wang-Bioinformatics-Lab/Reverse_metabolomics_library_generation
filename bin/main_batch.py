@@ -16,11 +16,15 @@ def main_batch(mzml_files, csv_files,
                ms2_explanation_cutoff=0.60,
                core_adduct_filter='simple',
                adduct_type_mode='full',
-               plot=False,
-               write_individual_mgf=False):
+               plot=True,
+               write_individual_mgf=True,
+               component_precursor_check=True,
+               preprocessed_pkl_path=None):
     """
     Process a batch of mzML files and csv files.
     """
+
+    os.makedirs('details', exist_ok=True)
 
     # Load the csv file
     print('Calculating compound masses...')
@@ -54,7 +58,7 @@ def main_batch(mzml_files, csv_files,
             feature_df, ion_mode = feature_extraction_single(file_path=mzml,
                                                              mass_detect_int_tol=mass_detect_int_tol,
                                                              min_feature_height=min_feature_height,
-                                                             save=False)
+                                                             save=False, out_dir='details')
         except:
             print(f'Error extracting features from {mzml}. Skipping...')
             continue
@@ -71,7 +75,9 @@ def main_batch(mzml_files, csv_files,
                                         filter_library=True,
                                         ms2_explanation_cutoff=ms2_explanation_cutoff,
                                         core_adduct_filter=core_adduct_filter,
-                                        metadata_dir=None,
+                                        component_precursor_check=component_precursor_check,
+                                        preprocessed_pkl_path=preprocessed_pkl_path,
+                                        metadata_dir='details',
                                         write_individual_mgf=write_individual_mgf)
 
         # Append file summary rows
@@ -82,21 +88,21 @@ def main_batch(mzml_files, csv_files,
 
         # Save
         if df is not None:
-            df.to_csv(f'{mzml_basename}_metadata.tsv', sep='\t', index=False)
+            df.to_csv(f'details/{mzml_basename}_metadata.tsv', sep='\t', index=False)
 
         if plot and df is not None and feature_df is not None:
             try:
                 # Plot all MS2 spectra
                 print('Plotting all spectra...')
-                plot_all_ms2(df, mzml)
+                plot_all_ms2(df, mzml, out_dir='details')
 
                 # Plot all EICs
                 print('Plotting all EICs...')
-                plot_all_eic(df, mzml)
+                plot_all_eic(df, mzml, out_dir='details')
 
                 # Plot mz-rt scatter plot
                 print('Plotting mz-rt scatter plot...')
-                plot_mz_rt(feature_df, df, mzml_basename)
+                plot_mz_rt(feature_df, df, mzml_basename, out_dir='details')
             except Exception as e:
                 print(e)
 
@@ -112,42 +118,45 @@ def main_batch(mzml_files, csv_files,
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Process a batch of mzML files and csv files.')
-    parser.add_argument('--mzml_files', nargs='+', help='List of mzML files')
-    parser.add_argument('--csv_files', nargs='+', help='List of CSV files')
-    parser.add_argument('--data_collector', type=str, default='Minions', help='Data collector.')
-    parser.add_argument('--pi_name', type=str, default='Pieter Dorrestein', help='PI name.')
-    parser.add_argument('--mass_detect_int_tol', type=float, default=5e4, help='Mass detection intensity tolerance.')
-    parser.add_argument('--min_feature_height', type=float, default=1.5e5, help='Minimum feature height.')
-    parser.add_argument('--mz_tol_ppm', type=float, default=10, help='m/z tolerance in ppm.')
-    parser.add_argument('--ms2_explanation_cutoff', type=float, default=0.60, help='MS2 explanation cutoff.')
-    parser.add_argument('--core_adduct_filter', type=str, default='simple', help='Core adduct filter. Available options: none, full, simple.')
-    parser.add_argument('--adduct_type_mode', type=str, default='full', help='Adduct type mode.')
-    parser.add_argument('--plot', action='store_true', help='Plot the results.')
-    args = parser.parse_args()
-
-    main_batch(args.mzml_files, args.csv_files,
-               data_collector=args.data_collector,
-               pi_name=args.pi_name,
-               mz_tol_ppm=args.mz_tol_ppm,
-               mass_detect_int_tol=args.mass_detect_int_tol,
-               min_feature_height=args.min_feature_height,
-               ms2_explanation_cutoff=args.ms2_explanation_cutoff,
-               core_adduct_filter=args.core_adduct_filter,
-               adduct_type_mode=args.adduct_type_mode,
-               plot=args.plot)
+    # parser = argparse.ArgumentParser(description='Process a batch of mzML files and csv files.')
+    # parser.add_argument('--mzml_files', nargs='+', help='List of mzML files')
+    # parser.add_argument('--csv_files', nargs='+', help='List of CSV files')
+    # parser.add_argument('--data_collector', type=str, default='Minions', help='Data collector.')
+    # parser.add_argument('--pi_name', type=str, default='Pieter Dorrestein', help='PI name.')
+    # parser.add_argument('--mass_detect_int_tol', type=float, default=5e4, help='Mass detection intensity tolerance.')
+    # parser.add_argument('--min_feature_height', type=float, default=1.5e5, help='Minimum feature height.')
+    # parser.add_argument('--mz_tol_ppm', type=float, default=10, help='m/z tolerance in ppm.')
+    # parser.add_argument('--ms2_explanation_cutoff', type=float, default=0.60, help='MS2 explanation cutoff.')
+    # parser.add_argument('--core_adduct_filter', type=str, default='simple', help='Core adduct filter. Available options: none, full, simple.')
+    # parser.add_argument('--adduct_type_mode', type=str, default='full', help='Adduct type mode.')
+    # parser.add_argument('--plot', action='store_true', help='Plot the results.')
+    # parser.add_argument('--component_precursor_check', type=str, default='0', help='Combinatorial synthesis.')
+    # parser.add_argument('--preprocessed_pkl', type=str, default=None, help='Preprocessed pkl file.')
+    # args = parser.parse_args()
+    #
+    # main_batch(args.mzml_files, args.csv_files,
+    #            data_collector=args.data_collector,
+    #            pi_name=args.pi_name,
+    #            mz_tol_ppm=args.mz_tol_ppm,
+    #            mass_detect_int_tol=args.mass_detect_int_tol,
+    #            min_feature_height=args.min_feature_height,
+    #            ms2_explanation_cutoff=args.ms2_explanation_cutoff,
+    #            core_adduct_filter=args.core_adduct_filter,
+    #            adduct_type_mode=args.adduct_type_mode,
+    #            plot=args.plot, component_precursor_check=True if args.component_precursor_check == '1' else False,
+    #            preprocessed_pkl_path=args.preprocessed_pkl)
 
     ##############################################################################################################
+    main_batch(['../test_data/AP_1107.mzML'], ['../test_data/AP_1107.csv'],
+               adduct_type_mode='full',
+               core_adduct_filter='full', preprocessed_pkl_path='../data/cmpd_name_to_mass.pkl')
     # main_batch(['../test/VD_52.mzML'], ['../test/3_OH_VD_KV_saturated.csv'],
-    #            ms2_explanation_cutoff=0.0,
     #            adduct_type_mode='full',
-    #            core_adduct_filter='none')
+    #            core_adduct_filter='none', preprocessed_pkl_path='../data/cmpd_name_to_mass.pkl')
     # main_batch(['../test/P1_A1_510.mzML'], ['../test/PCP.csv'],
-    #            ms2_explanation_cutoff=0.0,
     #            adduct_type_mode='full',
     #            core_adduct_filter='none')
     # main_batch(['../test/reframe_drugs_pos_P1_A10_id.mzML'],
     #            ['../test/20241017_reframe_metadata_pos_gnps2_workflow.csv'],
-    #            ms2_explanation_cutoff=0.0,
     #            adduct_type_mode='full',
     #            core_adduct_filter='none')

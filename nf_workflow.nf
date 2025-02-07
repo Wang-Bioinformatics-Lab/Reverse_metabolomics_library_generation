@@ -11,6 +11,7 @@ params.mz_tol_ppm = 10
 params.ms2_explanation_cutoff = 0.60
 params.adduct_type_mode = "simple"
 params.core_adduct_filter = "simple"
+params.component_precursor_check = "1"
 
 TOOL_FOLDER = "$baseDir/bin"
 
@@ -44,7 +45,9 @@ process createLibrary {
     --ms2_explanation_cutoff ${params.ms2_explanation_cutoff} \
     --core_adduct_filter "${params.core_adduct_filter}" \
     --adduct_type_mode ${params.adduct_type_mode} \
-    --plot
+    --plot \
+    --component_precursor_check ${params.component_precursor_check} \
+    --preprocessed_pkl "$baseDir/data/cmpd_name_to_mass.pkl"
     """
 }
 

@@ -12,18 +12,18 @@ def filter_by_core_adduct(df, ion_mode, core_adduct_filter_mode='simple', rt_tol
             core_adduct_ls = ['[M+H]+', '[M+NH4]+', '[M+H-H2O]+', '[M+H-2H2O]+']
         else:
             core_adduct_ls = ['[M-H]-', '[M+FA]-' '[M+Ac]-']
-    else:
+    else:  # simple
         if ion_mode == 'positive':
             core_adduct_ls = ['[M+H]+', '[M+NH4]+']
         else:
             core_adduct_ls = ['[M-H]-']
 
-    # Find all unique SMILES
-    unique_smiles = df['SMILES'].unique()
+    # Find all unique SMILES for selected rows
+    unique_smiles = df[df['selected']]['SMILES'].unique()
 
     for smiles in unique_smiles:
         # Get all rows for this SMILES
-        smiles_df = df[df['SMILES'] == smiles]
+        smiles_df = df[(df['SMILES'] == smiles) & df['selected']]
 
         # Group RTs for this SMILES
         rt_groups = group_rts(smiles_df['RT'].unique(), rt_tol)
@@ -38,14 +38,14 @@ def filter_by_core_adduct(df, ion_mode, core_adduct_filter_mode='simple', rt_tol
 
             if not core_adduct_present:
                 # If no core adduct is present, update the original dataframe
-                update_mask = (df['SMILES'] == smiles) & df['RT'].isin(rt_group)
+                update_mask = (df['SMILES'] == smiles) & df['RT'].isin(rt_group) & df['selected']
                 df.loc[update_mask, 'selected'] = False
 
                 # Update discard reason
                 df.loc[update_mask, 'discard_reason'] = np.where(
                     df.loc[update_mask, 'discard_reason'] == '',
                     'No core adduct',
-                    df.loc[update_mask, 'discard_reason'] + ';No core adduct'
+                    df.loc[update_mask, 'discard_reason'] + '; No core adduct'
                 )
 
     return df

@@ -2,7 +2,7 @@ workflowname: reverse_metabolomics_create_library_workflow
 workflowdescription: MS/MS library creation for reverse metabolomics.
 workflowlongdescription: This is the workflow to create a tsv library from a set of mzML files and compound csv files. The tsv file is ready to be uploaded to GNPS library. 
   A template for the compound csv file can be found here (https://docs.google.com/spreadsheets/d/14VoG20s6C8GaoWk1fodWFzg2Ao8p9UuRcvuW7rgiEnA/edit?usp=sharing).
-workflowversion: "2024.11.12"
+workflowversion: "2025.02.06"
 workflowfile: nf_workflow.nf
 workflowautohide: false
 adminonly: false
@@ -85,13 +85,23 @@ parameterlist:
         - value: "full"
           display: "Positive: M+H, M+Na, M+NH4, M+K, M+H-H2O, M+H-2H2O, M+H-3H2O || Negative: M-H, M+FA, M+Ac, M+Cl, M+Br, M-H-H2O"
 
+    - displayname: Component Precursor Check (for combinatorial synthesis)
+      paramtype: text
+      nf_paramname: component_precursor_check
+      formvalue: "1"
+      options:
+        - value: "1"
+          display: "Yes. Generate spectral library from combinatorial synthesis"
+        - value: "0"
+          display: "No. Generate spectral library from individual standards"
+
     - displayname: Core Adduct Filter
       paramtype: select
       nf_paramname: core_adduct_filter
       formvalue: "simple"
       options:
         - value: "none"
-        - display: "Core adduct filter is not applied"
+          display: "Core adduct filter is not applied"
         - value: "simple"
           display: "Core adducts: M+H, M+NH4 || M-H"
         - value: "full"

@@ -20,7 +20,7 @@ def filter_by_ms2_explanation(row, explanation_cutoff=0.60):
             subformla_list = assign_subformula(row['MS2'][:, 0],
                                                precursor_formula=row['neutralized_formula'],
                                                adduct=row['t_adduct'],
-                                               ms2_tol=0.05, ppm=False)
+                                               ms2_tol=0.02, ppm=False)
         except:
             row['ms2_explained_intensity'] = 1.0
             return row

@@ -266,7 +266,6 @@ class MSData:
             if not out_dir:
                 out_dir = self.params.single_file_dir
 
-            os.makedirs(out_dir, exist_ok=True)
             path = os.path.join(out_dir, self.file_name + "_feature_table.tsv")
             df.to_csv(path, sep="\t", index=False)
 

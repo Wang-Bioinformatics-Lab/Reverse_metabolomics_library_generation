@@ -11,6 +11,7 @@ def create_library(compound_df, feature_df, ion_mode,
                    filter_library=True,
                    ms2_explanation_cutoff=0.60,
                    core_adduct_filter='simple',
+                   component_precursor_check=True, preprocessed_pkl_path=None,
                    metadata_dir=None,
                    write_individual_mgf=False):
     """
@@ -31,7 +32,9 @@ def create_library(compound_df, feature_df, ion_mode,
         # Filter the merged dataframe
         df = filter_df(df, ion_mode,
                        ms2_explanation_cutoff=ms2_explanation_cutoff,
-                       core_adduct_filter=core_adduct_filter)
+                       core_adduct_filter=core_adduct_filter,
+                       component_precursor_check=component_precursor_check,
+                       preprocessed_pkl_path=preprocessed_pkl_path)
 
     if write_individual_mgf:
         # Write individual MGF files
