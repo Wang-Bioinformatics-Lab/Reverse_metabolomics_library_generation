@@ -9,12 +9,12 @@ def filter_by_core_adduct(df, ion_mode, core_adduct_filter_mode='simple', rt_tol
     """
     if core_adduct_filter_mode == 'full':
         if ion_mode == 'positive':
-            core_adduct_ls = ['[M+H]+', '[M+NH4]+', '[M+H-H2O]+', '[M+H-2H2O]+']
+            core_adduct_ls = ['[M+H]+', '[M+NH4]+', '[M+H-H2O]+']
         else:
             core_adduct_ls = ['[M-H]-', '[M+FA]-' '[M+Ac]-']
     else:  # simple
         if ion_mode == 'positive':
-            core_adduct_ls = ['[M+H]+', '[M+NH4]+']
+            core_adduct_ls = ['[M+H]+']
         else:
             core_adduct_ls = ['[M-H]-']
 

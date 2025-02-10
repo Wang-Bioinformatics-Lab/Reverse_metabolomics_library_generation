@@ -2,7 +2,7 @@ workflowname: reverse_metabolomics_create_library_workflow
 workflowdescription: MS/MS library creation for reverse metabolomics.
 workflowlongdescription: This is the workflow to create a tsv library from a set of mzML files and compound csv files. The tsv file is ready to be uploaded to GNPS library. 
   A template for the compound csv file can be found here (https://docs.google.com/spreadsheets/d/14VoG20s6C8GaoWk1fodWFzg2Ao8p9UuRcvuW7rgiEnA/edit?usp=sharing).
-workflowversion: "2025.02.06"
+workflowversion: "2025.02.10"
 workflowfile: nf_workflow.nf
 workflowautohide: false
 adminonly: false
@@ -66,7 +66,7 @@ parameterlist:
       paramtype: text
       nf_paramname: mz_tol_ppm
       formplaceholder: Enter the mass tolerance in ppm for MS1 searching
-      formvalue: "10"
+      formvalue: "5"
 
     - displayname: MS2 Explanation Cutoff (0 to 1; set to 0 to disable)
       paramtype: text
@@ -81,9 +81,9 @@ parameterlist:
       formvalue: "full"
       options:
         - value: "simple"
-          display: "Positive: M+H, M+Na, M+NH4, M+K || Negative: M-H"
+          display: "Positive: M+H, M+Na, M+NH4 || Negative: M-H"
         - value: "full"
-          display: "Positive: M+H, M+Na, M+NH4, M+K, M+H-H2O, M+H-2H2O, M+H-3H2O || Negative: M-H, M+FA, M+Ac, M+Cl, M+Br, M-H-H2O"
+          display: "Positive: M+H, M+Na, M+NH4, M+K, M+H-H2O, M+H-2H2O || Negative: M-H, M+FA, M+Ac, M+Cl, M-H-H2O"
 
     - displayname: Component Precursor Check (for combinatorial synthesis)
       paramtype: text
@@ -103,8 +103,8 @@ parameterlist:
         - value: "none"
           display: "Core adduct filter is not applied"
         - value: "simple"
-          display: "Core adducts: M+H, M+NH4 || M-H"
+          display: "Core adducts: M+H || M-H"
         - value: "full"
-          display: "Core adducts: M+H, M+NH4, M+H-H2O, M+H-2H2O || M-H, M+FA, M+Ac"
+          display: "Core adducts: M+H, M+NH4, M+H-H2O || M-H, M+FA, M+Ac"
       tooltip: "One compound can have multiple candidate peaks (RTs) in the LC-MS run. This filter removes each candidate peak which does not have any of the core adducts at the same RT."
 

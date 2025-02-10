@@ -6,7 +6,7 @@ adduct_pos_simple = [
     {'name': '[M+H]+', 'm': 1, 'charge': 1, 'mass': 1.00727645223},
     {'name': '[M+Na]+', 'm': 1, 'charge': 1, 'mass': 22.989220702},
     {'name': '[M+NH4]+', 'm': 1, 'charge': 1, 'mass': 18.03382555335},
-    {'name': '[M+K]+', 'm': 1, 'charge': 1, 'mass': 38.9631579064}
+    # {'name': '[M+K]+', 'm': 1, 'charge': 1, 'mass': 38.9631579064}
 ]
 
 adduct_pos_full = [
@@ -17,7 +17,7 @@ adduct_pos_full = [
     # {'name': '[M-H2O+NH4]+', 'm': 1, 'charge': 1, 'mass': 0.023260869},
     {'name': '[M+H-H2O]+', 'm': 1, 'charge': 1, 'mass': -17.0032882318},
     {'name': '[M+H-2H2O]+', 'm': 1, 'charge': 1, 'mass': -35.01385291583},
-    {'name': '[M+H-3H2O]+', 'm': 1, 'charge': 1, 'mass': -53.02441759986}
+    # {'name': '[M+H-3H2O]+', 'm': 1, 'charge': 1, 'mass': -53.02441759986}
 ]
 
 adduct_neg_simple = [
@@ -27,7 +27,7 @@ adduct_neg_simple = [
 adduct_neg_full = [
     {'name': '[M-H]-', 'm': 1, 'charge': 1, 'mass': -1.00727645223},
     {'name': '[M+Cl]-', 'm': 1, 'charge': 1, 'mass': 34.968304102},
-    {'name': '[M+Br]-', 'm': 1, 'charge': 1, 'mass': 78.91778902},
+    # {'name': '[M+Br]-', 'm': 1, 'charge': 1, 'mass': 78.91778902},
     {'name': '[M+FA]-', 'm': 1, 'charge': 1, 'mass': 44.99710569137},
     {'name': '[M+Ac]-', 'm': 1, 'charge': 1, 'mass': 59.01275575583},
     {'name': '[M-H-H2O]-', 'm': 1, 'charge': 1, 'mass': -19.01784113626}
