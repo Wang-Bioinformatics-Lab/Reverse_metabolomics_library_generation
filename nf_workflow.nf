@@ -9,8 +9,8 @@ params.mass_detect_intensity_tolerance = 5e4
 params.min_feature_height = 1.5e5
 params.mz_tol_ppm = 5
 params.ms2_explanation_cutoff = 0.60
-params.adduct_type_mode = "simple"
-params.core_adduct_filter = "simple"
+params.adduct_type_mode = "full"
+params.core_adduct_filter = "full"
 params.component_precursor_check = "1"
 
 TOOL_FOLDER = "$baseDir/bin"
@@ -26,6 +26,7 @@ process createLibrary {
 
     output:
     path 'all_library.tsv'
+    path 'details/*', optional: true
     path '*.tsv', optional: true
     path '*.pdf', optional: true
     path '*.png', optional: true

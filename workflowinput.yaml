@@ -86,7 +86,7 @@ parameterlist:
           display: "Positive: M+H, M+Na, M+NH4, M+K, M+H-H2O, M+H-2H2O || Negative: M-H, M+FA, M+Ac, M+Cl, M-H-H2O"
 
     - displayname: Component Precursor Check (for combinatorial synthesis)
-      paramtype: text
+      paramtype: select
       nf_paramname: component_precursor_check
       formvalue: "1"
       options:
@@ -98,7 +98,7 @@ parameterlist:
     - displayname: Core Adduct Filter
       paramtype: select
       nf_paramname: core_adduct_filter
-      formvalue: "simple"
+      formvalue: "full"
       options:
         - value: "none"
           display: "Core adduct filter is not applied"
