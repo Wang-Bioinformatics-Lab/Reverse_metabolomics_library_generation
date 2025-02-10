@@ -66,7 +66,7 @@ def filter_by_component_precursor(df, ion_mode, preprocessed_pkl_path=None):
         ms2_peaks = ms2_peaks[ms2_peaks[:, 1] > 0.01 * np.max(ms2_peaks[:, 1])]
         ms2_mzs = ms2_peaks[:, 0]
 
-        if not np.any(np.abs(np.subtract.outer(frag_mz_ls, ms2_mzs)) < 0.02):
+        if not np.any(np.abs(np.subtract.outer(frag_mz_ls, ms2_mzs)) < 0.01):
             df.at[i, 'selected'] = False
 
             if df.at[i, 'discard_reason'] == '':
