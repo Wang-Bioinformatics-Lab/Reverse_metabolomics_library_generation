@@ -47,7 +47,7 @@ process createLibrary {
     --adduct_type_mode ${params.adduct_type_mode} \
     --plot \
     --component_precursor_check ${params.component_precursor_check} \
-    --preprocessed_pkl "$baseDir/data/cmpd_name_to_mass.pkl"
+    --preprocessed_pkl "$TOOL_FOLDER/cmpd_name_to_mass.pkl"
     """
 }
 
