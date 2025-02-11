@@ -43,5 +43,14 @@ def summarize_df(df):
         row['name'] = f"{row['compound_name']} (known structural isomers: {row['isomer_count'] - 1}; isobaric peaks in run: {row['isobaric_peak_count'] - 1})"
         df.loc[i] = row
 
+    ##############################
+    # one MS2 should be associated with one compound at most
+    # dereplicate by best_MS2_scan_idx if it is not null
+    df1 = df[pd.isnull(df['best_MS2_scan_idx'])].reset_index(drop=True)
+    df2 = df[pd.notnull(df['best_MS2_scan_idx'])].reset_index(drop=True)
+
+    df2 = df2.drop_duplicates(subset='best_MS2_scan_idx').reset_index(drop=True)
+    df = pd.concat([df1, df2], axis=0).reset_index(drop=True)
+
     return df
 

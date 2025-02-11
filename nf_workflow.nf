@@ -29,7 +29,6 @@ process createLibrary {
     path 'details/*', optional: true
     path '*.tsv', optional: true
     path '*.pdf', optional: true
-    path '*.png', optional: true
 
     script:
     def escapedDataCollector = params.data_collector.replaceAll(/"/, '\\\\"')
