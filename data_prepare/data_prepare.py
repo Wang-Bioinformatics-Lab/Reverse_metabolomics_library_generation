@@ -28,6 +28,8 @@ def main():
     # calculate the exact mass
     df['exact_mass'] = df['neutralized_formula'].apply(calc_exact_mass)
 
+    print(f'Number of unique reactants: {len(df)}')
+
     # save
     df.to_csv('all_reactants_preprocessed.tsv', sep='\t', index=False)
 

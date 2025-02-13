@@ -14,7 +14,7 @@ def main_batch(mzml_files, csv_files,
                min_feature_height=1.5e5,
                mz_tol_ppm=5,
                ms2_explanation_cutoff=0.60,
-               core_adduct_filter='simple',
+               core_adduct_filter='full',
                adduct_type_mode='full',
                plot=True,
                write_individual_mgf=True,
@@ -146,8 +146,8 @@ if __name__ == '__main__':
                plot=args.plot, component_precursor_check=True if args.component_precursor_check == '1' else False,
                preprocessed_pkl_path=args.preprocessed_pkl)
 
-    ##############################################################################################################
-    # main_batch(['../test_data/AP_1107.mzML'], ['../test_data/AP_1107.csv'],
+    #############################################################################################################
+    # main_batch(['../test_data/AP_1397.mzML'], ['../test_data/AP_1397.csv'],
     #            adduct_type_mode='full',
     #            core_adduct_filter='full', preprocessed_pkl_path='cmpd_name_to_mass.pkl')
     # main_batch(['../test/VD_52.mzML'], ['../test/3_OH_VD_KV_saturated.csv'],

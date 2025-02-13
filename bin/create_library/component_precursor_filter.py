@@ -46,13 +46,13 @@ def filter_by_component_precursor(df, ion_mode, preprocessed_pkl_path=None):
             continue
 
         # if more than 2 components, add the mass of all combinations
-        if len(mass_ls) > 2:
+        if len(cmpd_name_ls) > 2:
             for m in range(len(mass_ls)):
                 for n in range(m + 1, len(mass_ls)):
                     mass_ls.append(mass_ls[m] + mass_ls[n] - 18.010565)
                     mass_ls.append(mass_ls[m] + mass_ls[n] - 18.010565 * 2)
 
-        if ion_mode == 'pos':
+        if ion_mode == 'positive':
             frag_mz_ls = [mass + 1.007276 for mass in mass_ls]
             if row['t_adduct'] == '[M+Na]+':
                 frag_mz_ls.extend([mass + 22.98922 for mass in mass_ls])
