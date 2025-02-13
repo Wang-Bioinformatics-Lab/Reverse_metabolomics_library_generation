@@ -49,6 +49,16 @@ def summarize_df(df):
     df1 = df[pd.isnull(df['best_MS2_scan_idx'])].reset_index(drop=True)
     df2 = df[pd.notnull(df['best_MS2_scan_idx'])].reset_index(drop=True)
 
+    # Define the custom order for adducts
+    adduct_order = ['[M+H]+', '[M-H]-', '[M+H-H2O]+']  # The adducts not in this list will be sorted after these
+    # Convert t_adduct to Categorical with custom ordering
+    df2['t_adduct'] = pd.Categorical(df2['t_adduct'],
+                                     categories=adduct_order + [x for x in df2['t_adduct'].unique() if
+                                                                x not in adduct_order],
+                                     ordered=True)
+
+    # Sort by selected and then t_adduct
+    df2 = df2.sort_values(by=['selected', 't_adduct'], ascending=[False, True]).reset_index(drop=True)
     df2 = df2.drop_duplicates(subset='best_MS2_scan_idx').reset_index(drop=True)
     df = pd.concat([df1, df2], axis=0).reset_index(drop=True)
 
