@@ -149,7 +149,18 @@ if __name__ == '__main__':
     #############################################################################################################
     # main_batch(['../test_data/AP_1397.mzML'], ['../test_data/AP_1397.csv'],
     #            adduct_type_mode='full',
-    #            core_adduct_filter='full', preprocessed_pkl_path='cmpd_name_to_mass.pkl')
+    #            component_precursor_check=True,
+    #            ms2_explanation_cutoff=0.60,
+    #            core_adduct_filter='full',
+    #            preprocessed_pkl_path='cmpd_name_to_mass.pkl')
+
+    # main_batch(['../test_data/AP_1397.mzML'], ['../test_data/AP_1397.csv'],
+    #            adduct_type_mode='full',
+    #            component_precursor_check=False,
+    #            ms2_explanation_cutoff=0.0,
+    #            core_adduct_filter='none',
+    #            preprocessed_pkl_path='cmpd_name_to_mass.pkl')
+
     # main_batch(['../test/VD_52.mzML'], ['../test/3_OH_VD_KV_saturated.csv'],
     #            adduct_type_mode='full',
     #            core_adduct_filter='none', preprocessed_pkl_path='cmpd_name_to_mass.pkl')

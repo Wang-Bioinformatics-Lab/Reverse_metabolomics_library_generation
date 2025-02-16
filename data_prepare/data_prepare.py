@@ -13,6 +13,9 @@ def main():
     # drop rows w/o SMILES
     df = df.dropna(subset=['SMILES']).reset_index(drop=True)
 
+    # convert compound_name to lower case
+    df['compoundtha_name'] = df['compound_name'].str.lower()
+
     # dereplicate by compound name
     df = df.drop_duplicates(subset=['compound_name']).reset_index(drop=True)
 

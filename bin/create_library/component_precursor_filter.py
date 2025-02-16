@@ -20,6 +20,8 @@ def filter_by_component_precursor(df, ion_mode, preprocessed_pkl_path=None):
 
         # split the compound name by '_'
         cmpd_name_ls = row['compound_name'].split('_')
+        # convert to lower case
+        cmpd_name_ls = [name.lower() for name in cmpd_name_ls]
 
         mass_ls = []
         valid_compounds = True  # Flag to track if all compounds are valid
