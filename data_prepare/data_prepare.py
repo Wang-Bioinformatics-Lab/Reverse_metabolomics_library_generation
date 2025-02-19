@@ -14,7 +14,7 @@ def main():
     df = df.dropna(subset=['SMILES']).reset_index(drop=True)
 
     # convert compound_name to lower case
-    df['compoundtha_name'] = df['compound_name'].str.lower()
+    df['compound_name'] = df['compound_name'].str.lower()
 
     # dereplicate by compound name
     df = df.drop_duplicates(subset=['compound_name']).reset_index(drop=True)
@@ -41,9 +41,9 @@ def main():
 
     # save dict from compound name to exact_mass
     compound_name_to_mass = dict(zip(df['compound_name'], df['exact_mass']))
-    with open('cmpd_name_to_mass.pkl', 'wb') as f:
-        pickle.dump(compound_name_to_mass, f)
 
+    with open('../bin/cmpd_name_to_mass.pkl', 'wb') as f:
+        pickle.dump(compound_name_to_mass, f)
 
 
 if __name__ == '__main__':
