@@ -54,10 +54,19 @@ def filter_by_component_precursor(df, ion_mode, preprocessed_pkl_path=None):
                     mass_ls.append(mass_ls[m] + mass_ls[n] - 18.010565)
                     mass_ls.append(mass_ls[m] + mass_ls[n] - 18.010565 * 2)
 
+        if len(cmpd_name_ls) > 3:
+            for m in range(len(mass_ls)):
+                for n in range(m + 1, len(mass_ls)):
+                    for o in range(n + 1, len(mass_ls)):
+                        mass_ls.append(mass_ls[m] + mass_ls[n] + mass_ls[o] - 18.010565 * 2)
+                        mass_ls.append(mass_ls[m] + mass_ls[n] + mass_ls[o] - 18.010565 * 3)
+
         if ion_mode == 'positive':
             frag_mz_ls = [mass + 1.007276 for mass in mass_ls]
             if row['t_adduct'] == '[M+Na]+':
                 frag_mz_ls.extend([mass + 22.98922 for mass in mass_ls])
+            if row['t_adduct'] == '[M+NH4]+':
+                frag_mz_ls.extend([mass + 18.03383 for mass in mass_ls])
             if row['t_adduct'] == '[M+K]+':
                 frag_mz_ls.extend([mass + 38.96316 for mass in mass_ls])
         else:
@@ -65,7 +74,7 @@ def filter_by_component_precursor(df, ion_mode, preprocessed_pkl_path=None):
 
         ms2_peaks = row['MS2']
         # minimum 1% intensity
-        ms2_peaks = ms2_peaks[ms2_peaks[:, 1] > 0.01 * np.max(ms2_peaks[:, 1])]
+        ms2_peaks = ms2_peaks[ms2_peaks[:, 1] >= 0.01 * np.max(ms2_peaks[:, 1])]
         ms2_mzs = ms2_peaks[:, 0]
 
         if not np.any(np.abs(np.subtract.outer(frag_mz_ls, ms2_mzs)) < 0.01):
