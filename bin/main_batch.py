@@ -147,18 +147,33 @@ if __name__ == '__main__':
                preprocessed_pkl_path=args.preprocessed_pkl)
 
     #############################################################################################################
-    # main_batch(['../test_data/AP_1397.mzML'], ['../test_data/AP_1397.csv'],
+
+    # main_batch([
+    #     # '../test_data/AP_175.mzML',
+    #             '../test_data/AP_176.mzML', '../test_data/AP_177.mzML',
+    #             '../test_data/AP_178.mzML', '../test_data/AP_179.mzML', '../test_data/AP_180.mzML',
+    #             '../test_data/AP_181.mzML', '../test_data/AP_182.mzML', '../test_data/AP_183.mzML',
+    #             '../test_data/AP_184.mzML', '../test_data/AP_185.mzML', '../test_data/AP_186.mzML',
+    #             '../test_data/AP_187.mzML', '../test_data/AP_188.mzML', '../test_data/AP_189.mzML',
+    #             '../test_data/AP_190.mzML', '../test_data/AP_191.mzML', '../test_data/AP_192.mzML',
+    #             '../test_data/AP_193.mzML', '../test_data/AP_194.mzML', '../test_data/AP_195.mzML',
+    #             '../test_data/AP_196.mzML', '../test_data/AP_197.mzML', '../test_data/AP_198.mzML',
+    #             '../test_data/AP_199.mzML', '../test_data/AP_200.mzML', '../test_data/AP_201.mzML',
+    #             '../test_data/AP_202.mzML', '../test_data/AP_203.mzML', '../test_data/AP_204.mzML',
+    #             '../test_data/AP_205.mzML', '../test_data/AP_206.mzML', '../test_data/AP_207.mzML',
+    #             '../test_data/AP_208.mzML', '../test_data/AP_209.mzML', '../test_data/AP_210.mzML',
+    #             '../test_data/AP_211.mzML', '../test_data/AP_212.mzML', '../test_data/AP_213.mzML',
+    #             '../test_data/AP_214.mzML', '../test_data/AP_215.mzML', '../test_data/AP_216.mzML',
+    #             '../test_data/AP_217.mzML', '../test_data/AP_218.mzML', '../test_data/AP_219.mzML',
+    #             '../test_data/AP_220.mzML', '../test_data/AP_221.mzML', '../test_data/AP_222.mzML',
+    #             '../test_data/AP_223.mzML', '../test_data/AP_224.mzML', '../test_data/AP_225.mzML',
+    #             '../test_data/AP_226.mzML', '../test_data/AP_227.mzML', '../test_data/AP_228.mzML',
+    #             '../test_data/AP_229.mzML', '../test_data/AP_230.mzML'],
+    #            ['../test_data/AP_175_230_AA_1_modified_output_file.csv'],
     #            adduct_type_mode='full',
     #            component_precursor_check=True,
     #            ms2_explanation_cutoff=0.60,
     #            core_adduct_filter='full',
-    #            preprocessed_pkl_path='cmpd_name_to_mass.pkl')
-
-    # main_batch(['../test_data/AP_1397.mzML'], ['../test_data/AP_1397.csv'],
-    #            adduct_type_mode='full',
-    #            component_precursor_check=False,
-    #            ms2_explanation_cutoff=0.0,
-    #            core_adduct_filter='none',
     #            preprocessed_pkl_path='cmpd_name_to_mass.pkl')
 
     # main_batch(['../test/VD_52.mzML'], ['../test/3_OH_VD_KV_saturated.csv'],

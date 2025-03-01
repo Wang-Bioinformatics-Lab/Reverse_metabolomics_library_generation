@@ -48,18 +48,20 @@ def filter_by_component_precursor(df, ion_mode, preprocessed_pkl_path=None):
             continue
 
         # if more than 2 components, add the mass of all combinations
+        new_masses_to_extend = []
         if len(cmpd_name_ls) > 2:
             for m in range(len(mass_ls)):
                 for n in range(m + 1, len(mass_ls)):
-                    mass_ls.append(mass_ls[m] + mass_ls[n] - 18.010565)
-                    mass_ls.append(mass_ls[m] + mass_ls[n] - 18.010565 * 2)
+                    new_masses_to_extend.append(mass_ls[m] + mass_ls[n] - 18.010565)
+                    new_masses_to_extend.append(mass_ls[m] + mass_ls[n] - 18.010565 * 2)
 
         if len(cmpd_name_ls) > 3:
             for m in range(len(mass_ls)):
                 for n in range(m + 1, len(mass_ls)):
                     for o in range(n + 1, len(mass_ls)):
-                        mass_ls.append(mass_ls[m] + mass_ls[n] + mass_ls[o] - 18.010565 * 2)
-                        mass_ls.append(mass_ls[m] + mass_ls[n] + mass_ls[o] - 18.010565 * 3)
+                        new_masses_to_extend.append(mass_ls[m] + mass_ls[n] + mass_ls[o] - 18.010565 * 2)
+                        new_masses_to_extend.append(mass_ls[m] + mass_ls[n] + mass_ls[o] - 18.010565 * 3)
+        mass_ls.extend(new_masses_to_extend)
 
         if ion_mode == 'positive':
             frag_mz_ls = [mass + 1.007276 for mass in mass_ls]
