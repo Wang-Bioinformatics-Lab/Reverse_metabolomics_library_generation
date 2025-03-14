@@ -8,7 +8,7 @@ import pickle
 
 
 def main():
-    df = pd.read_csv('all_reactants.tsv', sep='\t', low_memory=False)
+    df = pd.read_csv('All_reactants_new_saved.tsv', sep='\t', low_memory=False)
 
     # drop rows w/o SMILES
     df = df.dropna(subset=['SMILES']).reset_index(drop=True)
