@@ -12,8 +12,7 @@ def create_library(compound_df, feature_df, ion_mode,
                    ms2_explanation_cutoff=0.60,
                    core_adduct_filter='simple',
                    component_precursor_check=True, preprocessed_pkl_path=None,
-                   metadata_dir=None,
-                   write_individual_mgf=False):
+                   mgf_scans_start=0):
     """
     Filter the library based on the compound and feature DataFrames.
     """
@@ -36,14 +35,13 @@ def create_library(compound_df, feature_df, ion_mode,
                        component_precursor_check=component_precursor_check,
                        preprocessed_pkl_path=preprocessed_pkl_path)
 
-    if write_individual_mgf:
-        # Write individual MGF files
-        write_mgf(df, file_name, metadata_dir)
-
     # summarize, number of peaks / isomers
     df = summarize_df(df)
+
+    # Write MGF file
+    mgf_scans_start = write_mgf(df, file_name, mgf_scans_start)
 
     # Write the filtered library (dataframe to be uploaded to GNPS)
     library_df = write_library(df, data_collector, pi_name, file_name, ion_mode)
 
-    return df, library_df
+    return df, library_df, mgf_scans_start

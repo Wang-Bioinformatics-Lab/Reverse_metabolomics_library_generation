@@ -1,10 +1,11 @@
-import os
 import argparse
+import os
+
 import pandas as pd
 
-from feature_extraction import feature_extraction_single, plot_all_ms2, plot_all_eic, plot_mz_rt
 from cmpd import prepare_cmpd_df
 from create_library import create_library, append_file_summary, plot_ms2_annotation_distribution
+from feature_extraction import feature_extraction_single, plot_all_ms2, plot_all_eic, plot_mz_rt
 
 
 def main_batch(mzml_files, csv_files,
@@ -17,7 +18,6 @@ def main_batch(mzml_files, csv_files,
                core_adduct_filter='full',
                adduct_type_mode='full',
                plot=True,
-               write_individual_mgf=True,
                component_precursor_check=True,
                preprocessed_pkl_path=None):
     """
@@ -37,6 +37,7 @@ def main_batch(mzml_files, csv_files,
     # Get unique mzmls
     unique_mzmls = all_cmpd_df['unique_sample_id'].unique()
 
+    mgf_scans_no = 1
     # Initialize the library dataframe, for uploading to GNPS
     all_library_df = pd.DataFrame()
 
@@ -69,16 +70,15 @@ def main_batch(mzml_files, csv_files,
 
         # Filter library
         print('Creating MS/MS library...')
-        df, library_df = create_library(cmpd_df, feature_df, ion_mode,
-                                        data_collector, pi_name, mzml_basename,
-                                        mz_tol_ppm=mz_tol_ppm,
-                                        filter_library=True,
-                                        ms2_explanation_cutoff=ms2_explanation_cutoff,
-                                        core_adduct_filter=core_adduct_filter,
-                                        component_precursor_check=component_precursor_check,
-                                        preprocessed_pkl_path=preprocessed_pkl_path,
-                                        metadata_dir='details',
-                                        write_individual_mgf=write_individual_mgf)
+        df, library_df, mgf_scans_no = create_library(cmpd_df, feature_df, ion_mode,
+                                                      data_collector, pi_name, mzml_basename,
+                                                      mz_tol_ppm=mz_tol_ppm,
+                                                      filter_library=True,
+                                                      ms2_explanation_cutoff=ms2_explanation_cutoff,
+                                                      core_adduct_filter=core_adduct_filter,
+                                                      component_precursor_check=component_precursor_check,
+                                                      preprocessed_pkl_path=preprocessed_pkl_path,
+                                                      mgf_scans_start=mgf_scans_no)
 
         # Append file summary rows
         all_file_summary_rows = append_file_summary(all_file_summary_rows, mzml_name, cmpd_df, feature_df, df)
@@ -127,7 +127,8 @@ if __name__ == '__main__':
     parser.add_argument('--min_feature_height', type=float, default=1.5e5, help='Minimum feature height.')
     parser.add_argument('--mz_tol_ppm', type=float, default=10, help='m/z tolerance in ppm.')
     parser.add_argument('--ms2_explanation_cutoff', type=float, default=0.60, help='MS2 explanation cutoff.')
-    parser.add_argument('--core_adduct_filter', type=str, default='simple', help='Core adduct filter. Available options: none, full, simple.')
+    parser.add_argument('--core_adduct_filter', type=str, default='simple',
+                        help='Core adduct filter. Available options: none, full, simple.')
     parser.add_argument('--adduct_type_mode', type=str, default='full', help='Adduct type mode.')
     parser.add_argument('--plot', action='store_true', help='Plot the results.')
     parser.add_argument('--component_precursor_check', type=str, default='0', help='Combinatorial synthesis.')
@@ -178,10 +179,13 @@ if __name__ == '__main__':
 
     # main_batch(['../test/VD_52.mzML'], ['../test/3_OH_VD_KV_saturated.csv'],
     #            adduct_type_mode='full',
-    #            core_adduct_filter='none', preprocessed_pkl_path='cmpd_name_to_mass.pkl')
-    # main_batch(['../test/P1_A1_510.mzML'], ['../test/PCP.csv'],
+    #            core_adduct_filter='none',
+    #            component_precursor_check=False,
+    #            preprocessed_pkl_path='cmpd_name_to_mass.pkl')
+    # main_batch(['../test/P1_A1_510.mzML'],
+    #            ['../test/PCP.csv'],
     #            adduct_type_mode='full',
-    #            core_adduct_filter='none')
+    #            core_adduct_filter='none', component_precursor_check=False)
     # main_batch(['../test/reframe_drugs_pos_P1_A10_id.mzML'],
     #            ['../test/20241017_reframe_metadata_pos_gnps2_workflow.csv'],
     #            adduct_type_mode='full',

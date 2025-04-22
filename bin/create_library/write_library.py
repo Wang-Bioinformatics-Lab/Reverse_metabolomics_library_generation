@@ -12,21 +12,23 @@ def write_library(df, data_collector, pi_name, file_name, ion_mode):
     _ion_mode = 'Positive' if ion_mode == 'positive' else 'Negative'
 
     rows = []
+    scan = 1
     for _, row in df.iterrows():
+        ms2_scan = int(row['best_MS2_scan_idx'])
         rows.append({
-            'FILENAME': file_name + '.mzML',
+            'FILENAME': 'all_ms2.mgf',
             'SEQ': '*..*',
             'COMPOUND_NAME': row['name'],
             'MOLECULEMASS': row['MS2_precursor_mz'],
             'INSTRUMENT': 'Orbitrap',
             'IONSOURCE': 'LC-ESI',
-            'EXTRACTSCAN': round(row['best_MS2_scan_idx']),
+            'EXTRACTSCAN': scan,
             'SMILES': row['SMILES'],
             'INCHI': row['inchi'],
-            'INCHIAUX': row['inchi_adduct'],
+            'INCHIAUX': row['isomer_inchis'],
             'CHARGE': charge,
             'IONMODE': _ion_mode,
-            'PUBMED': None,
+            'PUBMED': f'{file_name}.mzML:scan:{ms2_scan}',
             'ACQUISITION': 'Crude',
             'EXACTMASS': row['exact_mass'],
             'DATACOLLECTOR': data_collector,
@@ -39,5 +41,6 @@ def write_library(df, data_collector, pi_name, file_name, ion_mode):
             'INTEREST': None,
             'STRAIN': None
         })
+        scan += 1
 
     return pd.DataFrame(rows)
