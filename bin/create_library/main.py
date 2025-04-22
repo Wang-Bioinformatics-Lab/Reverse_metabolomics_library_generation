@@ -19,13 +19,13 @@ def create_library(compound_df, feature_df, ion_mode,
 
     # Check if the feature table is empty
     if feature_df.empty:
-        return None, None
+        return None, None, mgf_scans_start
 
     # Merge the compound and feature tables
     df = merge_compound_feature_tables(compound_df, feature_df, mz_ppm=mz_tol_ppm)
 
     if df is None or df.empty:
-        return None, None
+        return None, None, mgf_scans_start
 
     if filter_library:
         # Filter the merged dataframe
