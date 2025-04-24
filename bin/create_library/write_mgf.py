@@ -31,6 +31,8 @@ def write_mgf(df, file_name, scans_start=0):
             mzs = row['MS2'][:, 0]
             intensities = row['MS2'][:, 1]
             for mz, intensity in zip(mzs, intensities):
+                mz = round(mz, 5)
+                intensity = round(intensity, 4)
                 f.write(f'{mz} {intensity}\n')
             f.write('END IONS\n\n')
             scans_start += 1

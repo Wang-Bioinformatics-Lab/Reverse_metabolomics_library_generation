@@ -37,7 +37,7 @@ def main_batch(mzml_files, csv_files,
     # Get unique mzmls
     unique_mzmls = all_cmpd_df['unique_sample_id'].unique()
 
-    mgf_scans_no = 1
+    scans_no = 1
     # Initialize the library dataframe, for uploading to GNPS
     all_library_df = pd.DataFrame()
 
@@ -70,15 +70,15 @@ def main_batch(mzml_files, csv_files,
 
         # Filter library
         print('Creating MS/MS library...')
-        df, library_df, mgf_scans_no = create_library(cmpd_df, feature_df, ion_mode,
-                                                      data_collector, pi_name, mzml_basename,
-                                                      mz_tol_ppm=mz_tol_ppm,
-                                                      filter_library=True,
-                                                      ms2_explanation_cutoff=ms2_explanation_cutoff,
-                                                      core_adduct_filter=core_adduct_filter,
-                                                      component_precursor_check=component_precursor_check,
-                                                      preprocessed_pkl_path=preprocessed_pkl_path,
-                                                      mgf_scans_start=mgf_scans_no)
+        df, library_df, scans_no = create_library(cmpd_df, feature_df, ion_mode,
+                                                  data_collector, pi_name, mzml_basename,
+                                                  mz_tol_ppm=mz_tol_ppm,
+                                                  filter_library=True,
+                                                  ms2_explanation_cutoff=ms2_explanation_cutoff,
+                                                  core_adduct_filter=core_adduct_filter,
+                                                  component_precursor_check=component_precursor_check,
+                                                  preprocessed_pkl_path=preprocessed_pkl_path,
+                                                  scans_start=scans_no)
 
         # Append file summary rows
         all_file_summary_rows = append_file_summary(all_file_summary_rows, mzml_name, cmpd_df, feature_df, df)
@@ -148,6 +148,14 @@ if __name__ == '__main__':
                preprocessed_pkl_path=args.preprocessed_pkl)
 
     #############################################################################################################
+
+    # main_batch(['../test_data/AP_176.mzML', '../test_data/AP_177.mzML', '../test_data/AP_178.mzML'],
+    #            ['../test_data/AP_176_178.csv'],
+    #            adduct_type_mode='full',
+    #            component_precursor_check=True,
+    #            ms2_explanation_cutoff=0.60,
+    #            core_adduct_filter='full',
+    #            preprocessed_pkl_path='cmpd_name_to_mass.pkl')
 
     # main_batch([
     #     # '../test_data/AP_175.mzML',

@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def write_library(df, data_collector, pi_name, file_name, ion_mode):
+def write_library(df, data_collector, pi_name, file_name, ion_mode, scans_start=0):
     """
     Write the filtered library to a file.
     """
@@ -12,7 +12,7 @@ def write_library(df, data_collector, pi_name, file_name, ion_mode):
     _ion_mode = 'Positive' if ion_mode == 'positive' else 'Negative'
 
     rows = []
-    scan = 1
+    scan = scans_start
     for _, row in df.iterrows():
         ms2_scan = int(row['best_MS2_scan_idx'])
         rows.append({
