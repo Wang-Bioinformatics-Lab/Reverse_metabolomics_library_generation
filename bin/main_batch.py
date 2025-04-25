@@ -17,7 +17,7 @@ def main_batch(mzml_files, csv_files,
                ms2_explanation_cutoff=0.60,
                core_adduct_filter='full',
                adduct_type_mode='full',
-               plot=True,
+               plot=False,
                component_precursor_check=True,
                preprocessed_pkl_path=None):
     """
@@ -152,7 +152,7 @@ if __name__ == '__main__':
     # main_batch(['../test_data/AP_176.mzML', '../test_data/AP_177.mzML', '../test_data/AP_178.mzML'],
     #            ['../test_data/AP_176_178.csv'],
     #            adduct_type_mode='full',
-    #            component_precursor_check=True,
+    #            component_precursor_check=False,
     #            ms2_explanation_cutoff=0.60,
     #            core_adduct_filter='full',
     #            preprocessed_pkl_path='cmpd_name_to_mass.pkl')

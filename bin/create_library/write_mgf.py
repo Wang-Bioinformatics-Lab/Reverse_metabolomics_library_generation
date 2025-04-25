@@ -17,7 +17,7 @@ def write_mgf(df, file_name, scans_start=0):
             ms2_scan = int(row['best_MS2_scan_idx'])
 
             f.write('BEGIN IONS\n')
-            f.write(f'NAME={row["compound_name"]}\n')
+            f.write(f'NAME={row["name"]}\n')
             f.write(f'PEPMASS={row["t_mz"]}\n')
             f.write(f'MSLEVEL=2\n')
             f.write(f'TITLE={file_name}.mzML:scan:{ms2_scan}\n')
