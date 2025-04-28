@@ -26,6 +26,7 @@ process createLibrary {
 
     output:
     path 'all_library.tsv'
+    path '*.mgf'
     path 'details/*', optional: true
     path '*.tsv', optional: true
     path '*.pdf', optional: true

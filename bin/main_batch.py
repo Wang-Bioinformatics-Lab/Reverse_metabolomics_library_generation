@@ -52,7 +52,7 @@ def main_batch(mzml_files, csv_files,
         mzml_basename = mzml_name.split('.mz')[0]
 
         if mzml_name not in unique_mzmls:
-            print(f'{mzml_name} not in the csv file. Skipping...')
+            print(f'{mzml_name} not in the compound csv file. Skipping...')
 
         # Extract features from mzML file
         try:
@@ -113,8 +113,8 @@ def main_batch(mzml_files, csv_files,
     file_summary_df = pd.DataFrame(all_file_summary_rows)
     file_summary_df.to_csv('file_summary.tsv', sep='\t', index=False)
 
-    # Plot MS2 annotation distribution
-    plot_ms2_annotation_distribution(file_summary_df)
+    # # Plot MS2 annotation distribution
+    # plot_ms2_annotation_distribution(file_summary_df)
 
 
 if __name__ == '__main__':
@@ -144,12 +144,17 @@ if __name__ == '__main__':
                ms2_explanation_cutoff=args.ms2_explanation_cutoff,
                core_adduct_filter=args.core_adduct_filter,
                adduct_type_mode=args.adduct_type_mode,
-               plot=args.plot, component_precursor_check=True if args.component_precursor_check == '1' else False,
+               plot=False,
+               component_precursor_check=True if args.component_precursor_check == '1' else False,
                preprocessed_pkl_path=args.preprocessed_pkl)
 
     #############################################################################################################
 
-    # main_batch(['../test_data/AP_176.mzML', '../test_data/AP_177.mzML', '../test_data/AP_178.mzML'],
+    # main_batch([
+    #     '../test_data/AP_176.mzML',
+    #     # '../test_data/AP_177.mzML',
+    #     '../test_data/AP_178.mzML'
+    # ],
     #            ['../test_data/AP_176_178.csv'],
     #            adduct_type_mode='full',
     #            component_precursor_check=False,
