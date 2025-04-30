@@ -17,8 +17,8 @@ def create_library(compound_df, feature_df, ion_mode,
     Filter the library based on the compound and feature DataFrames.
     """
 
-    # Check if the feature table is empty
-    if feature_df.empty:
+    # Check if any table is empty
+    if compound_df.empty or feature_df.empty:
         return None, None, scans_start
 
     # Merge the compound and feature tables

@@ -50,11 +50,30 @@ def prepare_cmpd_df(cmpd_df_path, adduct_type_mode):
     # load the compound list
     cmpd_df = pd.read_csv(cmpd_df_path, low_memory=False)
 
-    # Add formula and InChI information
-    cmpd_df[['formula', 'inchi']] = cmpd_df['SMILES'].apply(smiles_to_formula_and_inchi).tolist()
+    # Process unique SMILES to get formula and InChI
+    unique_smiles = cmpd_df['SMILES'].unique()
+    smiles_to_formula_inchi = {}
 
-    # neutralize the formula, deal with the charge (e.g., C5H5N+)
-    cmpd_df['neutralized_formula'] = cmpd_df['formula'].apply(neutralize_formula)
+    for smiles in unique_smiles:
+        formula, inchi = smiles_to_formula_and_inchi(smiles)
+        smiles_to_formula_inchi[smiles] = (formula, inchi)
+
+    # Apply to original dataframe
+    cmpd_df['formula'] = cmpd_df['SMILES'].map(lambda x: smiles_to_formula_inchi[x][0])
+    cmpd_df['inchi'] = cmpd_df['SMILES'].map(lambda x: smiles_to_formula_inchi[x][1])
+    del unique_smiles, smiles_to_formula_inchi
+
+    # Process unique formulas to get neutralized formulas
+    unique_formulas = cmpd_df['formula'].unique()
+    formula_to_neutralized = {}
+
+    for formula in unique_formulas:
+        neutralized = neutralize_formula(formula)
+        formula_to_neutralized[formula] = neutralized
+
+    # Apply to original dataframe
+    cmpd_df['neutralized_formula'] = cmpd_df['formula'].map(lambda x: formula_to_neutralized[x])
+    del unique_formulas, formula_to_neutralized
 
     # calculate the exact mass
     cmpd_df['exact_mass'] = cmpd_df['neutralized_formula'].apply(calc_exact_mass)

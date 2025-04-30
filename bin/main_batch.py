@@ -1,6 +1,6 @@
 import argparse
 import os
-
+import shutil
 import pandas as pd
 
 from cmpd import prepare_cmpd_df
@@ -25,6 +25,7 @@ def main_batch(mzml_files, csv_files,
     """
 
     os.makedirs('details', exist_ok=True)
+    os.makedirs('tmp_data', exist_ok=True)
 
     # Load the csv file
     print('Calculating compound masses...')
@@ -37,22 +38,30 @@ def main_batch(mzml_files, csv_files,
     # Get unique mzmls
     unique_mzmls = all_cmpd_df['unique_sample_id'].unique()
 
+    # split all_cmpd_df into multiple dataframes by unique_sample_id and save them
+    for mzml in unique_mzmls:
+        cmpd_df = all_cmpd_df[all_cmpd_df['unique_sample_id'] == mzml]
+        mzml_basename = mzml.split('.mz')[0]
+        cmpd_df.to_csv(f'tmp_data/{mzml_basename}_cmpd_df.csv', index=False)
+
+    del all_cmpd_df, unique_mzmls  # free up memory
+
+    # scan number
     scans_no = 1
-    # Initialize the library dataframe, for uploading to GNPS
-    all_library_df = pd.DataFrame()
 
     # file summary rows
     all_file_summary_rows = []
 
     # Load the mzml file
     for mzml in mzml_files:
-
         print('Processing', mzml)
+
         mzml_name = os.path.basename(mzml)
         mzml_basename = mzml_name.split('.mz')[0]
-
-        if mzml_name not in unique_mzmls:
-            print(f'{mzml_name} not in the compound csv file. Skipping...')
+        cmpd_df_path = f'tmp_data/{mzml_basename}_cmpd_df.csv'
+        if not os.path.exists(cmpd_df_path):
+            print(f'Compound list for {mzml_basename} not found. Skipping...')
+            continue
 
         # Extract features from mzML file
         try:
@@ -65,8 +74,9 @@ def main_batch(mzml_files, csv_files,
             continue
 
         # Load the compound list for the mzml file
-        cmpd_df = all_cmpd_df[(all_cmpd_df['unique_sample_id'] == mzml_name) &
-                              (all_cmpd_df['ion_mode'] == ion_mode)].copy().reset_index(drop=True)
+        cmpd_df = pd.read_csv(cmpd_df_path, low_memory=False)
+        # Filter compound list by ion mode
+        cmpd_df = cmpd_df[cmpd_df['ion_mode'] == ion_mode].reset_index(drop=True)
 
         # Filter library
         print('Creating MS/MS library...')
@@ -84,7 +94,7 @@ def main_batch(mzml_files, csv_files,
         all_file_summary_rows = append_file_summary(all_file_summary_rows, mzml_name, cmpd_df, feature_df, df)
 
         if library_df is not None:
-            all_library_df = pd.concat([all_library_df, library_df])
+            library_df.to_csv(f'tmp_data/{mzml_basename}_library.tsv', sep='\t', index=False, na_rep='N/A')
 
         # Save
         if df is not None:
@@ -106,8 +116,21 @@ def main_batch(mzml_files, csv_files,
             except Exception as e:
                 print(e)
 
-    # Save the library dataframe
-    all_library_df.to_csv('all_library.tsv', sep='\t', index=False, na_rep='N/A')
+    # Merge all library files
+    # find all library files (tmp_data/*_library.tsv)
+    library_files = [f for f in os.listdir('tmp_data') if f.endswith('_library.tsv')]
+    if library_files:
+        all_library_df = pd.DataFrame()
+        for library_file in library_files:
+            library_df = pd.read_csv(f'tmp_data/{library_file}', sep='\t', low_memory=False)
+            all_library_df = pd.concat([all_library_df, library_df], ignore_index=True)
+
+        # Save the merged library
+        all_library_df.to_csv('all_library.tsv', sep='\t', index=False, na_rep='N/A')
+
+    # clean up the entire tmp_data folder
+    if os.path.exists('tmp_data'):
+        shutil.rmtree('tmp_data')
 
     # Save the file summary
     file_summary_df = pd.DataFrame(all_file_summary_rows)
