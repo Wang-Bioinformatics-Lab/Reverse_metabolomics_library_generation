@@ -6,8 +6,8 @@ import pandas as pd
 from cmpd import prepare_cmpd_df
 from create_library import create_library, append_file_summary, plot_ms2_annotation_distribution
 from feature_extraction import feature_extraction_single, plot_all_ms2, plot_all_eic, plot_mz_rt
-
-
+# from memory_profiler import profile
+# @profile
 def main_batch(mzml_files, csv_files,
                data_collector='Minions',
                pi_name='Pieter Dorrestein',
@@ -94,7 +94,9 @@ def main_batch(mzml_files, csv_files,
         all_file_summary_rows = append_file_summary(all_file_summary_rows, mzml_name, cmpd_df, feature_df, df)
 
         if library_df is not None:
-            library_df.to_csv(f'tmp_data/{mzml_basename}_library.tsv', sep='\t', index=False, na_rep='N/A')
+            # library_df.to_csv(f'tmp_data/{mzml_basename}_library.tsv', sep='\t', index=False, na_rep='N/A')
+            library_df.to_pickle(f'tmp_data/{mzml_basename}_library.pkl')
+            del library_df
 
         # Save
         if df is not None:
@@ -115,16 +117,18 @@ def main_batch(mzml_files, csv_files,
                 plot_mz_rt(feature_df, df, mzml_basename, out_dir='details')
             except Exception as e:
                 print(e)
+        del df
 
-    # Merge all library files
-    # find all library files (tmp_data/*_library.tsv)
-    library_files = [f for f in os.listdir('tmp_data') if f.endswith('_library.tsv')]
+    # Merge all library files (tmp_data/*_library.pkl)
+    library_files = [f for f in os.listdir('tmp_data') if f.endswith('_library.pkl')]
     if library_files:
         all_library_df = pd.DataFrame()
         for library_file in library_files:
-            library_df = pd.read_csv(f'tmp_data/{library_file}', sep='\t', low_memory=False)
+            library_df = pd.read_pickle(f'tmp_data/{library_file}')
             all_library_df = pd.concat([all_library_df, library_df], ignore_index=True)
 
+        # sort by EXTRACTSCAN
+        all_library_df = all_library_df.sort_values(by=['EXTRACTSCAN'], ascending=True)
         # Save the merged library
         all_library_df.to_csv('all_library.tsv', sep='\t', index=False, na_rep='N/A')
 
@@ -175,7 +179,7 @@ if __name__ == '__main__':
 
     # main_batch([
     #     '../test_data/AP_176.mzML',
-    #     # '../test_data/AP_177.mzML',
+    #     '../test_data/AP_177.mzML',
     #     '../test_data/AP_178.mzML'
     # ],
     #            ['../test_data/AP_176_178.csv'],
