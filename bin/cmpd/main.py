@@ -65,6 +65,9 @@ def prepare_cmpd_df(cmpd_df, adduct_type_mode):
     cmpd_df['inchi'] = cmpd_df['SMILES'].map(lambda x: smiles_to_formula_inchi[x][1])
     del unique_smiles, smiles_to_formula_inchi
 
+    # dereplicate by unique_sample_id, inchi (same reaction, same compound)
+    cmpd_df = cmpd_df.drop_duplicates(subset=['unique_sample_id', 'inchi'], keep='first').reset_index(drop=True)
+
     # Process unique formulas to get neutralized formulas
     unique_formulas = cmpd_df['formula'].unique()
     formula_to_neutralized = {}
