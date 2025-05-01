@@ -28,7 +28,7 @@ def write_library(df, data_collector, pi_name, file_name, ion_mode, scans_start=
             'INCHIAUX': row['isomer_inchis'],
             'CHARGE': charge,
             'IONMODE': _ion_mode,
-            'PUBMED': f'{file_name}.mzML:scan:{ms2_scan}',
+            'PUBMED': f'{file_name}:scan:{ms2_scan}',
             'ACQUISITION': 'Crude',
             'EXACTMASS': row['exact_mass'],
             'DATACOLLECTOR': data_collector,

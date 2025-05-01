@@ -34,7 +34,7 @@ adduct_neg_full = [
 ]
 
 
-def prepare_cmpd_df(cmpd_df_path, adduct_type_mode):
+def prepare_cmpd_df(cmpd_df, adduct_type_mode):
 
     """
     Calculate the exact mass for each compound in the compound list
@@ -47,8 +47,10 @@ def prepare_cmpd_df(cmpd_df_path, adduct_type_mode):
         adduct_pos = adduct_pos_full
         adduct_neg = adduct_neg_full
 
-    # load the compound list
-    cmpd_df = pd.read_csv(cmpd_df_path, low_memory=False)
+    # drop rows w/o SMILES
+    cmpd_df = cmpd_df.dropna(subset=['unique_sample_id', 'SMILES']).reset_index(drop=True)
+    # unique_sample_id should contain '.mz'
+    cmpd_df = cmpd_df[cmpd_df['unique_sample_id'].str.contains('.mz')].reset_index(drop=True)
 
     # Process unique SMILES to get formula and InChI
     unique_smiles = cmpd_df['SMILES'].unique()

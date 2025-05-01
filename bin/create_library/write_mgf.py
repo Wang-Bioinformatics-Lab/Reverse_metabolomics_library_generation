@@ -20,7 +20,7 @@ def write_mgf(df, file_name, scans_start=0):
             f.write(f'NAME={row["name"]}\n')
             f.write(f'PEPMASS={row["t_mz"]}\n')
             f.write(f'MSLEVEL=2\n')
-            f.write(f'TITLE={file_name}.mzML:scan:{ms2_scan}\n')
+            f.write(f'TITLE={file_name}:scan:{ms2_scan}\n')
             f.write(f'SMILES={row["SMILES"]}\n')
             f.write(f'INCHI={row["inchi"]}\n')
             inchi_aux = row['isomer_inchis'] if row['isomer_inchis'] != '' else 'N/A'

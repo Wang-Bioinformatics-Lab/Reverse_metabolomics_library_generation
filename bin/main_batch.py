@@ -32,16 +32,22 @@ def main_batch(mzml_files, csv_files,
     all_cmpd_df = pd.DataFrame()
     for csv in csv_files:
         print('Loading', csv)
-        cmpd_df = prepare_cmpd_df(csv, adduct_type_mode)
+        cmpd_df = pd.read_csv(csv, low_memory=False)
+        if 'unique_sample_id' not in cmpd_df.columns or 'SMILES' not in cmpd_df.columns:
+            continue
         all_cmpd_df = pd.concat([all_cmpd_df, cmpd_df])
+
+    all_cmpd_df = prepare_cmpd_df(all_cmpd_df, adduct_type_mode)
 
     # Get unique mzmls
     unique_mzmls = all_cmpd_df['unique_sample_id'].unique()
 
     # split all_cmpd_df into multiple dataframes by unique_sample_id and save them
     for mzml in unique_mzmls:
+        if pd.isnull(mzml):
+            continue
         cmpd_df = all_cmpd_df[all_cmpd_df['unique_sample_id'] == mzml]
-        mzml_basename = mzml.split('.mz')[0]
+        mzml_basename = os.path.splitext(mzml)[0]
         cmpd_df.to_csv(f'tmp_data/{mzml_basename}_cmpd_df.csv', index=False)
 
     del all_cmpd_df, unique_mzmls  # free up memory
@@ -57,7 +63,7 @@ def main_batch(mzml_files, csv_files,
         print('Processing', mzml)
 
         mzml_name = os.path.basename(mzml)
-        mzml_basename = mzml_name.split('.mz')[0]
+        mzml_basename = os.path.splitext(mzml_name)[0]
         cmpd_df_path = f'tmp_data/{mzml_basename}_cmpd_df.csv'
         if not os.path.exists(cmpd_df_path):
             print(f'Compound list for {mzml_basename} not found. Skipping...')
@@ -81,7 +87,7 @@ def main_batch(mzml_files, csv_files,
         # Filter library
         print('Creating MS/MS library...')
         df, library_df, scans_no = create_library(cmpd_df, feature_df, ion_mode,
-                                                  data_collector, pi_name, mzml_basename,
+                                                  data_collector, pi_name, mzml_name,
                                                   mz_tol_ppm=mz_tol_ppm,
                                                   filter_library=True,
                                                   ms2_explanation_cutoff=ms2_explanation_cutoff,
@@ -177,12 +183,17 @@ if __name__ == '__main__':
 
     #############################################################################################################
 
+    # csv_files = os.listdir('/Users/shipei/Downloads/useruploads/apatan/Bile_acid_CSV_04282025')
+    # csv_files = [f for f in csv_files if f.endswith('.csv')]
+    # csv_files = [os.path.join('/Users/shipei/Downloads/useruploads/apatan/Bile_acid_CSV_04282025', f) for f in csv_files]
+    #
     # main_batch([
     #     '../test_data/AP_176.mzML',
     #     '../test_data/AP_177.mzML',
     #     '../test_data/AP_178.mzML'
     # ],
-    #            ['../test_data/AP_176_178.csv'],
+    #            csv_files,
+    # ['../test_data/AP_176_178.csv'],
     #            adduct_type_mode='full',
     #            component_precursor_check=False,
     #            ms2_explanation_cutoff=0.60,
