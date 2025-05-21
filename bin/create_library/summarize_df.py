@@ -39,7 +39,7 @@ def summarize_df(df):
         isobaric_peak_count = len(df.loc[mask2]) - 1
         df.at[i, 'isobaric_peak_count'] = isobaric_peak_count
 
-        new_name = f"{row['compound_name']} (known structural isomers: {len(isomer_inchi_ls)}; isobaric peaks in run: {isobaric_peak_count})"
+        new_name = f"{row['compound_name']} (known isomers: {len(isomer_inchi_ls)}; isobaric peaks in run: {isobaric_peak_count})"
         df.at[i, 'name'] = new_name
 
     ##############################

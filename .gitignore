@@ -1,3 +1,9 @@
 *.ipynb_checkpoints*
 *.env
 *credentials
+
+/test/
+/test_data/
+/.nextflow/
+.nextflow*
+.DS_Store

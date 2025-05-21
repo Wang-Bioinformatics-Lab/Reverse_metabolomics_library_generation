@@ -8,7 +8,7 @@ import pickle
 
 
 def main():
-    df = pd.read_csv('all_reactants.tsv', sep='\t', low_memory=False)
+    df = pd.read_csv('data_prepare/all_reactants.tsv', sep='\t', low_memory=False)
 
     # only keep first 2 columns
     df = df.iloc[:, :2]
@@ -22,10 +22,10 @@ def main():
     # dereplicate by compound name
     df = df.drop_duplicates(subset=['compound_name']).reset_index(drop=True)
 
-    # Add formula and InChI information
+    # correct chloride to acid
     df['corrected_SMILES'] = df['SMILES'].apply(chloride_to_acid)
 
-    # Add formula and InChI information
+    # Add formula information
     df['formula'] = df['corrected_SMILES'].apply(smiles_to_formula)
 
     # neutralize the formula, deal with the charge (e.g., C5H5N+)
@@ -37,7 +37,7 @@ def main():
     print(f'Number of unique reactants: {len(df)}')
 
     # save
-    df.to_csv('all_reactants_preprocessed.tsv', sep='\t', index=False)
+    df.to_csv('data_prepare/all_reactants_preprocessed.tsv', sep='\t', index=False)
 
     # remove rows with missing exact_mass
     df = df.dropna(subset=['exact_mass']).reset_index(drop=True)
@@ -45,7 +45,7 @@ def main():
     # save dict from compound name to exact_mass
     compound_name_to_mass = dict(zip(df['compound_name'], df['exact_mass']))
 
-    with open('../bin/cmpd_name_to_mass.pkl', 'wb') as f:
+    with open('bin/cmpd_name_to_mass.pkl', 'wb') as f:
         pickle.dump(compound_name_to_mass, f)
 
 
