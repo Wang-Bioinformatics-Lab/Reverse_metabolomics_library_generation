@@ -7,3 +7,5 @@
 /.nextflow/
 .nextflow*
 .DS_Store
+*.tsv
+*.mgf
