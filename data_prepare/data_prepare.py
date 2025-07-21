@@ -10,8 +10,11 @@ import pickle
 def main():
     df = pd.read_csv('data_prepare/all_reactants.tsv', sep='\t', low_memory=False)
 
-    # only keep first 2 columns
-    df = df.iloc[:, :2]
+    # only keep 2 columns
+    df = df[['compound_name', 'SMILES']]
+    
+    # save
+    df.to_csv('data_prepare/all_reactants.tsv', sep='\t', index=False)
 
     # drop rows w/o SMILES
     df = df.dropna(subset=['SMILES']).reset_index(drop=True)
