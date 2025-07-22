@@ -1,55 +1,55 @@
 compound_name	SMILES
-isolithocholic_acid	O[C@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])CC[C@@]([H])2C1
-hyodeoxycholic_acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])C[C@H](O)[C@@]([H])2C1
-ursodeoxycholic_acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@@H](O)C[C@@]([H])2C1
-isochenodeoxycholic_acid	O[C@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@H](O)C[C@@]([H])2C1
-lagodeoxycholic_acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])CC[C@@]([H])2C1
-3-epideoxycholic_acid	O[C@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])CC[C@@]([H])2C1
-3b,12b-dihydroxy-5b-cholanoic_acid	O[C@H]1CC[C@]2(C)[C@@]3([H])C[C@@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])CC[C@@]([H])2C1
-hyocholic_acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@H](O)[C@H](O)[C@@]([H])2C1
-beta-muricholic_acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@@H](O)[C@@H](O)[C@@]([H])2C1
-3a,7b,12b-trihydroxy-5b-cholanoic_acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@@H](O)C[C@@]([H])2C1
-lagocholic_acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@H](O)C[C@@]([H])2C1
-isoursocholic_acid	O[C@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@@H](O)C[C@@]([H])2C1
-3a,7b,12a-trihydroxy-5b-cholanoic_acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@@H](O)C[C@@]([H])2C1
-isocholic_acid	O[C@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@H](O)C[C@@]([H])2C1
-3b,7b,12b-trihydroxy-5b-cholanoic_acid	O[C@H]1CC[C@]2(C)[C@@]3([H])C[C@@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@@H](O)C[C@@]([H])2C1
-12-keto-lithocholic_acid	C[C@H](CCC(O)=O)[C@H]([C@]12C)CC[C@@]1([H])[C@]3([H])CC[C@]4([H])C[C@H](O)CC[C@]4(C)[C@@]3([H])CC2=O
-d22-ursodeoxycholic_acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H](/C(C)=C/CC(O)=O)CC[C@@]4([H])[C@]3([H])[C@@H](O)C[C@@]([H])2C1
-7-keto-lithocholic_acid	O[C@@H](C[C@@](C1)2[H])CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])C1=O
-cholic_acid	C[C@H](CCC(O)=O)[C@H]1CC[C@H]2[C@@H]3[C@H](O)C[C@@H]4C[C@H](O)CC[C@]4(C)[C@H]3C[C@H](O)[C@]12C
-chenodeoxycholic_acid	C[C@H](CCC(O)=O)[C@H]1CC[C@H]2[C@@H]3[C@H](O)C[C@@H]4C[C@H](O)CC[C@]4(C)[C@H]3CC[C@]12C
-lithocholic_acid	O=C(O)CC[C@H]([C@H]1CC[C@@H]2[C@]1(C)CC[C@H]4[C@H]2CC[C@@H]3C[C@H](O)CC[C@@]34C)C
-deoxycholic_acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])CC[C@@]([H])2C1
-3a,12a,7-methyl-dihydroxy-5b-cholanoic_acid	OC(CC[C@@H](C)[C@H]1CC[C@@]2([H])[C@]3([H])C(C)CC4C[C@H](O)CC[C@]4(C)[C@@]3([H])C[C@H](O)[C@]12C)=O
-3a,12a-7-oac-dihydroxy-5b-cholanoic_acid	OC(CC[C@H]([C@H]1CC[C@@]2([H])[C@]3([H])[C@H](OC(C)=O)C[C@]4([H])C[C@H](O)CC[C@]4(C)[C@@]3([H])C[C@H](O)[C@]12C)C)=O
-6-keto-lithocholic_acid	C[C@@H]([C@H]1CC[C@@]2([H])[C@]3([H])CC([C@]4([H])C[C@H](O)CC[C@]4(C)[C@@]3([H])CC[C@]12C)=O)CCC(O)=O
+isolithocholic-acid	O[C@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])CC[C@@]([H])2C1
+hyodeoxycholic-acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])C[C@H](O)[C@@]([H])2C1
+ursodeoxycholic-acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@@H](O)C[C@@]([H])2C1
+isochenodeoxycholic-acid	O[C@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@H](O)C[C@@]([H])2C1
+lagodeoxycholic-acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])CC[C@@]([H])2C1
+3-epideoxycholic-acid	O[C@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])CC[C@@]([H])2C1
+3b,12b-dihydroxy-5b-cholanoic-acid	O[C@H]1CC[C@]2(C)[C@@]3([H])C[C@@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])CC[C@@]([H])2C1
+hyocholic-acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@H](O)[C@H](O)[C@@]([H])2C1
+beta-muricholic-acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@@H](O)[C@@H](O)[C@@]([H])2C1
+3a,7b,12b-trihydroxy-5b-cholanoic-acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@@H](O)C[C@@]([H])2C1
+lagocholic-acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@H](O)C[C@@]([H])2C1
+isoursocholic-acid	O[C@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@@H](O)C[C@@]([H])2C1
+3a,7b,12a-trihydroxy-5b-cholanoic-acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@@H](O)C[C@@]([H])2C1
+isocholic-acid	O[C@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@H](O)C[C@@]([H])2C1
+3b,7b,12b-trihydroxy-5b-cholanoic-acid	O[C@H]1CC[C@]2(C)[C@@]3([H])C[C@@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@@H](O)C[C@@]([H])2C1
+12-keto-lithocholic-acid	C[C@H](CCC(O)=O)[C@H]([C@]12C)CC[C@@]1([H])[C@]3([H])CC[C@]4([H])C[C@H](O)CC[C@]4(C)[C@@]3([H])CC2=O
+d22-ursodeoxycholic-acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H](/C(C)=C/CC(O)=O)CC[C@@]4([H])[C@]3([H])[C@@H](O)C[C@@]([H])2C1
+7-keto-lithocholic-acid	O[C@@H](C[C@@](C1)2[H])CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])C1=O
+cholic-acid	C[C@H](CCC(O)=O)[C@H]1CC[C@H]2[C@@H]3[C@H](O)C[C@@H]4C[C@H](O)CC[C@]4(C)[C@H]3C[C@H](O)[C@]12C
+chenodeoxycholic-acid	C[C@H](CCC(O)=O)[C@H]1CC[C@H]2[C@@H]3[C@H](O)C[C@@H]4C[C@H](O)CC[C@]4(C)[C@H]3CC[C@]12C
+lithocholic-acid	O=C(O)CC[C@H]([C@H]1CC[C@@H]2[C@]1(C)CC[C@H]4[C@H]2CC[C@@H]3C[C@H](O)CC[C@@]34C)C
+deoxycholic-acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])CC[C@@]([H])2C1
+3a,12a,7-methyl-dihydroxy-5b-cholanoic-acid	OC(CC[C@@H](C)[C@H]1CC[C@@]2([H])[C@]3([H])C(C)CC4C[C@H](O)CC[C@]4(C)[C@@]3([H])C[C@H](O)[C@]12C)=O
+3a,12a-7-oac-dihydroxy-5b-cholanoic-acid	OC(CC[C@H]([C@H]1CC[C@@]2([H])[C@]3([H])[C@H](OC(C)=O)C[C@]4([H])C[C@H](O)CC[C@]4(C)[C@@]3([H])C[C@H](O)[C@]12C)C)=O
+6-keto-lithocholic-acid	C[C@@H]([C@H]1CC[C@@]2([H])[C@]3([H])CC([C@]4([H])C[C@H](O)CC[C@]4(C)[C@@]3([H])CC[C@]12C)=O)CCC(O)=O
 c22-3a,7b	OC([C@H]([C@H]1CC[C@]2([C@@]3([C@H](C[C@@]4(C[C@@H](CC[C@@]4([C@]3(CC[C@]12C)[H])C)O)[H])O)[H])[H])C)=O
-12-keto-ursodeoxycholic_acid	O[C@@H](C[C@@](C[C@@H]([C@@]1([H])[C@]2([H])CC[C@@H]([C@]23C)[C@H](C)CCC(O)=O)O)4[H])CC[C@]4(C)[C@@]1([H])CC3=O
+12-keto-ursodeoxycholic-acid	O[C@@H](C[C@@](C[C@@H]([C@@]1([H])[C@]2([H])CC[C@@H]([C@]23C)[C@H](C)CCC(O)=O)O)4[H])CC[C@]4(C)[C@@]1([H])CC3=O
 c25-homo-3-alpha-12-alpha	O[C@@H]1CC[C@@]2([C@]3(C[C@H](O)[C@@]4([C@H](CC[C@]4([C@@]3(CC[C@@]2(C1)[H])[H])[H])[C@@H](CCCC(O)=O)C)C)[H])C
-23-ethyl-lithocholic_acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CC(CC)C(O)=O)CC[C@@]4([H])[C@]3([H])CCC2C1
-3a-hydroxy-5b-cholanoic_acid	[H][C@@]12CCCC[C@]1(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])CC2
-7b-methyl-cholic_acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@@](O)(C)C[C@@]([H])2C1
+23-ethyl-lithocholic-acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CC(CC)C(O)=O)CC[C@@]4([H])[C@]3([H])CCC2C1
+3a-hydroxy-5b-cholanoic-acid	[H][C@@]12CCCC[C@]1(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])CC2
+7b-methyl-cholic-acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@@](O)(C)C[C@@]([H])2C1
 c22-3-alpha-7-alpha	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)C(O)=O)CC[C@@]4([H])[C@]3([H])[C@H](O)C[C@@]([H])2C1
-homocholic_acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@H](O)C[C@@]([H])2C1
+homocholic-acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@H](O)C[C@@]([H])2C1
 c22-bisnor_3alpha-7alpha-12alpha	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)C(O)=O)CC[C@@]4([H])[C@]3([H])[C@H](O)C[C@@]([H])2C1
-3a_12a_delta_8-14	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])C=C[C@@]([H])2C1
-12-keto-chenodeoxycholic_acid	O[C@@H](CC1C[C@H]([C@@]2([H])[C@]3([H])CC[C@@H]([C@]34C)[C@H](C)CCC(O)=O)O)CC[C@]1(C)[C@@]2([H])CC4=O
+3a-12a-delta-8-14	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])C=C[C@@]([H])2C1
+12-keto-chenodeoxycholic-acid	O[C@@H](CC1C[C@H]([C@@]2([H])[C@]3([H])CC[C@@H]([C@]34C)[C@H](C)CCC(O)=O)O)CC[C@]1(C)[C@@]2([H])CC4=O
 c23-3a,7a	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CC(O)=O)CC[C@@]4([H])[C@]3([H])[C@H](O)CC2C1
 3a,7a,12a-c23-amine	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCN)CC[C@@]4([H])[C@]3([H])[C@H](O)C[C@@]([H])2C1
-3a,7b,7a-methyl-dihydroxy-5b-cholanoic_acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@@](C)(O)CC2C1
+3a,7b,7a-methyl-dihydroxy-5b-cholanoic-acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@@](C)(O)CC2C1
 c23-nor-3a,6b	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CC(O)=O)CC[C@@]4([H])[C@]3([H])C[C@@H](O)[C@@]([H])2C1
 c23-nor-3a,7a,12a	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CC(O)=O)CC[C@@]4([H])[C@]3([H])[C@H](O)C[C@@]([H])2C1
-7-keto-deoxycholic_acid	O[C@@H](C[C@@](C1)2[H])CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])C1=O
-c23-nor-3a,7k,12a-cholic_acid	O[C@@H](C[C@@](C1)2[H])CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CC(O)=O)CC[C@@]4([H])[C@]3([H])C1=O
-c23-3a,12a-cholic_acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CC(O)=O)CC[C@@]4([H])[C@]3([H])CC[C@@]([H])2C1
-c23-3a,7b-cholic_acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CC(O)=O)CC[C@@]4([H])[C@]3([H])[C@@H](O)C[C@@]([H])2C1
-3a,6a,7k-cholic_acid	O[C@@H](C[C@@]([C@H]1O)2[H])CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])C1=O
-c23-3a-cholic_acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CC(O)=O)CC[C@@]4([H])[C@]3([H])CC[C@@]([H])2C1
-3a,7a,12a-delta-22-cholic_acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)/C=C/C(O)=O)CC[C@@]4([H])[C@]3([H])[C@H](O)C[C@@]([H])2C1
-3a,delta-22-cholic_acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)/C=C/C(O)=O)CC[C@@]4([H])[C@]3([H])CC[C@@]([H])2C1
-c22-3a,12a-cholic_acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)C(O)=O)CC[C@@]4([H])[C@]3([H])CC[C@@]([H])2C1
-3a,7k,delta-11-cholic_acid	O[C@@H](C[C@@](C1)2[H])CC[C@]2(C)[C@@]3([H])C=C[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])C1=O
+7-keto-deoxycholic-acid	O[C@@H](C[C@@](C1)2[H])CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])C1=O
+c23-nor-3a,7k,12a-cholic-acid	O[C@@H](C[C@@](C1)2[H])CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CC(O)=O)CC[C@@]4([H])[C@]3([H])C1=O
+c23-3a,12a-cholic-acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CC(O)=O)CC[C@@]4([H])[C@]3([H])CC[C@@]([H])2C1
+c23-3a,7b-cholic-acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CC(O)=O)CC[C@@]4([H])[C@]3([H])[C@@H](O)C[C@@]([H])2C1
+3a,6a,7k-cholic-acid	O[C@@H](C[C@@]([C@H]1O)2[H])CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])C1=O
+c23-3a-cholic-acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CC(O)=O)CC[C@@]4([H])[C@]3([H])CC[C@@]([H])2C1
+3a,7a,12a-delta-22-cholic-acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)/C=C/C(O)=O)CC[C@@]4([H])[C@]3([H])[C@H](O)C[C@@]([H])2C1
+3a,delta-22-cholic-acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)/C=C/C(O)=O)CC[C@@]4([H])[C@]3([H])CC[C@@]([H])2C1
+c22-3a,12a-cholic-acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)C(O)=O)CC[C@@]4([H])[C@]3([H])CC[C@@]([H])2C1
+3a,7k,delta-11-cholic-acid	O[C@@H](C[C@@](C1)2[H])CC[C@]2(C)[C@@]3([H])C=C[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])C1=O
 methylcholate	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(OC)=O)CC[C@@]4([H])[C@]3([H])[C@H](O)C[C@@]([H])2C1
 3-alpha-7-alpha-12-alpha-7-beta me	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@@](O)(C)C[C@@]([H])2C1
 12-alpha	[H][C@@]12CCCC[C@]1(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])CC2
@@ -353,7 +353,7 @@ hexanoyl chloride	CCCCCC(Cl)=O
 fumaroyl dichloride	ClC(=O)/C=C/C(Cl)=O
 pentanoyl chloride	CCCCC(Cl)=O
 acetyl chloride	CC(Cl)=O
-2-methyl-1,4,5,6-tetrahydropyrimidine-4-carboxylic_acid	CC1=NC(CCN1)C(O)=O
+2-methyl-1,4,5,6-tetrahydropyrimidine-4-carboxylic-acid	CC1=NC(CCN1)C(O)=O
 12-hydroxy,-16-heptadecynoic-acid	OC(CCCCCCCCCCC(O)=O)CCCC#C
 10,13,16-docosatetraenoic-acid	CCCCC/C=C/C/C=C/C/C=C/C/C=C/CCCCCC(=O)O
 linolenic-acid	CC/C=C/C/C=C/C/C=C/CCCCCCCC(O)=O
@@ -834,10 +834,10 @@ diformyldeoxycholic-acid	[H][C@@]12C[C@H](C([H])=O)CC[C@]1(C)[C@@]3([H])C[C@H](C
 (4r)-4-((5s,8r,9s,10s,13r,14s,17r)-3-(ethoxycarbonyl)-10,13-dimethyl-7,12-dioxohexadecahydro-1h-cyclopenta[a]phenanthren-17-yl)pentanoic-acid	[H][C@]1(CC(CC[C@@]1([C@]2(CC3=O)[H])C)C(OCC)=O)CC([C@]2([C@@]4(CC[C@H]([C@@H](CCC(O)=O)C)[C@]43C)[H])[H])=O
 3a-formyl-5-beta-cooh	C[C@H](CCC(O)=O)[C@H]1CC[C@@]2([H])[C@]3([H])CCC4C[C@H](C=O)CC[C@]4(C)[C@@]3([H])CC[C@]12C
 3-formyl-norlithocholic-acid	OC(C[C@@H](C)[C@H]1CC[C@@]2([H])[C@]3([H])CCC4C[C@H](C=O)CC[C@]4(C)[C@@]3([H])CC[C@]12C)=O
-4-aminobutanoic_acid	NCCCC(O)=O
-(s)-2-amino-5-ureidopentanoic_acid	N[C@@H](CCCNC(N)=O)C(O)=O
-(s)-2,5-diaminopentanoic_acid	NCCC[C@H](N)C(O)=O
-l-aspartic_acid	N[C@@H](CC(O)=O)C(O)=O
+4-aminobutanoic-acid	NCCCC(O)=O
+(s)-2-amino-5-ureidopentanoic-acid	N[C@@H](CCCNC(N)=O)C(O)=O
+(s)-2,5-diaminopentanoic-acid	NCCC[C@H](N)C(O)=O
+l-aspartic-acid	N[C@@H](CC(O)=O)C(O)=O
 latic acid	OC(C)C(O)=O
 3a,12k-deoxycholic-acid	C[C@H](CCC(O)=O)[C@H]([C@]12C)CC[C@@]1([H])[C@]3([H])CC[C@]4([H])C[C@H](O)CC[C@]4(C)[C@@]3([H])CC2=O
 3-(1,4-diaminobutane)methylcholate	[H][C@@]12CC(NCCCCNC(OC(C)(C)C)=O)CC[C@]1(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(OC)=O)CC[C@@]4([H])[C@]3([H])[C@H](O)C2
@@ -1126,11 +1126,11 @@ cyclopropylamine	NC1CC1
 3_keto_taurolithocholic acid	O=C1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CCC(NCCS(=O)(O)=O)=O)CC[C@@]4([H])[C@]3([H])CC[C@@]([H])2C1
 taurocholy	O=S(CCNC(CC[C@H]([C@H]1CC[C@]2([C@@]3([C@@H](CC4C[C@@H](CC[C@@]4([C@]3(C[C@@H]([C@]12C)O)[H])C)O)O)[H])[H])C)=O)(P)=O
 chloyl	OC(CC[C@H]([C@H]1CC[C@]2([C@@]3([C@@H](CC4C[C@@H](CC[C@@]4([C@]3(C[C@@H]([C@]12C)O)[H])C)O)O)[H])[H])C)=O
-7_keto_bile_acid	[H][C@@]1(C2)CCCC[C@]1(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CCC(NCCS(=O)(O)=O)=O)CC[C@@]4([H])[C@]3([H])C2=O
+7-keto-bile-acid	[H][C@@]1(C2)CCCC[C@]1(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CCC(NCCS(=O)(O)=O)=O)CC[C@@]4([H])[C@]3([H])C2=O
 3k,12oh-deoxycholic-acid	C[C@H](CCC(O)=O)[C@H]1CC[C@@]2([H])[C@]3([H])CC[C@]4([H])CC(CC[C@]4(C)[C@@]3([H])CC(O)[C@]12C)=O
 3a,7a-chenodeoxycholic-acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@H](O)CC2C1
 3a, 12a-deoxycholic-acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])CC[C@@]([H])2C1
-icosanoic_acid	CCCCCCCCCCCCCCCCCCCC(O)=O
+icosanoic-acid	CCCCCCCCCCCCCCCCCCCC(O)=O
 3a,7a,12a-cholic-acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@H](O)C[C@@]([H])2C1
 3a,7a-chenodeoxychoic-acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@H](O)CC2C1
 3a,12a-deoxychoic-acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])CC[C@@]([H])2C1
@@ -1406,7 +1406,7 @@ dca	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@
 sodium-lithocholate	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CCC(O[Na])=O)CC[C@@]4([H])[C@]3([H])CCC2C1
 hyocholic acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])CC[C@@]([H])2C1
 3b,7a,12a-trihydroxychlic-acid	O[C@H]1CC[C@]2(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])[C@H](O)C[C@@]([H])2C1
-nor-lithocholic acid_nor-3a	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CC(O)=O)CC[C@@]4([H])[C@]3([H])CCC2C1
+nor-lithocholic acid-nor-3a	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)CC(O)=O)CC[C@@]4([H])[C@]3([H])CCC2C1
 bis-nor-chenodeoxycholic-acid	O[C@@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@H](C)C(O)=O)CC[C@@]4([H])[C@]3([H])[C@H](O)C[C@]2([H])C1
 ursocholic-acid-3a,7b,12a	C[C@H](CCC(O)=O)[C@H]1CC[C@@]2([H])[C@]3([H])[C@@H](O)C[C@]4([H])C[C@H](O)CC[C@]4(C)[C@@]3([H])C[C@H](O)[C@]12C
 bisnor-ursodeoxycholic-acid	O[C@H]1CC[C@]2(C)[C@@]3([H])CC[C@]4(C)[C@@H]([C@@H](C(O)=O)C)CC[C@@]4([H])[C@]3([H])[C@@H](O)CC2C1
@@ -1433,37 +1433,37 @@ butyryl chloride	CCCC(Cl)=O
 tetradecanoyl chloride	CCCCCCCCCCCCCC(Cl)=O
 nonanoyl chloride	CCCCCCCCC(Cl)=O
 heptanoyl chloride	CCCCCCC(Cl)=O
-(e)-2-methylbut-2-enoic_acid	C\C=C(/C)C(O)=O
-hex-5-ynoic_acid	OC(=O)CCCC#C
-(e)-pent-2-enoic_acid	CC/C=C/C(O)=O
-3-methoxypropanoic_acid	COCCC(O)=O
-octanoic_acid	CCCCCCCC(O)=O
-pent-4-enoic_acid	OC(=O)CCC=C
-(r,z)-12-hydroxyoctadec-9-enoic_acid	CCCCCC[C@@H](O)C\C=C/CCCCCCCC(O)=O
-(z)-icos-11-enoic_acid	CCCCCCCC\C=C/CCCCCCCCCC(O)=O
-undec-10-enoic_acid	OC(=O)CCCCCCCCC=C
-decanoic_acid	CCCCCCCCCC(O)=O
-hexanoic_acid	CCCCCC(O)=O
-docosanoic_acid	CCCCCCCCCCCCCCCCCCCCCC(O)=O
-(6z,9z,12z)-octadeca-6,9,12-trienoic_acid	CCCCC\C=C/C/C=C\C\C=C/CCCCC(O)=O
-but-2-ynoic_acid	CC#CC(O)=O
-methacrylic_acid	CC(=C)C(O)=O
-undecanoic_acid	CCCCCCCCCCC(O)=O
-2-oxopropanoic_acid	CC(=O)C(O)=O
-stearic_acid	CCCCCCCCCCCCCCCCCC(O)=O
-4-oxopentanoic_acid	CC(=O)CCC(O)=O
-12-methyltridecanoic_acid	CC(C)CCCCCCCCCCC(O)=O
-hentriacontanoic_acid	CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC(O)=O
-3-methylbutanoic_acid	CC(C)CC(O)=O
-palmitic_acid	CCCCCCCCCCCCCCCC(O)=O
-3-hydroxybutanoic_acid	CC(O)CC(O)=O
-2-hydroxytetradecanoic_acid	CCCCCCCCCCCCC(O)C(O)=O
-2-methylpentanoic_acid	CCCC(C)C(O)=O
-tetracosanoic_acid	CCCCCCCCCCCCCCCCCCCCCCCC(O)=O
-3-methylpentanoic_acid	CCC(C)CC(O)=O
-oleic_acid	CCCCCCCC\C=C/CCCCCCCC(O)=O
-12-hydroxyoctadecanoic_acid	CCCCCCC(O)CCCCCCCCCCC(O)=O
-henicosanoic_acid	CCCCCCCCCCCCCCCCCCCCC(O)=O
+(e)-2-methylbut-2-enoic-acid	C\C=C(/C)C(O)=O
+hex-5-ynoic-acid	OC(=O)CCCC#C
+(e)-pent-2-enoic-acid	CC/C=C/C(O)=O
+3-methoxypropanoic-acid	COCCC(O)=O
+octanoic-acid	CCCCCCCC(O)=O
+pent-4-enoic-acid	OC(=O)CCC=C
+(r,z)-12-hydroxyoctadec-9-enoic-acid	CCCCCC[C@@H](O)C\C=C/CCCCCCCC(O)=O
+(z)-icos-11-enoic-acid	CCCCCCCC\C=C/CCCCCCCCCC(O)=O
+undec-10-enoic-acid	OC(=O)CCCCCCCCC=C
+decanoic-acid	CCCCCCCCCC(O)=O
+hexanoic-acid	CCCCCC(O)=O
+docosanoic-acid	CCCCCCCCCCCCCCCCCCCCCC(O)=O
+(6z,9z,12z)-octadeca-6,9,12-trienoic-acid	CCCCC\C=C/C/C=C\C\C=C/CCCCC(O)=O
+but-2-ynoic-acid	CC#CC(O)=O
+methacrylic-acid	CC(=C)C(O)=O
+undecanoic-acid	CCCCCCCCCCC(O)=O
+2-oxopropanoic-acid	CC(=O)C(O)=O
+stearic-acid	CCCCCCCCCCCCCCCCCC(O)=O
+4-oxopentanoic-acid	CC(=O)CCC(O)=O
+12-methyltridecanoic-acid	CC(C)CCCCCCCCCCC(O)=O
+hentriacontanoic-acid	CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC(O)=O
+3-methylbutanoic-acid	CC(C)CC(O)=O
+palmitic-acid	CCCCCCCCCCCCCCCC(O)=O
+3-hydroxybutanoic-acid	CC(O)CC(O)=O
+2-hydroxytetradecanoic-acid	CCCCCCCCCCCCC(O)C(O)=O
+2-methylpentanoic-acid	CCCC(C)C(O)=O
+tetracosanoic-acid	CCCCCCCCCCCCCCCCCCCCCCCC(O)=O
+3-methylpentanoic-acid	CCC(C)CC(O)=O
+oleic-acid	CCCCCCCC\C=C/CCCCCCCC(O)=O
+12-hydroxyoctadecanoic-acid	CCCCCCC(O)CCCCCCCCCCC(O)=O
+henicosanoic-acid	CCCCCCCCCCCCCCCCCCCCC(O)=O
 2-methyl-butyric-acid	CCC(C)C(O)=O
 hentricontanoic-acid	CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC(O)=O
 hyneicosanoic-acid	CCCCCCCCCCCCCCCCCCCCC(O)=O
@@ -2611,7 +2611,7 @@ hexynoic-acid	OC(=O)CCCC#C
 ursodeoxycholic-acid-(3_sulfoxy)	C[C@@H]([C@H]1CC[C@H]2[C@@H]3[C@H](CC4C[C@H](CC[C@@]4([C@H]3CC[C@]12C)C)OS(=O)(O)=O)O)CCC(O)=O
 lithodeoxycholic-acid-(3-sulfoxy)	C[C@@H]([C@H]1CC[C@H]2[C@@H]3CC[C@@H]4CC(CC[C@@]4([C@H]3CC[C@]12C)C)OS(=O)(O)=O)CCC(O)=O
 chenodeoxycholic-acid-(3-sulfoxy))	OC(CC[C@H]([C@H]1CC[C@H]2[C@@H]3[C@@H](C[C@@H]4CC(CC[C@@]4([C@H]3CC[C@]12C)C)OS(=O)(O)=O)O)C)=O
-deoxycholic-acid_(3-sulfoxy)	[H][C@@]12CC(OS(=O)(O)=O)CC[C@]1(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])CC2
+deoxycholic-acid-(3-sulfoxy)	[H][C@@]12CC(OS(=O)(O)=O)CC[C@]1(C)[C@@]3([H])C[C@H](O)[C@]4(C)[C@@H]([C@H](C)CCC(O)=O)CC[C@@]4([H])[C@]3([H])CC2
 butyrl-chloride	CCCC(O)=O
 acryloyl-chloride	OC(/C=C(C)/C)=O
 3-monomethylglutare	O=C(OC)CCCC(O)=O
@@ -3016,7 +3016,7 @@ Heptadecanedioic acid	O=C(O)CCCCCCCCCCCCCCCC(O)=O
 Octadecanedioic acid	O=C(O)CCCCCCCCCCCCCCCCC(O)=O
 Nonadecanedioic acid	O=C(O)CCCCCCCCCCCCCCCCCC(O)=O
 Eicosanedioic acid	O=C(O)CCCCCCCCCCCCCCCCCCC(O)=O
-Glucuronic_acid	[C@@H]1([C@@H]([C@H](OC([C@@H]1O)O)C(=O)O)O)O
+Glucuronic-acid	[C@@H]1([C@@H]([C@H](OC([C@@H]1O)O)C(=O)O)O)O
 N-Carbamoylputrescine	C(CCNC(=O)N)CN
 N-Acetylputrescine	CC(=O)NCCCCN
 N-Acetylspermidine	CC(=O)NCCCCNCCCN
@@ -3041,5 +3041,12 @@ Amoxicillin	CC1(S[C@@H]2[C@@H](C(N2[C@H]1C(O)=O)=O)NC([C@@H](c3ccc(O)cc3)N)=O)C
 naproxene	COc1cc2ccc(cc2cc1)[C@H](C)C(=O)O
 5-aminosalicylic acid	OC1=CC=C(N)C=C1C(O)=O
 5-Aminosalicylic acid	OC1=CC=C(N)C=C1C(O)=O
-Adenosine_5_Phosphate	C1=NC(=C2C(=N1)N(C=N2)[C@H]3[C@@H]([C@@H]([C@H](O3)COP(=O)(O)O)O)O)N
+Adenosine-5-Phosphate	C1=NC(=C2C(=N1)N(C=N2)[C@H]3[C@@H]([C@@H]([C@H](O3)COP(=O)(O)O)O)O)N
 3-oxododecanoic acid	CCCCCCCCCC(CC(O)=O)=O
+p-toluenesulfonic acid	CC1=CC=C(S(=O)(O)=O)C=C1
+Diacetone fructose	O[C@H]1[C@H]2[C@H](OC(C)(C)O2)CO[C@]13COC(C)(C)O3
+Boc-L-proline	O=C(O)[C@H]1N(C(OC(C)(C)C)=O)CCC1
+2,3,4,6-Tetra-O-acetyl-alpha-D-galactopyranosyl bromide	O=C(OC[C@@H]1[C@H](OC(C)=O)[C@H](OC(C)=O)[C@@H](OC(C)=O)[C@@H](Br)O1)C
+Methyl 1,2,3,4-tetra-O-acetyl-beta-D-glucuronate	O=C(OC)[C@@H](O1)[C@@H](OC(C)=O)[C@H](OC(C)=O)[C@@H](OC(C)=O)[C@@H]1OC(C)=O
+2-Chloro-1,4-benzoquinone	O=C(C=C1)C=C(Cl)C1=O
+2,3-Dichloro-1,4-naphthoquinone	O=C(C1=C2C=CC=C1)C(Cl)=C(Cl)C2=O
